@@ -34,7 +34,7 @@ testsuite = ["login_test"]
 server_host = "http://localhost:4444"
 
 #   target testing url
-url = "http://topface.com"
+target_url = "http://topface.com"
 
 #   remote web driver port number
 remote_port = 5555

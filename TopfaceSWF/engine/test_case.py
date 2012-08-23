@@ -15,39 +15,46 @@ class TestCase(TestSuite):
 
     """
     __log_name = ""
+    __log_path = ""
+    __screen_path = ""
     __log_list = []
 
+    #noinspection PyMissingConstructor
     def __init__(self):
         self.browser = None
         self.wait = None
         self.logger = None
         self.test_is_running = False
 
-
+    #noinspection PyArgumentList
     def run_test(self):
+        """
+
+        """
         if TestSuite.browser_name == "firefox":
             self.browser = Firefox()
         elif TestSuite.browser_name == "ie":
             self.browser = Ie()
-        self.wait = WebDriverWait(self.browser, settings.wait_for_element_time)
-        self.logger = logger.Logger(self.get_log_name())
+        self.logger = logger.Logger(self.get_log_path())
         self.logger.log(self.get_log_name()+"\r\n")
 
 #        while not self.test_is_running:
-#
+
         try:
             self.test_is_running = True
-            self.run(self.browser)
+#            Method is overridden in child object
+            self.run(self.browser,self.logger)
             self.logger.log("\r\n<<<< SUCCESS >>>>\r\n")
         except TestFailedException as e:
+            self.browser.get_screenshot_as_file(self.get_screen_path())
             self.logger.log("\r\n ERROR: " + e.value + "\r\n<<<< TEST FAILED >>>>\r\n")
             self.browser.close()
         finally:
             self.test_is_running = False
             self.logger.dump_to_filesystem()
-            self.set_log_list(self.logger.get_log_list())
+            self.set_log_list(self.logger.get_logs())
 
-    def run(self,browser):
+    def run(self):
          pass
 
     def get_browser(self):
@@ -64,5 +71,13 @@ class TestCase(TestSuite):
     def get_log_name(self):
         return self.__log_name
 
+    def get_log_path(self):
+        return self.__log_path
+
+    def get_screen_path(self):
+        return self.__screen_path
+
     def set_log_name(self,name):
-        self.__log_name = settings.get_topface_reports_path() + name + ".log"
+        self.__log_path = settings.get_topface_reports_path() + name + ".log"
+        self.__log_name = name
+        self.__screen_path = settings.get_topface_reports_path() + name + ".png"

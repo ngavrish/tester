@@ -10,5 +10,5 @@ setup(
     license='',
     author='Nikita Gavrish ',
     author_email='',
-    description='', requires=['selenium']
+    description='', requires=['selenium', "engine"]
 )

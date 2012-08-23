@@ -23,7 +23,7 @@ def main(argv=None):
         if option.find("remote_port") > -1:
             settings.remote_port = option.split("=")[1]
         if option.find("target_url") > -1:
-            settings.url = option.split("=")[1]
+            settings.target_url = option.split("=")[1]
         if option.find("remoute_amount") > -1:
             settings.remote_amount = option.split("=")[1]
 

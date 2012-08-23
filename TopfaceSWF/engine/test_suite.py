@@ -1,4 +1,4 @@
-
+from reports.logger import Logger
 
 __author__ = 'user'
 
@@ -18,7 +18,7 @@ class TestSuite:
     def run_test(self):
         pass
 
-    def run(self,browser):
+    def run(self):
         pass
 
     def set_log_list(self,logs):

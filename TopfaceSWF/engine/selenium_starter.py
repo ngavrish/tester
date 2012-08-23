@@ -1,5 +1,4 @@
 import inspect
-import new
 import sys
 import settings
 
