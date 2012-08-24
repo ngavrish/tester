@@ -45,8 +45,8 @@ class LoginTestSuite(TestSuite):
             authForm.login_to_fb()
             window.switch_to_root()
             authForm.validate_fb_login_success()
-            window.close()
             raise TestFailedException("Debug exception")
+            window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class LoginVkSuccess(TestCase):
@@ -72,8 +72,8 @@ class LoginTestSuite(TestSuite):
             authForm.login_to_vk()
             window.switch_to_root()
             authForm.validate_login_success()
-            window.close()
             raise TestFailedException("Debug exception")
+            window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class LoginMailruSuccess(TestCase):
@@ -99,5 +99,5 @@ class LoginTestSuite(TestSuite):
             authForm.login_to_mailru()
             window.switch_to_root()
             authForm.validate_login_success()
-            window.close()
             raise TestFailedException("Debug exception")
+            window.close()

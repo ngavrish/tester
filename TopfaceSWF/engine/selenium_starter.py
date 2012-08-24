@@ -39,6 +39,7 @@ class SeleniumStarter:
         self.get_testsuite_instances()
         for test in self.test_suite:
             test.run()
+        print "SUCCESS"
 
     def generate_parallel_start_command(self):
         pass

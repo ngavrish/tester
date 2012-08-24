@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchWindowException
 from test_failed_exception import TestFailedException
 from test_suite import TestSuite
 from reports import logger
@@ -48,7 +49,11 @@ class TestCase(TestSuite):
         except TestFailedException as e:
             self.browser.get_screenshot_as_file(self.get_screen_path())
             self.logger.log("\r\n ERROR: " + e.value + "\r\n<<<< TEST FAILED >>>>\r\n")
-            self.browser.close()
+            try:
+                self.browser.close()
+            except NoSuchWindowException as e:
+                print "ERROR: Cannot close window after Test Failed: " + e.message
+                self.logger.log("ERROR: Cannot close window after Test Failed: " + e.message)
         finally:
             self.test_is_running = False
             self.logger.dump_to_filesystem()
