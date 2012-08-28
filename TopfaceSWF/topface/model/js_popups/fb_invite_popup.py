@@ -1,15 +1,17 @@
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 import settings
+from topface.model.model import Model
 
-__author__ = 'user'
+__author__ = 'ngavrish'
 
-class FbInviteFriendsPopup:
+class FbInviteFriendsPopup(Model):
 
-    __close_xpath = "//div[@id='fb-root']/div[2]/a"
-    __id = "fb-root"
+    _close_xpath = "//div[@id='fb-root']/div[2]/a"
+    _id = "fb-root"
 
     def __init__(self,browser,logger):
+        Model.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
 
@@ -17,7 +19,7 @@ class FbInviteFriendsPopup:
         try:
             self.logger.log("Searching for invite friends popup")
             closer = WebDriverWait(self.browser, settings.wait_for_element_time).until(
-                lambda driver: driver.find_element_by_xpath(self.__close_xpath))
+                lambda driver: driver.find_element_by_xpath(self._close_xpath))
             closer.click()
         except NoSuchElementException:
             self.logger.log("Invite friends popup not found")

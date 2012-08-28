@@ -1,6 +1,6 @@
 import os
 
-__author__ = 'user'
+__author__ = 'ngavrish'
 
 #    Initialized on tests start from command line arguments
 #    Contains framework settings that manage tests running
@@ -20,7 +20,7 @@ __author__ = 'user'
 __product_name = "topface"
 
 #   root path for test reports
-__reports_path =os.path.dirname(os.path.abspath(__file__)) + "\\topface_reports\\"
+__reports_path = os.path.dirname(os.path.abspath(__file__)) + "\\topface_reports\\"
 
 #   To run selenium framework you need to have
 #   Selenium jar-files and specific drivers somewhere on your File System
@@ -28,7 +28,7 @@ __selenium_path = "C:\\selenium"
 
 
 #   test suite to run
-testsuite = ["login_test"]
+testsuite = ["marks_test"]
 
 #   selenium server host
 server_host = "http://localhost:4444"

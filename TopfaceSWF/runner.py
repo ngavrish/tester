@@ -5,7 +5,7 @@ import sys
 from engine.selenium_starter import SeleniumStarter
 import settings
 
-__author__ = 'user'
+__author__ = 'ngavrish'
 
 
 def main(argv=None):

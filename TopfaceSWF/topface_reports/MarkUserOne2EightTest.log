@@ -1,0 +1,58 @@
+MarkUserOne2EightTest
+
+Open firefox at http://topface.com
+Validating current URL = http://topface.com/ru/auth/?url=%2F
+Find element by ID = socialSwitcher
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AD4400>xpath 
+Click Element = id("socialswitcher")
+Waiting for element XPATH = //div[@class='auth-form']//div[@class='social-list' and @style='display: block;']
+Find element by ID = fb
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AD4400>xpath 
+Click Element = id("fb")
+Switched to window Войти | Facebook
+Waiting for element ID = pass
+Waiting for element ID = email
+Find element by ID = loginbutton
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AD4668>xpath 
+Click Element = id("loginbutton")
+Switched to window Topface
+Waiting for element with ID = starBox
+Searching for invite friends popup
+Invite friends popup not found
+Get all minor marks - marks from 1 to 8
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE4358>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[2]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE40B8>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[3]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE4390>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[4]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE4240>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[5]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE41D0>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[6]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE4048>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[7]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE40F0>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[8]
+Get photo to mark
+Get photo to mark
+Getting element = <selenium.webdriver.remote.webelement.WebElement object at 0x0000000002AE4438>xpath 
+Clicking on mark id("starbox")/div[1]/div[1]/a[9]
+Get photo to mark
+END TEST
+
+<<<< SUCCESS >>>>
+
