@@ -21,7 +21,6 @@ class Comments(Model):
 
     def high_mark(self):
         self.logger.log("Getting high rate mark comment textarea")
-        self.browser.implicitly_wait(10)
         try:
             return WebDriverWait(self.browser, settings.wait_for_element_time).\
                         until(lambda driver: driver.find_element_by_xpath(self._high_mark_comment_xpath))
@@ -45,15 +44,29 @@ class Comments(Model):
         self.logger.log("Typing comment " + comment_type + " with value = " + value)
         element.clear()
         element.send_keys(value)
-        self.validate_comment_value(value)
+        self.validate_high_mark_comment_value(value)
         buttons.send_comment(comment_type)
 
-    def validate_comment_value(self,value):
+    def validate_high_mark_comment_value(self,value):
         self.logger.log("Validating comment message with value = " + str(value)
-                        + " vs " +  self.__get_textarea_value(self._high_mark_comment_js_selector))
+                        + " vs " +  str(self.__get_textarea_value(self._high_mark_comment_js_selector)))
         try:
+            WebDriverWait(self.browser, settings.wait_for_element_time).\
+                        until(self.__get_high_mark_height_occurences())
+        except Exception:
+#            WebDriverWait doesn't work as documented. If method in until() returns true, it fails either way
+#            only works when using lambda driver searching element in web interface function
+#            so hacking a bit
+            if self.high_mark().get_attribute("style").count(self.get_top_mark_comment_height()) <= 0:
+                print "Failed to change comment box style"
+                raise TestFailedException("Comment text area didn't change style")
+
+        try:
+            print value
+            print self.__get_textarea_value(self._high_mark_comment_js_selector)
             assert value == self.__get_textarea_value(self._high_mark_comment_js_selector)
         except Exception:
+            print "Text validation failed"
             raise TestFailedException("Failed to validate comment text value")
 
     def get_high_rate_comment_value(self):
@@ -62,3 +75,7 @@ class Comments(Model):
     def __get_textarea_value(self,element):
         return self.browser.execute_script(
             "return $(\"" + element + "\").val()")
+
+    def __get_high_mark_height_occurences(self):
+        return self.high_mark().get_attribute("style").count(self.get_top_mark_comment_height()) > 0
+

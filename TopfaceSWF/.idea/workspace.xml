@@ -2,40 +2,71 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ee00d2b-0bfe-4197-ad59-27d9d06c5b60" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/buttons.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/comments.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/js_popups/alert_popups.py" />
-      <change type="MOVED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\topface\model\marking.py" afterPath="$PROJECT_DIR$/topface/model/marks.py" />
-      <change type="MOVED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\topface\model_tests\fb\marks_test.py" afterPath="$PROJECT_DIR$/topface/model_tests/marks_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/ScratchMarksSending.py" afterPath="$PROJECT_DIR$/demo/ScratchMarksSending.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/__init__.py" afterPath="$PROJECT_DIR$/demo/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/__init__.py" afterPath="$PROJECT_DIR$/engine/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/energy.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/filters.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/js_popups/dreams_popup.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/js_popups/fans_popups.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/js_popups/guests_popups.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/js_popups/sexy_popup.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/messanger.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/navigation.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/model/profile.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/research_tests/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/topface/research_tests/mutual_likes_answers_test.py" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\demo\ScratchMarksSending.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\demo\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\engine\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\engine\selenium_starter.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\engine\test_case.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\engine\test_failed_exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\engine\test_suite.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\reports\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\reports\logger.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\reports\report_handler.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\browser_mapping.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\common_tests\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\advertising\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\advertising\advert.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\auth.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\browser_window.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\buttons.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\comments.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\marks.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\messaging\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\messaging\message.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\model.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\navigation\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\profile\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model\profile\profile.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model_tests\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model_tests\login_test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model_tests\marks_test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model_tests\messages_test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\build\lib\topface\model_tests\profile_test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\topface\model\navigation\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\topface\model\profile\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\user\Projects\tester\TopfaceSWF\topface\model\profile\profile.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.png" afterPath="$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/selenium_starter.py" afterPath="$PROJECT_DIR$/engine/selenium_starter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/test_case.py" afterPath="$PROJECT_DIR$/engine/test_case.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/test_failed_exception.py" afterPath="$PROJECT_DIR$/engine/test_failed_exception.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/test_suite.py" afterPath="$PROJECT_DIR$/engine/test_suite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/__init__.py" afterPath="$PROJECT_DIR$/reports/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/logger.py" afterPath="$PROJECT_DIR$/reports/logger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/report_handler.py" afterPath="$PROJECT_DIR$/reports/report_handler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runner.py" afterPath="$PROJECT_DIR$/runner.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/__init__.py" afterPath="$PROJECT_DIR$/topface/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/browser_mapping.py" afterPath="$PROJECT_DIR$/topface/browser_mapping.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/common_tests/__init__.py" afterPath="$PROJECT_DIR$/topface/common_tests/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/auth.py" afterPath="$PROJECT_DIR$/topface/model/auth.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/browser_window.py" afterPath="$PROJECT_DIR$/topface/model/browser_window.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/js_popups/__init__.py" afterPath="$PROJECT_DIR$/topface/model/js_popups/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/js_popups/fb_invite_popup.py" afterPath="$PROJECT_DIR$/topface/model/js_popups/fb_invite_popup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/comments.py" afterPath="$PROJECT_DIR$/topface/model/comments.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/js_popups/alert_popups.py" afterPath="$PROJECT_DIR$/topface/model/js_popups/alert_popups.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/marks.py" afterPath="$PROJECT_DIR$/topface/model/marks.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/model.py" afterPath="$PROJECT_DIR$/topface/model/model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/popup/__init__.py" afterPath="$PROJECT_DIR$/topface/model/popup/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/__init__.py" afterPath="$PROJECT_DIR$/topface/model_tests/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/fb/__init__.py" afterPath="$PROJECT_DIR$/topface/model_tests/fb/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/login_test.py" afterPath="$PROJECT_DIR$/topface/model_tests/login_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/mailru/__init__.py" afterPath="$PROJECT_DIR$/topface/model_tests/mailru/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/marks_test.py" afterPath="$PROJECT_DIR$/topface/model_tests/marks_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/messages_test.py" afterPath="$PROJECT_DIR$/topface/model_tests/messages_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/profile_test.py" afterPath="$PROJECT_DIR$/topface/model_tests/profile_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model_tests/vk/__init__.py" afterPath="$PROJECT_DIR$/topface/model_tests/vk/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface_reports/LoginFacebookSuccessTest.log" afterPath="$PROJECT_DIR$/topface_reports/LoginFacebookSuccessTest.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.log" afterPath="$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.log" />
     </list>
     <ignored path="TopfaceSWF.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,30 +88,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="marks.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface/model/marks.py">
+      <file leaf-file-name="messages_test.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/topface/model_tests/messages_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="27" selection-start="3538" selection-end="3538" vertical-scroll-proportion="0.0">
+            <state line="58" column="41" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#0#64#0" expanded="true" />
+                <element signature="e#15#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comments.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/topface/model/comments.py">
+      <file leaf-file-name="auth.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/topface/model/auth.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="43" selection-start="2133" selection-end="2133" vertical-scroll-proportion="0.7046332">
-              <folding />
+            <state line="172" column="20" selection-start="5879" selection-end="5879" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#15#75#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="marks_test.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface/model_tests/marks_test.py">
+      <file leaf-file-name="profile_test.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/topface/model_tests/profile_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="41" selection-start="5293" selection-end="5293" vertical-scroll-proportion="-0.92">
+            <state line="48" column="44" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#15#52#0" expanded="true" />
               </folding>
@@ -88,46 +121,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="buttons.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface/model/buttons.py">
+      <file leaf-file-name="profile.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/topface/model/profile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="35" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScratchMarksSending.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/ScratchMarksSending.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="55" selection-start="7267" selection-end="7298" vertical-scroll-proportion="-6.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MarkUserTopStandartMessages.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_case.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/engine/test_case.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="30" selection-start="1312" selection-end="1312" vertical-scroll-proportion="0.0">
+            <state line="17" column="27" selection-start="840" selection-end="840" vertical-scroll-proportion="0.43460765">
               <folding>
-                <element signature="e#0#60#0" expanded="true" />
+                <element signature="e#15#52#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_failed_exception.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/engine/test_failed_exception.py">
+      <file leaf-file-name="Profile_Navigation_Test.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/topface_reports/Profile_Navigation_Test.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="20" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
+            <state line="227" column="0" selection-start="7080" selection-end="7080" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navigation.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/topface/model/navigation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="80" column="92" selection-start="3276" selection-end="3276" vertical-scroll-proportion="-15.8">
+              <folding>
+                <element signature="e#15#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="21" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -146,22 +174,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/engine/selenium_starter.py" />
-        <option value="$PROJECT_DIR$/topface_reports/MarkUserTopUserMessage.log" />
-        <option value="$PROJECT_DIR$/topface/model_tests/login_test.py" />
-        <option value="C:/Python27/Lib/site-packages/topface/model/comments.py" />
+        <option value="C:/Python27/Lib/site-packages/topface/model/auth.py" />
+        <option value="$PROJECT_DIR$/topface/model/js_popups/sexy_popup.py" />
+        <option value="$PROJECT_DIR$/topface/model/messanger.py" />
+        <option value="$PROJECT_DIR$/topface/model/js_popups/fans_popups.py" />
+        <option value="$PROJECT_DIR$/topface/model/js_popups/guests_popups.py" />
+        <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/build/lib/topface/model_tests/messages_test.py" />
+        <option value="$PROJECT_DIR$/topface/model_tests/messages_test.py" />
+        <option value="C:/Python27/Lib/site-packages/topface/model/navigation.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/topface/model/navigation.py" />
         <option value="$PROJECT_DIR$/topface/model/browser_window.py" />
+        <option value="$PROJECT_DIR$/topface_reports/Profile_Navigation_Test.log" />
         <option value="$PROJECT_DIR$/topface/model/auth.py" />
-        <option value="$PROJECT_DIR$/topface/model/js_popups/alert_popups.py" />
-        <option value="$PROJECT_DIR$/topface/model/js_popups/fb_invite_popup.py" />
-        <option value="C:/Python27/Lib/site-packages/topface/model/marks.py" />
-        <option value="$PROJECT_DIR$/topface/model/marks.py" />
-        <option value="C:/Python27/Lib/site-packages/topface/model/buttons.py" />
-        <option value="$PROJECT_DIR$/engine/test_case.py" />
-        <option value="$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.log" />
-        <option value="$PROJECT_DIR$/topface/model/buttons.py" />
-        <option value="$PROJECT_DIR$/topface/model_tests/marks_test.py" />
-        <option value="$PROJECT_DIR$/topface/model/comments.py" />
+        <option value="$PROJECT_DIR$/topface/model_tests/profile_test.py" />
+        <option value="$PROJECT_DIR$/topface/model/profile.py" />
       </list>
     </option>
   </component>
@@ -178,7 +206,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -257,7 +285,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model_tests" />
+              <option name="myItemId" value="research_tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -276,54 +304,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="model_tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TopfaceSWF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TopfaceSWF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="topface" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model_tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mailru" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TopfaceSWF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TopfaceSWF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="topface" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model_tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -355,15 +335,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="topface" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="advertising" />
+              <option name="myItemId" value="reports" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,20 +350,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TopfaceSWF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TopfaceSWF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -512,12 +470,12 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947975" sideWeight="0.8539063" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.67052025" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33515626" sideWeight="0.67052025" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947975" sideWeight="0.140625" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -583,121 +541,129 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/topface/model/browser_window.py">
+    <entry file="file://C:/Python27/Lib/site-packages/topface/model/browser_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="77" selection-start="1988" selection-end="1988" vertical-scroll-proportion="0.0">
+        <state line="32" column="8" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.33271027">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model/js_popups/dreams_popup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="314" selection-end="455" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model/model.py">
+    <entry file="file://$PROJECT_DIR$/topface/model/js_popups/fans_popups.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model/js_popups/guests_popups.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="40" selection-start="246" selection-end="278" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="21" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model_tests/messages_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="41" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#15#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/topface/model/navigation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/topface/model/marks.py">
+    <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="4" selection-start="3289" selection-end="3667" vertical-scroll-proportion="0.5895372">
+        <state line="6" column="41" selection-start="207" selection-end="207" vertical-scroll-proportion="0.1906542">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/topface/model/buttons.py">
+    <entry file="file://$PROJECT_DIR$/topface/model/navigation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="28" selection-start="413" selection-end="420" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/test_case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="30" selection-start="1312" selection-end="1312" vertical-scroll-proportion="0.0">
+        <state line="80" column="92" selection-start="3276" selection-end="3276" vertical-scroll-proportion="-15.8">
           <folding>
-            <element signature="e#0#60#0" expanded="true" />
+            <element signature="e#15#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/test_failed_exception.py">
+    <entry file="file://$PROJECT_DIR$/topface/model/browser_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="20" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/topface/model/comments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="8" selection-start="1241" selection-end="1241" vertical-scroll-proportion="0.33204633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface_reports/MarkUserTopStandartMessages.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.6254827">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/ScratchMarksSending.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="55" selection-start="7267" selection-end="7298" vertical-scroll-proportion="-6.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model/buttons.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="35" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model/marks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="27" selection-start="3538" selection-end="3538" vertical-scroll-proportion="0.0">
+        <state line="81" column="77" selection-start="3261" selection-end="3261" vertical-scroll-proportion="0.8093458">
           <folding>
-            <element signature="e#0#64#0" expanded="true" />
+            <element signature="e#15#75#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model_tests/marks_test.py">
+    <entry file="file://$PROJECT_DIR$/build/lib/topface/model_tests/messages_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="41" selection-start="5293" selection-end="5293" vertical-scroll-proportion="-0.92">
+        <state line="58" column="41" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.6504673">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/topface/model/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="8" selection-start="2358" selection-end="2358" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model/auth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="172" column="20" selection-start="5879" selection-end="5879" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#15#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface_reports/Profile_Navigation_Test.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="227" column="0" selection-start="7080" selection-end="7080" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model_tests/profile_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="44" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#15#52#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
+    <entry file="file://$PROJECT_DIR$/topface/model/profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="616" column="8" selection-start="18870" selection-end="18870" vertical-scroll-proportion="0.33204633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/selenium/webdriver/support/wait.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="8" selection-start="856" selection-end="856" vertical-scroll-proportion="0.09416196">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model/comments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="43" selection-start="2133" selection-end="2133" vertical-scroll-proportion="0.7046332">
-          <folding />
+        <state line="17" column="27" selection-start="840" selection-end="840" vertical-scroll-proportion="0.43460765">
+          <folding>
+            <element signature="e#15#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

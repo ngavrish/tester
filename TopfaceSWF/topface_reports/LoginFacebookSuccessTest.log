@@ -1,22 +1,7 @@
 LoginFacebookSuccessTest
 
 Open firefox at http://topface.com
-Validating current URL = http://topface.com/ru/auth/?url=%2F
-Find element by ID = socialSwitcher
-Click Element = id("socialswitcher")
-Waiting for element XPATH = //div[@class='auth-form']//div[@class='social-list' and @style='display: block;']
-Find element by ID = fb
-Click Element = id("fb")
-Switched to window Войти | Facebook
-Waiting for element ID = pass
-Waiting for element ID = email
-Find element by ID = loginbutton
-Click Element = id("loginbutton")
-Switched to window Topface
-Waiting for element with ID = starBox
-Searching for invite friends popup
-Invite friends popup not found
+END TEST
 
- ERROR: Debug exception
-<<<< TEST FAILED >>>>
+<<<< SUCCESS >>>>
 

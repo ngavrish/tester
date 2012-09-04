@@ -47,7 +47,6 @@ class TestCase(TestSuite):
             self.run(self.browser,self.logger)
             self.logger.log("\r\n<<<< SUCCESS >>>>\r\n")
         except TestFailedException as e:
-            print "TEST FAILED"
             self.browser.get_screenshot_as_file(self.get_screen_path())
             self.logger.log("\r\n ERROR: " + e.value + "\r\n<<<< TEST FAILED >>>>\r\n")
             try:

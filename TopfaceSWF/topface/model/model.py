@@ -1,4 +1,8 @@
+from time import sleep
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
+from engine.test_failed_exception import TestFailedException
+import settings
 
 __author__ = 'ngavrish'
 
@@ -17,18 +21,30 @@ class Model:
 
     def click(self, element):
         self.logger.log("Click Element = " + self.get_element_xpath(element))
-        element.click()
+        try:
+            element.click()
+        except Exception as e:
+            print "Failed to simply click on element: " + e.message
+            ActionChains(self.browser).move_to_element_with_offset(element, 1, 1).click().perform()
+#            sleep(2)
+
 
     def get_element_by_xpath(self,xpath):
         self.logger.log("Find element by XPATH = " + xpath)
-        return self.browser.find_element_by_xpath(xpath)
+        try:
+            return WebDriverWait(self.browser, settings.wait_for_element_time).\
+                                until(lambda driver: driver.find_element_by_xpath(xpath))
+        except Exception:
+            raise TestFailedException("Failed to get element by xpath = " + xpath)
 
     def get_element_by_id(self,id):
         self.logger.log("Find element by ID = " + id)
         return self.browser.find_element_by_id(id)
 
-    def hover(self):
-        pass
+    def hover(self,element):
+        self.logger.log("Hover element " + self.get_element_xpath(element))
+        hover =  ActionChains(self.browser).move_to_element(element)
+        hover.perform()
 
     def drag_and_drop(self):
         pass
@@ -39,18 +55,18 @@ class Model:
     def key_down(self):
         pass
 
-    def switch_to_popup(self):
-        pass
-
-    def switch_from_popup(self):
-        pass
-
-    def enter_text(self):
-        pass
+    def enter_text(self,element,text):
+        self.logger.log("Typing text = " + text + " to element with xpath = " + self.get_element_xpath(element))
+        element.clear()
+        element.send_keys(text)
 
     def wait4xpath(self,time,xpath):
         self.logger.log("Waiting for element XPATH = " + xpath)
         return WebDriverWait(self.browser, time).until(lambda driver: driver.find_element_by_xpath(xpath))
+
+    def wait4xpath_s(self,time,xpath):
+        self.logger.log("Waiting for element XPATH = " + xpath)
+        return WebDriverWait(self.browser, time).until(lambda driver: driver.find_elements_by_xpath(xpath))
 
     def wait4id(self,time,id):
         self.logger.log("Waiting for element ID = " + id)

@@ -26,9 +26,10 @@ __reports_path = os.path.dirname(os.path.abspath(__file__)) + "\\topface_reports
 #   Selenium jar-files and specific drivers somewhere on your File System
 __selenium_path = "C:\\selenium"
 
+test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["marks_test"]
+testsuite = ["profile_test"]
 
 #   selenium server host
 server_host = "http://localhost:4444"
@@ -48,8 +49,14 @@ parallel = False
 #   Specifies it tests run in slow mode
 slow_mode = False
 
-#   Wait for element time in seconds
+#   Wait for element time in seconds. Max value = 10. > 10 -> fails
 wait_for_element_time = 10
+
+#   amount of likes for research
+like_amount = 2
+
+#   amount of marks for research
+mark_amount = 100
 
 def get_product_name():
     return __product_name
