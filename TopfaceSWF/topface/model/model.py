@@ -1,5 +1,6 @@
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from engine.test_failed_exception import TestFailedException
 import settings
@@ -43,7 +44,7 @@ class Model:
 
     def hover(self,element):
         self.logger.log("Hover element " + self.get_element_xpath(element))
-        hover =  ActionChains(self.browser).move_to_element(element)
+        hover = ActionChains(self.browser).move_to_element(element)
         hover.perform()
 
     def drag_and_drop(self):
@@ -56,9 +57,30 @@ class Model:
         pass
 
     def enter_text(self,element,text):
-        self.logger.log("Typing text = " + text + " to element with xpath = " + self.get_element_xpath(element))
+        self.logger.log("Typing text = " + str(text) + " to element with xpath = " +
+                        self.get_element_xpath(element))
         element.clear()
         element.send_keys(text)
+
+    def select_from_dropdown_by_index(self,dropdown,element_index):
+        self.logger.log("Select element with index =  " + str(element_index))
+        select = Select(dropdown)
+        select.select_by_index(element_index)
+
+    def select_from_dropdown_by_value(self,dropdown,value):
+        self.logger.log("Select element with value = " + str(value))
+        select = Select(dropdown)
+        select.select_by_value(str(value))
+
+    def select_from_dropdown_by_text(self,dropdown,value):
+        self.logger.log("Select element with text = " + str(value))
+        select = Select(dropdown)
+        select.select_by_value(str(value))
+
+    def get_selected_value_from_dropdown(self,dropdown):
+        self.logger.log("Getting selected value from dropdown " + self.get_element_xpath(dropdown))
+        select = Select(dropdown)
+        return select.first_selected_option.get_attribute("value")
 
     def wait4xpath(self,time,xpath):
         self.logger.log("Waiting for element XPATH = " + xpath)

@@ -7,6 +7,7 @@ from topface.model.auth import AuthForm
 __author__ = 'ngavrish'
 
 class Profile(Model):
+    _display_bock_style = "display: block;"
 #   PROFILE VIEW
     _online_status_class = "onlineOnPhoto"
 
@@ -55,8 +56,16 @@ class Profile(Model):
 #    CONTACTS
     _contacts_help_description_id = "Help"
 #   PHOTO
-    _add_new_photo_button_id = "addNewPhotoButton"
-    _
+    _photo_add_new_button_id = "addNewPhotoButton"
+    _photo_main_tip_xpath = "//div[@id='photo-items']//span[@class='main-photo-tip']"
+    _photo_main_rating_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='with-rating']"
+    _photo_main_need_of_rating_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='need-rates']"
+    _photo_my_album_image_xpath = "//div[@id='photo-items']//div[@class='myalbum-image']//img"
+    _photo_add_photo_title_xpath = "//div[@id='photo-items']//a[@class='add-photo-title']"
+    _photo_title_input_active_xpath = "//div[@id='photo-items']//div[@class='toggle-comment' and @style!='display: none']//input"
+    _photo_get_album_text_xpath = "//div[@class='myalbum_text']"
+    _photo_album_get_more_info_id = "getMoreInfo"
+    _photo_album_text_more_id = "album_text_more"
 
     def __init__(self, browser, logger):
         Model.__init__(self, browser, logger)
@@ -74,73 +83,103 @@ class Profile(Model):
             assert self.get_element_by_xpath(self._online_indicator).get_attribute('class') == self._online_status_class
         except AssertionError:
             raise TestFailedException("Failed to validate status")
-#        validate default image
-        self.wait4xpath(settings.wait_for_element_time,self._avatar_default_photo_xpath)
-#        validate name
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._profile_view_name_container_xpath + user.fb_human_name + "')]")
-#        validate age
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._profile_view_age_and_place_xpath + user.fb_human_age + "')]")
-#        validate place
-        self.wait4xpath(settings.wait_for_element_time,
-            self._profile_view_age_and_place_xpath + user.fb_human_place + "')]")
-#        validate photo preview bar
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._photo_preview_bar_xpath)
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._photo_preview_next_button_xpath)
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._photo_preview_prev_button_xpath)
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._photo_preview_add_photo_button_xpath)
-#    validate anketa
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._anketa_box_xpath)
-#    validate presents
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._presents_box_xpath)
-#        validate badges
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._badges_box_xpath)
-#       validate wall board
-        self.wait4xpath(settings.wait_for_element_time,
-                        self._board_feed_xpath)
+        try:
+    #        validate default image
+            self.wait4xpath(settings.wait_for_element_time,self._avatar_default_photo_xpath)
+    #        validate name
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._profile_view_name_container_xpath + user.fb_human_name + "')]")
+    #        validate age
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._profile_view_age_and_place_xpath + user.fb_human_age + "')]")
+    #        validate place
+            self.wait4xpath(settings.wait_for_element_time,
+                self._profile_view_age_and_place_xpath + user.fb_human_place + "')]")
+    #        validate photo preview bar
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._photo_preview_bar_xpath)
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._photo_preview_next_button_xpath)
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._photo_preview_prev_button_xpath)
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._photo_preview_add_photo_button_xpath)
+    #    validate anketa
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._anketa_box_xpath)
+    #    validate presents
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._presents_box_xpath)
+    #        validate badges
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._badges_box_xpath)
+    #       validate wall board
+            self.wait4xpath(settings.wait_for_element_time,
+                            self._board_feed_xpath)
+        except Exception as e:
+            raise TestFailedException("Failed to validate profile view: " + e.message)
 
     def validate_notifications_view(self):
-        self.wait4id(settings.wait_for_element_time,self._form_mail_board_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_mail_gifts_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_mail_themegifts_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_mail_photocomments_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_mail_rates_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_mail_ratesmax_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_mail_visitors_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_mail_newmessages_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_mail_wishes_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_interval_O_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_interval_1_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_interval_3_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_interval_7_settings_id)
-        self.wait4id(settings.wait_for_element_time, self._form_interval_never_settings_id)
+        try:
+            self.wait4id(settings.wait_for_element_time,self._form_mail_board_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_mail_gifts_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_mail_themegifts_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_mail_photocomments_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_mail_rates_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_mail_ratesmax_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_mail_visitors_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_mail_newmessages_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_mail_wishes_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_interval_O_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_interval_1_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_interval_3_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_interval_7_settings_id)
+            self.wait4id(settings.wait_for_element_time, self._form_interval_never_settings_id)
+        except Exception as e:
+            raise TestFailedException("Failed to validate notifications view: " + e.message)
 
     def validate_settings_view(self):
-        self.wait4id(settings.wait_for_element_time,self._form_name_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_sex_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_age_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_lang_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_city_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_user_wish_status_id)
-        self.wait4id(settings.wait_for_element_time,self._form_user_name_translit_id)
-        self.wait4id(settings.wait_for_element_time,self._form_status_short_id)
-        self.wait4id(settings.wait_for_element_time,self._form_my_friends_see_me_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_disable_sound_settings_id)
-        self.wait4id(settings.wait_for_element_time,self._form_hide_social_profile_settings_id)
+        try:
+            self.wait4id(settings.wait_for_element_time,self._form_name_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_sex_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_age_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_lang_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_city_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_user_wish_status_id)
+            self.wait4id(settings.wait_for_element_time,self._form_user_name_translit_id)
+            self.wait4id(settings.wait_for_element_time,self._form_status_short_id)
+            self.wait4id(settings.wait_for_element_time,self._form_my_friends_see_me_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_disable_sound_settings_id)
+            self.wait4id(settings.wait_for_element_time,self._form_hide_social_profile_settings_id)
+        except Exception as e:
+            raise TestFailedException("Failed to validate settings view: " + e.message)
 
     def validate_contacts_view(self):
-        self.wait4id(settings.wait_for_element_time,self._contacts_help_description_id)
+        try:
+            self.wait4id(settings.wait_for_element_time,self._contacts_help_description_id)
+        except Exception as e:
+            raise TestFailedException("Failed to validate contacts view: " + e.message)
 
     def validate_photo_view(self):
-
+        try:
+            self.wait4id(settings.wait_for_element_time,self._photo_add_new_button_id)
+            self.wait4xpath(settings.wait_for_element_time,self._photo_main_tip_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._photo_main_rating_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._photo_main_need_of_rating_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._photo_my_album_image_xpath)
+            self.click(
+                self.wait4xpath(settings.wait_for_element_time,self._photo_add_photo_title_xpath))
+            self.wait4xpath(settings.wait_for_element_time,self._photo_title_input_active_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._photo_get_album_text_xpath)
+            self.click(
+                self.wait4id(settings.wait_for_element_time,self._photo_album_get_more_info_id))
+            try:
+                assert self.wait4id(settings.wait_for_element_time,self._photo_album_text_more_id).\
+                            get_attribute("style") == self._display_bock_style
+            except AssertionError as e:
+                raise TestFailedException("Failed to expand more photo album text: " + e.message)
+        except Exception as e:
+            raise TestFailedException("Failed to validate photo view: " + e.message)
         print "No validation implemented"
 
     def validate_horo_view(self):

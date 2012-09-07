@@ -7,6 +7,7 @@ class Logger:
         self.log_list = []
 
     def log(self,message):
+        print message
         self.log_list.append(message + "\r\n")
 
     def dump_to_filesystem(self):

@@ -40,10 +40,7 @@ class Comments(Model):
 
     def send_comment(self,element,value,comment_type):
         buttons = Buttons(self.browser, self.logger)
-
-        self.logger.log("Typing comment " + comment_type + " with value = " + value)
-        element.clear()
-        element.send_keys(value)
+        self.enter_text(element,value)
         self.validate_high_mark_comment_value(value)
         buttons.send_comment(comment_type)
 
@@ -78,4 +75,3 @@ class Comments(Model):
 
     def __get_high_mark_height_occurences(self):
         return self.high_mark().get_attribute("style").count(self.get_top_mark_comment_height()) > 0
-

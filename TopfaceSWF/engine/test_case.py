@@ -1,3 +1,4 @@
+import traceback
 from selenium.common.exceptions import NoSuchWindowException
 from test_failed_exception import TestFailedException
 from test_suite import TestSuite
@@ -48,7 +49,8 @@ class TestCase(TestSuite):
             self.logger.log("\r\n<<<< SUCCESS >>>>\r\n")
         except TestFailedException as e:
             self.browser.get_screenshot_as_file(self.get_screen_path())
-            self.logger.log("\r\n ERROR: " + e.value + "\r\n<<<< TEST FAILED >>>>\r\n")
+            self.logger.log("\r\n ERROR: " + e.value + "\r\n Stacktrace: "
+                            + traceback.format_exc() + "<<<< TEST FAILED >>>>\r\n")
             try:
                 self.browser.close()
             except NoSuchWindowException as e:
