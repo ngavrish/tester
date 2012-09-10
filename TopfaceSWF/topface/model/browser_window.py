@@ -12,7 +12,7 @@ class BrowserWindow(Model):
 
     """
     _social_switcher_wrapper_xpath = "//div[@class='auth-form']"
-    _unauthorised_url = "http://topface.com/ru/auth/?url=%2F" #"http://topface.com/ru/"
+    _unauthorised_url = "http://topface.com/" #ru/auth/?url=%2F" #"http://topface.com/ru/"
     _exit_link_id = "exit"
     _root_window = None
     _windows_list = []
@@ -49,7 +49,10 @@ class BrowserWindow(Model):
                 print "HIT"
             self._windows_list.remove(self._root_window)
             self.browser.switch_to_window(self._windows_list.pop())
-            self.logger.log("Switched to window " + self.browser.title)
+            try:
+                self.logger.log("Switched to window " + self.browser.title)
+            except Exception:
+                self.logger.log("Switched to popup ")
         except Exception as e:
             raise TestFailedException("Failed to switch to popup " + e.message)
 

@@ -1,4 +1,5 @@
 # coding=utf-8
+from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
 from topface.model.model import Model
 from engine.test_failed_exception import TestFailedException
@@ -54,13 +55,14 @@ class Comments(Model):
 #            WebDriverWait doesn't work as documented. If method in until() returns true, it fails either way
 #            only works when using lambda driver searching element in web interface function
 #            so hacking a bit
+            sleep(1)
             if self.high_mark().get_attribute("style").count(self.get_top_mark_comment_height()) <= 0:
                 print "Failed to change comment box style"
                 raise TestFailedException("Comment text area didn't change style")
 
         try:
-            print value
-            print self.__get_textarea_value(self._high_mark_comment_js_selector)
+            print "Expected: " + value
+            print "Recieved: " + self.__get_textarea_value(self._high_mark_comment_js_selector)
             assert value == self.__get_textarea_value(self._high_mark_comment_js_selector)
         except Exception:
             print "Text validation failed"

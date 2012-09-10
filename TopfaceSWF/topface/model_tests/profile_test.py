@@ -15,7 +15,7 @@ class ProfileTestSuite(TestSuite):
 
     def run(self):
         test_cases = [
-#            self.ProfileNavigationTest("Profile_Navigation_Test"),
+            self.ProfileNavigationTest("Profile_Navigation_Test"),
             self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in test_cases:
