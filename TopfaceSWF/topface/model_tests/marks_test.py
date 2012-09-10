@@ -24,11 +24,11 @@ class MarksTestSuite(TestSuite):
 
         """
         test_cases = [
-#            self.MarkUserOne2Eight("MarkUserOne2EightTest"),
-#            self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
-            self.MarkUserTopStandartMessages("MarkUserTopStandartMessages")]
-#            self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
-#            self.MarkFactTest("MarkFactTest")]
+            self.MarkUserOne2Eight("MarkUserOne2EightTest"),
+            self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
+            self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
+            self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
+            self.MarkFactTest("MarkFactTest")]
 
         for test_case in test_cases:
             test_case.run_test()
