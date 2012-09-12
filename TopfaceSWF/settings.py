@@ -29,7 +29,7 @@ __selenium_path = "C:\\selenium"
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["marks_test"]#,
+testsuite = ["login_test"]#,
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   selenium server host

@@ -122,9 +122,8 @@ class AuthForm(Model):
             marks = Marks(self.browser,self.logger)
             dreams_popup = DreamsPopup(self.browser,self.logger)
 
-            dreams_popup.close()
-            print 1
             marks.star_box()
+            dreams_popup.close()
         except Exception as e:
             raise TestFailedException(e.message)
 
