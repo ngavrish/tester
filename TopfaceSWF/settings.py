@@ -26,10 +26,13 @@ __reports_path = os.path.dirname(os.path.abspath(__file__)) + "\\topface_reports
 #   Selenium jar-files and specific drivers somewhere on your File System
 __selenium_path = "C:\\selenium"
 
+#  Fixed topface global reports name
+__global_reports_name = "TopfaceSFW"
+
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["login_test"]#,
+testsuite = ["login_test","messages_test"]#,
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   selenium server host
@@ -65,3 +68,5 @@ def get_product_name():
 def get_topface_reports_path():
     return __reports_path
 
+def get_global_topface_reports_name():
+    return __global_reports_name

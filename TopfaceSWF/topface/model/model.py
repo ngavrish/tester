@@ -83,23 +83,19 @@ class Model:
         select = Select(dropdown)
         select.select_by_value(str(value))
 
-    @timer
     def get_selected_value_from_dropdown(self,dropdown):
         self.logger.log("Getting selected value from dropdown " + self.get_element_xpath(dropdown))
         select = Select(dropdown)
         return select.first_selected_option.get_attribute("value")
 
-    @timer
     def wait4xpath(self,time,xpath):
         self.logger.log("Waiting for element XPATH = " + xpath)
         return WebDriverWait(self.browser, time).until(lambda driver: driver.find_element_by_xpath(xpath))
 
-    @timer
     def wait4xpath_s(self,time,xpath):
         self.logger.log("Waiting for element XPATH = " + xpath)
         return WebDriverWait(self.browser, time).until(lambda driver: driver.find_elements_by_xpath(xpath))
 
-    @timer
     def wait4id(self,time,id):
         self.logger.log("Waiting for element ID = " + id)
         return WebDriverWait(self.browser, time).until(lambda driver: driver.find_element_by_id(id))

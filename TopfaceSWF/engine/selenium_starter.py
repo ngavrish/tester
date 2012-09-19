@@ -1,5 +1,6 @@
 import inspect
 import sys
+from reports.result_handler import ResultHandler
 import settings
 import topface
 
@@ -11,6 +12,7 @@ class SeleniumStarter:
         self.test_suite = []
         self.test_package= settings.get_product_name()
         self.browser_mapping = {}
+        self.global_log = []
 
     def get_testsuite_instances(self):
         __import__(settings.get_product_name()+".browser_mapping")
@@ -44,8 +46,13 @@ class SeleniumStarter:
     def start_consequent(self):
         self.get_testsuite_instances()
         for test in self.test_suite:
-            test.run()
+            test_suite_result = test.run()
+            for item in test_suite_result:
+                print item + " has " + str(len(test_suite_result[item])) + " test cases"
+            self.global_log.append(test_suite_result)
 
+        result_handler = ResultHandler()
+        result_handler.handle(self.global_log)
 
     def generate_parallel_start_command(self):
         pass

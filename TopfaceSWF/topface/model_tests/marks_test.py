@@ -19,19 +19,25 @@ __author__ = 'ngavrish'
 
 #noinspection PyMethodOverriding
 class MarksTestSuite(TestSuite):
+
+    def __init__(self):
+        self.test_cases = []
+        self.result = []
+
     def run(self):
         """
 
         """
-        test_cases = [
+        self.test_cases = [
             self.MarkUserOne2Eight("MarkUserOne2EightTest"),
             self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
             self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
             self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
             self.MarkFactTest("MarkFactTest")]
 
-        for test_case in test_cases:
-            test_case.run_test()
+        for test_case in self.test_cases:
+            self.result = test_case.run_test()
+        return {self.__class__.__name__: self.result}
 
         #noinspection PyMethodOverriding,PyMissingConstructor
     class MarkUserOne2Eight(TestCase):

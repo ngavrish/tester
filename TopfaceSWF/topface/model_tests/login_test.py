@@ -10,17 +10,20 @@ __author__ = 'ngavrish'
 #noinspection PyMethodOverriding
 class LoginTestSuite(TestSuite):
 
-    def run(self):
-        """
+    def __init__(self):
+        self.test_cases = []
+        self.result = []
 
-        """
-        test_cases = [
+    def run(self):
+        self.test_cases = [
                     self.LoginFacebook("LoginFacebookSuccessTest"),
                     self.LoginVkSuccess("LoginVkontakteSuccessTest"),
-                    self.LoginMailruSuccess("LoginMailruSuccessTest")
+#                    self.LoginMailruSuccess("LoginMailruSuccessTest")
         ]
-        for test_case in test_cases:
-            test_case.run_test()
+
+        for test_case in self.test_cases:
+            self.result.append(test_case.run_test())
+        return {self.__class__.__name__: self.result}
 
 
     #noinspection PyMethodOverriding,PyMissingConstructor
@@ -59,6 +62,7 @@ class LoginTestSuite(TestSuite):
 
         def run(self,browser,logger):
 
+            raise TestFailedException("Debug Exception")
             window = BrowserWindow(browser, logger)
             authForm = AuthForm(browser,logger)
 

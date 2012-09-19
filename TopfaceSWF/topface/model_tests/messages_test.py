@@ -11,14 +11,21 @@ __author__ = 'ngavrish'
 
 
 class MessagesTestSuite(TestSuite):
+
+    def __init__(self):
+        self.test_cases = []
+        self.result = []
+
     def run(self):
         """
         """
-        test_cases = [
+        self.test_cases = [
             self.MessagesFacebookFactTest("MessagesFacebookFactTest")
         ]
-        for test_case in test_cases:
-            test_case.run_test()
+        for test_case in self.test_cases:
+            self.result.append(test_case.run_test())
+        print "Test cases amount = " + str(len(self.result))
+        return {self.__class__.__name__: self.result}
 
     class MessagesFacebookFactTest(TestCase):
         """

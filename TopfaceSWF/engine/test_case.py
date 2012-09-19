@@ -19,7 +19,6 @@ class TestCase(TestSuite):
     __log_name = ""
     __log_path = ""
     __screen_path = ""
-    __log_list = []
 
     #noinspection PyMissingConstructor
     def __init__(self):
@@ -38,16 +37,19 @@ class TestCase(TestSuite):
         elif TestSuite.browser_name == "ie":
             self.browser = Ie()
         self.logger = logger.Logger(self.get_log_path())
+        self.logger.log_name = self.get_log_name()
         self.logger.log(self.get_log_name()+"\r\n")
 
+#        IF true => test succeeded, else => test failed
+        status = True
 #        while not self.test_is_running:
-
         try:
             self.test_is_running = True
 #            Method is overridden in child object
             self.run(self.browser,self.logger)
             self.logger.log("\r\n<<<< SUCCESS >>>>\r\n")
         except TestFailedException as e:
+            status = False
             self.browser.get_screenshot_as_file(self.get_screen_path())
             self.logger.log("\r\n ERROR: " + e.value + "\r\n Stacktrace: "
                             + traceback.format_exc() + "<<<< TEST FAILED >>>>\r\n")
@@ -59,7 +61,7 @@ class TestCase(TestSuite):
         finally:
             self.test_is_running = False
             self.logger.dump_to_filesystem()
-            self.set_log_list(self.logger.get_logs())
+            return {self.logger.log_name:[self.logger.get_logs(),status]}
 
     def run(self):
          pass
@@ -68,12 +70,6 @@ class TestCase(TestSuite):
         pass
 #   dump test case results to file system
 #    return TestCase log
-
-    def set_log_list(self,logs):
-        self.__log_list = logs
-
-    def get_log_list(self):
-        return self.__log_list
 
     def get_log_name(self):
         return self.__log_name

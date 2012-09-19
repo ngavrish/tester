@@ -1,12 +1,9 @@
-import getopt
-import inspect
 import re
 import sys
 from engine.selenium_starter import SeleniumStarter
 import settings
 
 __author__ = 'ngavrish'
-
 
 def main(argv=None):
     if argv is None:
@@ -33,4 +30,5 @@ if __name__ == "__main__":
     starter = SeleniumStarter()
 
     starter.start_consequent()
+
 #    sys.exit(main())

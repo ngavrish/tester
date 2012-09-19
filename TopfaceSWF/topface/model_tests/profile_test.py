@@ -5,7 +5,6 @@ from topface.model.auth import AuthForm
 from topface.model.browser_window import BrowserWindow
 from topface.model.navigation import Navigation
 from topface.model.js_popups.vip_popups import VIPPopups
-from topface.model.js_popups.guests_popups import GuestsPopups
 from topface.model.profile import Profile
 from topface.model.questionary import Questionary
 
@@ -13,13 +12,20 @@ __author__ = 'ngavrish'
 
 class ProfileTestSuite(TestSuite):
 
+    def __init__(self):
+        TestSuite.__init__(self)
+        self.test_cases = []
+        self.result = []
+
     def run(self):
-        test_cases = [
+        self.test_cases = [
             self.ProfileNavigationTest("Profile_Navigation_Test"),
             self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
-        for test_case in test_cases:
-            test_case.run_test()
+        for test_case in self.test_cases:
+            self.result = test_case.run_test()
+
+        return {self.__class__.__name__: self.result}
 
     class ProfileNavigationTest(TestCase):
 
