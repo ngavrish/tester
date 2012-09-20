@@ -1,7 +1,9 @@
 import re
+import subprocess
 import sys
 from engine.selenium_starter import SeleniumStarter
 import settings
+from srv import ReportServer
 
 __author__ = 'ngavrish'
 
@@ -27,8 +29,12 @@ def main(argv=None):
 if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding("utf-8")
-    starter = SeleniumStarter()
 
+    report_server = ReportServer()
+    if not report_server.if_server_is_running():
+        subprocess.Popen("python srv.py")
+
+    starter = SeleniumStarter()
     starter.start_consequent()
 
 #    sys.exit(main())

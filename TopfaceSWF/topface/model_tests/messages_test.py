@@ -14,7 +14,7 @@ class MessagesTestSuite(TestSuite):
 
     def __init__(self):
         self.test_cases = []
-        self.result = []
+        self.result = {}
 
     def run(self):
         """
@@ -23,7 +23,8 @@ class MessagesTestSuite(TestSuite):
             self.MessagesFacebookFactTest("MessagesFacebookFactTest")
         ]
         for test_case in self.test_cases:
-            self.result.append(test_case.run_test())
+            run_test_results = test_case.run_test()
+            self.result[run_test_results.keys()[0]] = run_test_results.values()[0]
         print "Test cases amount = " + str(len(self.result))
         return {self.__class__.__name__: self.result}
 

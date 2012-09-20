@@ -62,6 +62,12 @@ like_amount = 2
 #   amount of marks for research
 mark_amount = 100
 
+#   reporting-server host
+report_host = 'localhost'
+
+#   reporting-server port
+report_port = 8888
+
 def get_product_name():
     return __product_name
 

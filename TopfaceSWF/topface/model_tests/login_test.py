@@ -12,7 +12,7 @@ class LoginTestSuite(TestSuite):
 
     def __init__(self):
         self.test_cases = []
-        self.result = []
+        self.result = {}
 
     def run(self):
         self.test_cases = [
@@ -22,7 +22,8 @@ class LoginTestSuite(TestSuite):
         ]
 
         for test_case in self.test_cases:
-            self.result.append(test_case.run_test())
+            run_test_results = test_case.run_test()
+            self.result[run_test_results.keys()[0]] = run_test_results.values()[0]
         return {self.__class__.__name__: self.result}
 
 
@@ -61,8 +62,7 @@ class LoginTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self,browser,logger):
-
-            raise TestFailedException("Debug Exception")
+#            raise TestFailedException("Debug Exception")
             window = BrowserWindow(browser, logger)
             authForm = AuthForm(browser,logger)
 
@@ -81,9 +81,6 @@ class LoginTestSuite(TestSuite):
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class LoginMailruSuccess(TestCase):
-        """
-
-        """
         def __init__(self,test_name):
             self.set_log_name(test_name)
 

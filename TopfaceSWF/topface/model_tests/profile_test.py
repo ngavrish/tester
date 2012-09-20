@@ -23,8 +23,7 @@ class ProfileTestSuite(TestSuite):
             self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
-            self.result = test_case.run_test()
-
+            self.result[test_case.run_test().keys()[0]] = test_case.run_test().values()[0]
         return {self.__class__.__name__: self.result}
 
     class ProfileNavigationTest(TestCase):
