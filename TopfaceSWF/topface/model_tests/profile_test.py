@@ -4,18 +4,19 @@ from engine.test_suite import TestSuite
 from topface.model.auth import AuthForm
 from topface.model.browser_window import BrowserWindow
 from topface.model.navigation import Navigation
+from topface import profiling_events
 from topface.model.js_popups.vip_popups import VIPPopups
 from topface.model.profile import Profile
 from topface.model.questionary import Questionary
+from topface.model.marks import Marks
 
 __author__ = 'ngavrish'
 
 class ProfileTestSuite(TestSuite):
 
     def __init__(self):
-        TestSuite.__init__(self)
         self.test_cases = []
-        self.result = []
+        self.result = {}
 
     def run(self):
         self.test_cases = [
@@ -23,7 +24,8 @@ class ProfileTestSuite(TestSuite):
             self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
-            self.result[test_case.run_test().keys()[0]] = test_case.run_test().values()[0]
+            run_test_results = test_case.run_test()
+            self.result[run_test_results.keys()[0]] = run_test_results.values()[0]
         return {self.__class__.__name__: self.result}
 
     class ProfileNavigationTest(TestCase):
@@ -32,16 +34,14 @@ class ProfileTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
-            """
-
-            """
             auth = AuthForm(self.browser, self.logger)
             window = BrowserWindow(self.browser,self.logger)
             navigation = Navigation(self.browser,self.logger)
             profile = Profile(self.browser,self.logger)
             vip_popup = VIPPopups(self.browser,self.logger)
+            marks = Marks(self.browser, self.logger)
 
-            auth.login_with_fb_full_scale(auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
             navigation.goto_top_menu_item(u"Профиль")
             profile.validate_profile_view()
             print "Profile view is validated"
@@ -63,6 +63,19 @@ class ProfileTestSuite(TestSuite):
             self.browser.back()
             navigation.goto_tab_menu_item(u"Гороскоп")
             profile.validate_horo_view()
+#            logout and login with another user to mark that user again to fix the profile marks reset
+            window.logout()
+            self.do_method(auth.login_with_vk_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+#            navigate to resetted user profile
+            window.open(auth.User1.profile_url_fb)
+
+            for i in range(profile.marks_after_reset_amount):
+                marks.click(
+                    marks.get_mark_by_value(i+1)
+                )
+                marks.validate_profile_mark_sent()
+                window.open(auth.User1.profile_url_fb)
+
             window.close()
 
 
@@ -77,7 +90,7 @@ class ProfileTestSuite(TestSuite):
             navigation = Navigation(self.browser,self.logger)
             questionary = Questionary(self.browser,self.logger)
 
-            auth.login_with_fb_full_scale(auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
             navigation.goto_top_menu_item(u"Профиль")
             questionary.expand()
             questionary.hide()

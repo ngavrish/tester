@@ -32,14 +32,17 @@ __global_reports_name = "TopfaceSFW"
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["login_test","messages_test"]#,
+testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   selenium server host
 server_host = "http://localhost:4444"
 
 #   target testing url
-target_url = "http://topface.com"
+prod = "http://topface.com"
+delta = "http://delta.topface.com"
+alpha = "http://alpha.topface.com"
+target_url = prod
 
 #   remote web driver port number
 remote_port = 5555
@@ -63,10 +66,19 @@ like_amount = 2
 mark_amount = 100
 
 #   reporting-server host
-report_host = 'localhost'
+report_host = '192.168.2.87'
+local_host = 'localhost'
 
 #   reporting-server port
 report_port = 8888
+
+#port/host that are finally setup in srv.py from cmd-parsing to start paste
+paste_host = ""
+paste_port = ""
+
+
+#topface database name
+topface_db = 'topface.db'
 
 def get_product_name():
     return __product_name

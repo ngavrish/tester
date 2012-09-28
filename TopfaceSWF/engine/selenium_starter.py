@@ -1,6 +1,7 @@
 import inspect
 import sys
 from reports.result_handler import ResultHandler
+from dao.dao import DataAccessObject
 import settings
 import topface
 
@@ -13,6 +14,22 @@ class SeleniumStarter:
         self.test_package= settings.get_product_name()
         self.browser_mapping = {}
         self.global_log = {}
+
+    def start(self):
+        self.setup_database()
+        if not settings.parallel:
+            self.start_consequent()
+        else:
+            self.start_parallel()
+
+    def setup_database(self):
+        dao = DataAccessObject()
+        dao.create_login_timline_table()
+        dao.create_mark_user_timeline_table()
+        dao.create_user_navigation_timeline_table()
+        dao.create_questionary_editing_timeline_table()
+        dao.create_send_message_timeline_table()
+
 
     def get_testsuite_instances(self):
         __import__(settings.get_product_name()+".browser_mapping")
@@ -51,7 +68,6 @@ class SeleniumStarter:
             for item in test_suite_result:
                 print item + " has " + str(len(test_suite_result[item])) + " test cases"
             self.global_log[test_suite_result.keys()[0]] = test_suite_result.values()[0]
-
         print "Result  = \n\r" + str(self.global_log) + "\n\r ======================= "
         result_handler = ResultHandler()
         result_handler.handle(self.global_log)

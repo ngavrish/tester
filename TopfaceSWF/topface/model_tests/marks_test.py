@@ -13,6 +13,7 @@ import settings
 from topface.model.browser_window import BrowserWindow
 from topface.model.comments import Comments
 from topface.model.energy import Energy
+from topface import profiling_events
 from topface.model.js_popups.alert_popups import AlertPopups
 
 __author__ = 'ngavrish'
@@ -29,11 +30,12 @@ class MarksTestSuite(TestSuite):
 
         """
         self.test_cases = [
-            self.MarkUserOne2Eight("MarkUserOne2EightTest"),
-            self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
-            self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
-            self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
-            self.MarkFactTest("MarkFactTest")]
+           self.MarkUserOne2Eight("MarkUserOne2EightTest"),
+           self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
+           self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
+           self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
+           self.MarkFactTest("MarkFactTest")
+        ]
 
         for test_case in self.test_cases:
             run_test_results = test_case.run_test()
@@ -46,21 +48,15 @@ class MarksTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
+
             marks = Marks(self.browser, self.logger)
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
 
-            auth.login_with_fb_full_scale()
-
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
             minor_marks = marks.get_minor_marks()
             for mark in minor_marks:
-                photo_href1 = marks.get_photo2mark_href()
-                marks.click(mark)
-                photo_href2 = marks.get_photo2mark_href()
-                try:
-                    assert photo_href1 != photo_href2
-                except AssertionError:
-                    raise TestFailedException("User haven't been changed after marking")
+                self.do_method(marks.mark_and_validate_mark,None,mark)
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
@@ -69,45 +65,14 @@ class MarksTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
+
             marks = Marks(self.browser, self.logger)
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
-            comments = Comments(self.browser, self.logger)
-            alerts = AlertPopups(self.browser, self.logger)
 
-            auth.login_with_fb_full_scale()
-
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
             major_marks = marks.get_major_marks()
-
-            for mark in major_marks:
-                photo_href1 = marks.get_photo2mark_href()
-                marks.click(mark)
-                top_mark_comment = comments.high_mark()
-                comments.is_initial_top_mark_comment(top_mark_comment)
-                if top_mark_comment.get_attribute("style") != "":
-                    raise TestFailedException("Top Mark comment style exists but shouldn't")
-                comments.click(top_mark_comment)
-                #                reload comment element from web interface
-                top_mark_comment = comments.high_mark()
-
-                print top_mark_comment.get_attribute("style")
-
-                if top_mark_comment.get_attribute("style").count(comments.get_top_mark_comment_height()) <= 0:
-                    raise TestFailedException("Top Mark comment element doesn't contain needed style=height:" +
-                                              comments.get_top_mark_comment_height())
-                #                validate that comment textarea still contains initial text
-                #                BUG NEXT LINE
-                #                comments.is_initial_top_mark_comment(top_mark_comment)
-                #                send single key
-                comments.send_comment(top_mark_comment, u'1', "topmark")
-                alerts.too_short_comment_close()
-                comments.click(top_mark_comment)
-                comments.send_comment(top_mark_comment, u"Привет", "topmark")
-                photo_href2 = marks.get_photo2mark_href()
-                try:
-                    assert photo_href1 != photo_href2
-                except AssertionError:
-                    raise TestFailedException("User haven't been changed after marking")
+            self.do_method(marks.mark_major_marks_custom_comment,None,major_marks)
 
             window.close()
 
@@ -117,39 +82,14 @@ class MarksTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
+
             marks = Marks(self.browser, self.logger)
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
-            comments = Comments(self.browser, self.logger)
-            buttons = Buttons(self.browser, self.logger)
 
-            auth.login_with_fb_full_scale()
-
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
             major_marks = marks.get_major_marks()
-            for mark in major_marks:
-                photo_href1 = marks.get_photo2mark_href()
-                marks.click(mark)
-                compliments = marks.get_random_compliments()
-                compliments_error_threshold = math.ceil(len(compliments)/2)
-                print "Compliments change error threshold = " + str(compliments_error_threshold)
-                error_count = 0
-                for compliment in compliments:
-                    marks.click(compliment)
-                    try:
-                        comments.validate_high_mark_comment_value(compliment.text)
-                    except Exception:
-                        error_count += 1
-                    if error_count >= compliments_error_threshold:
-                        raise TestFailedException("Faield standart comment sending functionality. " +\
-                                                  "Error count during sending comments = " + str(error_count))
-                buttons.send_comment("topmark")
-                photo_href2 = marks.get_photo2mark_href()
-                try:
-                    print photo_href1
-                    print photo_href2
-                    assert photo_href1 != photo_href2
-                except AssertionError:
-                    raise TestFailedException("User photo hasn't changed")
+            self.do_method(marks.mark_major_marks_standart_comment,None,major_marks)
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
@@ -158,32 +98,24 @@ class MarksTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
+
             marks = Marks(self.browser, self.logger)
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
             energy = Energy(self.browser, self.logger)
 
-            auth.login_with_fb_full_scale()
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
             initial_energy_value = energy.get_profile_percent_value()
             marks_left_till_plus = marks.get_marks_left_till_energy_plus()
             marks_left = [int(s) for s in marks_left_till_plus.split() if s.isdigit()][0]
-            mark_seven = marks.get_mark_by_value(7)
 
             print "Marks left = " + str(marks_left)
 
             for i in range(marks_left):
                 print "step " + str(i)
-                marks_left_till_plus = marks.get_marks_left_till_energy_plus()
-                marks_left_new_before_click = [int(s) for s in marks_left_till_plus.split() if s.isdigit()][0]
-                marks.click(mark_seven)
-                marks_left_till_plus = marks.get_marks_left_till_energy_plus()
-                marks_left_new_after_click = [int(s) for s in marks_left_till_plus.split() if s.isdigit()][0]
-                try:
-                    assert marks_left_new_after_click == (marks_left_new_before_click - 1)
-                except AssertionError:
-                    raise TestFailedException("Click wrongly changed amount of left clicks on step " + str(i))
+                self.do_method(marks.marking_made_closer_to_more_energy,None,marks_left_till_plus,i)
             try:
-                print initial_energy_value
+                self.logger.log("Initial egergy value = " + str(initial_energy_value))
                 print energy.get_profile_percent_value()
                 assert initial_energy_value == energy.get_profile_percent_value() - 3
             except AssertionError:
@@ -196,29 +128,30 @@ class MarksTestSuite(TestSuite):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
+
             marks = Marks(self.browser, self.logger)
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
             navigation = Navigation(self.browser,self.logger)
 #       login as user1
             self.logger.log("\r\nLogin as User1\r\n")
-            auth.login_with_fb_full_scale(auth.User1)
-            window.open(AuthForm.User2.profile_url)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            self.do_method(window.open,None,AuthForm.User2.profile_url)
             marks.click(
                 marks.get_mark_by_value(1)
             )
-            marks.validate_profile_mark_sent()
+            self.do_method(marks.validate_profile_mark_sent)
             window.logout()
 
             self.logger.log("\r\nLogin as User2\r\n")
-            auth.login_with_fb_full_scale(auth.User2)
-            navigation.goto_side_menu_item(u"Оценки")
-            marks.validate_new_mark_in_feed(AuthForm.User1.profile_url,datetime.now().strftime("%d"))
-            marks.rate_answer(AuthForm.User1.profile_url)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User2)
+            self.do_method(navigation.goto_side_menu_item,None,u"Оценки")
+            self.do_method(marks.validate_new_mark_in_feed,None,AuthForm.User1.profile_url_fb,datetime.now().strftime("%d"))
+            self.do_method(marks.rate_answer,None,AuthForm.User1.profile_url_fb)
             window.logout()
 
             self.logger.log("\r\nLogin as User1\r\n")
-            auth.login_with_fb_full_scale(auth.User1)
-            navigation.goto_side_menu_item(u"Оценки")
-            marks.validate_new_mark_in_feed(AuthForm.User2.profile_url,datetime.now().strftime("%d"))
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            self.do_method(navigation.goto_side_menu_item,None,u"Оценки")
+            self.do_method(marks.validate_new_mark_in_feed,None,AuthForm.User2.profile_url,datetime.now().strftime("%d"))
             window.close()

@@ -1,15 +1,26 @@
 import traceback
 from selenium.common.exceptions import NoSuchWindowException
+import time
+from dao.dao import DataAccessObject
 from test_failed_exception import TestFailedException
 from test_suite import TestSuite
 from reports import logger
 import settings
 from selenium.webdriver import Firefox,Ie
 from selenium.webdriver.support.wait import WebDriverWait
+from topface import profiling_events
 
 
 __author__ = 'ngavrish'
 
+def timer(f):
+    def func(*args, **kwargs):
+        currtime = time.time()
+        f(*args, **kwargs)
+        s = time.time()-currtime
+        TestCase().logger.log(" ====== Time running function " + f.__name__ + " = " + str(s) + " ========= ")
+        return s
+    return func
 
 class TestCase(TestSuite):
     """
@@ -26,6 +37,7 @@ class TestCase(TestSuite):
         self.wait = None
         self.logger = None
         self.test_is_running = False
+        self.dao = DataAccessObject()
 
     #noinspection PyArgumentList
     def run_test(self):
@@ -38,8 +50,9 @@ class TestCase(TestSuite):
             self.browser = Ie()
         self.logger = logger.Logger(self.get_log_path())
         self.logger.log_name = self.get_log_name()
+        self.logger.log("====================\r\n")
         self.logger.log(self.get_log_name()+"\r\n")
-
+        self.logger.log("====================\r\n")
 #        IF true => test succeeded, else => test failed
         status = True
 #        while not self.test_is_running:
@@ -84,3 +97,24 @@ class TestCase(TestSuite):
         self.__log_path = settings.get_topface_reports_path() + name + ".log"
         self.__log_name = name
         self.__screen_path = settings.get_topface_reports_path() + name + ".png"
+
+    def do_method(self,method,element_type=None,*args):
+        t0 = time.time()
+        self.logger.log("TIME0 = " + str(t0))
+        method(*args)
+        self.logger.log("EXECUTION TIME = " + str(time.time() - t0) + " seconds")
+
+#        if element_type == profiling_events.login_event:
+#            self.dao.insert_into_login_timeline_table()
+#
+#        elif element_type == profiling_events.message_sent_event:
+#            self.dao.insert_into_send_message_timeline_table()
+#
+#        elif element_type == profiling_events.questionary_edited_event:
+#            self.dao.insert_into_questionary_timeline_table()
+#
+#        elif element_type == profiling_events.user_marked_event:
+#            self.dao.insert_into_mark_user_timeline_table()
+#
+#        elif element_type == profiling_events.user_navigated_event:
+#            self.dao.insert_into_user_navigation_timeline_table()

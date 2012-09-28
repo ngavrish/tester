@@ -14,15 +14,6 @@ class Model:
         self.browser = browser
         self.logger = logger
 
-    def timer(self,f):
-        def func(*args, **kwargs):
-            currtime = time.time()
-            result = f(*args, **kwargs)
-            s = time.time()-currtime
-            self.logger.log(" ====== Time running function " + f.__name__ + " = " + str(s) + " ========= ")
-            return s
-        return func
-
     def get_element_xpath(self, element):
         self.logger.log("Getting element = " + str(element) + "xpath ")
         return self.browser.\

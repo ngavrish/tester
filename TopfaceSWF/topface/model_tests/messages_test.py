@@ -6,6 +6,7 @@ from topface.model.auth import AuthForm
 from topface.model.browser_window import BrowserWindow
 from topface.model.navigation import Navigation
 from topface.model.messanger import Messenger
+from topface import profiling_events
 
 __author__ = 'ngavrish'
 
@@ -45,7 +46,7 @@ class MessagesTestSuite(TestSuite):
 
             output_message = u"Привет!"
 
-            auth.login_with_fb_full_scale(auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
             window.open(auth.User2.profile_url)
             navigation.goto_messenger_from_profile()
 #            No UI validation
@@ -58,7 +59,7 @@ class MessagesTestSuite(TestSuite):
             window.logout()
             print "User 1 message validation finished successfully"
 
-            auth.login_with_fb_full_scale(auth.User2)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User2)
             sleep(2)
             navigation.goto_side_menu_item(u"Сообщения")
             sleep(2)

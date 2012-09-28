@@ -7,12 +7,14 @@ from topface.model.auth import AuthForm
 __author__ = 'ngavrish'
 
 class Profile(Model):
+    marks_after_reset_amount = 5
+    boundary_marks_amount = 30
     _display_bock_style = "display: block;"
 #   PROFILE VIEW
     _online_status_class = "onlineOnPhoto"
 
     _online_indicator = "//div[@id='onlineStatus']"
-    _top_default_status_xpath = "//div[@id='statusTopBalloon']//span[contains(text(),'У меня пока нет статуса. Напишите, что думаете обо мне.')]"
+    _top_default_status_xpath = "//div[@id='statusTopBalloon']//span[contains(text(),'Я ищу парня, 67-75, Москва')]"
     _avatar_default_photo_xpath = "//div[@id='userPhotoLayout']//*[@src='http://profile.ak.fbcdn.net/static-ak/rsrc.php/v2/yL/r/HsTZSDw4avx.gif']"
     _profile_view_name_container_xpath = "//div[@class='name-container']/h1[contains(text(),'"
     _profile_view_age_and_place_xpath = "//div[@class='name-container' and contains(text(),'"
@@ -59,7 +61,11 @@ class Profile(Model):
     _photo_add_new_button_id = "addNewPhotoButton"
     _photo_main_tip_xpath = "//div[@id='photo-items']//span[@class='main-photo-tip']"
     _photo_main_rating_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='with-rating']"
-    _photo_main_need_of_rating_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='need-rates']"
+    _photo_main_rating_rates_amount_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='with-rating']//span/b"
+    _photo_main_need_rates_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='need-rates']"
+    _photo_main_reset_rating_wrapper_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[text()='Понравилось']"
+    _photo_main_reset_rating_link_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[text()='Понравилось']/a"
+    _photo_main_empty_rate_percentage_xpath = "//div[@id='photo-items']//div[@class='myalbum-info']//div[@class='with-rating']/span[not(contains(text(),'%'))]"
     _photo_my_album_image_xpath = "//div[@id='photo-items']//div[@class='myalbum-image']//img"
     _photo_add_photo_title_xpath = "//div[@id='photo-items']//a[@class='add-photo-title']"
     _photo_title_input_active_xpath = "//div[@id='photo-items']//div[@class='toggle-comment' and @style!='display: none']//input"
@@ -78,8 +84,8 @@ class Profile(Model):
         if user is None:
             user = auth.User1
 #        validate default status message
-        self.wait4xpath(settings.wait_for_element_time, self._top_default_status_xpath)
         try:
+            self.wait4xpath(settings.wait_for_element_time, self._top_default_status_xpath)
             assert self.get_element_by_xpath(self._online_indicator).get_attribute('class') == self._online_status_class
         except AssertionError:
             raise TestFailedException("Failed to validate status")
@@ -165,7 +171,25 @@ class Profile(Model):
             self.wait4id(settings.wait_for_element_time,self._photo_add_new_button_id)
             self.wait4xpath(settings.wait_for_element_time,self._photo_main_tip_xpath)
             self.wait4xpath(settings.wait_for_element_time,self._photo_main_rating_xpath)
-            self.wait4xpath(settings.wait_for_element_time,self._photo_main_need_of_rating_xpath)
+#            validate if too litle of rates
+            if int(self.wait4xpath(settings.wait_for_element_time,self._photo_main_rating_rates_amount_xpath).text) <\
+               self.boundary_marks_amount:
+#                marks are not enough
+                self.wait4xpath(settings.wait_for_element_time,self._photo_main_need_rates_xpath)
+            else:
+                self.wait4xpath(settings.wait_for_element_time,self._photo_main_reset_rating_wrapper_xpath)
+#           reset rating
+                self.click(
+                    self.wait4xpath(settings.wait_for_element_time,self._photo_main_reset_rating_link_xpath))
+                try:
+                    self.wait4xpath(settings.wait_for_element_time,self._photo_main_reset_rating_wrapper_xpath)
+                    raise TestFailedException("Reset wrapper exists but shouldn't")
+                except TestFailedException:
+                    raise
+                except Exception:
+                    print "Reset wrapper doesn't exist and that is how it should be"
+                    self.wait4xpath(settings.wait_for_element_time,self._photo_main_rating_xpath)
+                self.wait4xpath(settings.wait_for_element_time,self._photo_main_empty_rate_percentage_xpath)
             self.wait4xpath(settings.wait_for_element_time,self._photo_my_album_image_xpath)
             self.click(
                 self.wait4xpath(settings.wait_for_element_time,self._photo_add_photo_title_xpath))

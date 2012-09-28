@@ -1,6 +1,7 @@
 from engine.test_case import TestCase
 from engine.test_failed_exception import TestFailedException
 from engine.test_suite import TestSuite
+from topface.model.model import Model
 import settings
 from topface.model.auth import AuthForm
 from topface.model.browser_window import BrowserWindow
@@ -16,9 +17,9 @@ class LoginTestSuite(TestSuite):
 
     def run(self):
         self.test_cases = [
-                    self.LoginFacebook("LoginFacebookSuccessTest"),
-                    self.LoginVkSuccess("LoginVkontakteSuccessTest"),
-#                    self.LoginMailruSuccess("LoginMailruSuccessTest")
+                    self.LoginFacebook("LoginFacebook"),
+                    self.LoginVkSuccess("LoginVkontakte"),
+                    self.LoginMailruSuccess("LoginMailru")
         ]
 
         for test_case in self.test_cases:
@@ -29,9 +30,6 @@ class LoginTestSuite(TestSuite):
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class LoginFacebook(TestCase):
-        """
-
-        """
         def __init__(self, test_name):
             self.set_log_name(test_name)
 
@@ -41,23 +39,17 @@ class LoginTestSuite(TestSuite):
             authForm = AuthForm(browser,logger)
 
             window.open(settings.target_url)
-            try:
-                assert window.get_current_url() == window.get_unauthorised_url()
-            except AssertionError:
-                raise TestFailedException("Wrong URL")
+#            implement URL check
 
-            authForm.click_social("facebook")
-            window.switch_to_popup()
-            authForm.login_to_fb()
-            window.switch_to_root()
-            authForm.validate_fb_login_success()
+            self.do_method(authForm.click_social,None,"facebook")
+            self.do_method(window.switch_to_popup)
+            self.do_method(authForm.login_to_fb)
+            self.do_method(window.switch_to_root)
+            self.do_method(authForm.validate_fb_login_success)
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class LoginVkSuccess(TestCase):
-        """
-
-        """
         def __init__(self, test_name):
             self.set_log_name(test_name)
 
@@ -67,16 +59,17 @@ class LoginTestSuite(TestSuite):
             authForm = AuthForm(browser,logger)
 
             window.open(settings.target_url)
-            try:
-                assert window.get_current_url() == window.get_unauthorised_url()
-            except AssertionError:
-                raise TestFailedException("Wrong URL")
+#            implement URL check
+#            try:
+#                assert window.get_current_url() == window.get_unauthorised_url()
+#            except AssertionError:
+#                raise TestFailedException("Wrong URL")
 
-            authForm.click_social("vkontakte")
-            window.switch_to_popup()
-            authForm.login_to_vk()
-            window.switch_to_root()
-            authForm.validate_login_success()
+            self.do_method(authForm.click_social, None, "vkontakte")
+            self.do_method(window.switch_to_popup)
+            self.do_method(authForm.login_to_vk)
+            self.do_method(window.switch_to_root)
+            self.do_method(authForm.validate_login_success)
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
@@ -90,14 +83,15 @@ class LoginTestSuite(TestSuite):
             authForm = AuthForm(browser,logger)
 
             window.open(settings.target_url)
-            try:
-                assert window.get_current_url() == window.get_unauthorised_url()
-            except AssertionError:
-                raise TestFailedException("Wrong URL")
+#            implement URL check
+#            try:
+#                assert window.get_current_url() == window.get_unauthorised_url()
+#            except AssertionError:
+#                raise TestFailedException("Wrong URL")
 
-            authForm.click_social("mail.ru")
-            window.switch_to_popup()
-            authForm.login_to_mailru()
-            window.switch_to_root()
-            authForm.validate_login_success()
+            self.do_method(authForm.click_social,None,"mail.ru")
+            self.do_method(window.switch_to_popup)
+            self.do_method(authForm.login_to_mailru)
+            self.do_method(window.switch_to_root)
+            self.do_method(authForm.validate_login_success)
             window.close()

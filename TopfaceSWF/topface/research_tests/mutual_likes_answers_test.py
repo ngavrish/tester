@@ -9,6 +9,7 @@ from topface.model.filters import Filters
 from topface.model.marks import Marks
 from topface.model.messanger import Messenger
 from topface.model.navigation import Navigation
+from topface import profiling_events
 
 __author__ = 'ngavrish'
 
@@ -48,7 +49,7 @@ class MutualLikeAnswersTestSuite(TestSuite):
             navigation = Navigation(self.browser,self.logger)
             messenger = Messenger(self.browser,self.logger)
 
-            auth.login_with_vk_full_scale(auth.MSK_24_Male)
+            self.do_method(auth.login_with_vk_full_scale,profiling_events.events[profiling_events.login_event],auth.MSK_24_Male)
             filters.change_online_filter_value()
 #            User's profiles, that i've liked. Amount of that users is now stored in settings.like_amount
             users_liked = marks.like_users_from_main(settings.like_amount)

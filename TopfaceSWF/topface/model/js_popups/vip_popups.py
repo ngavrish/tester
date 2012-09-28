@@ -13,7 +13,10 @@ class VIPPopups(Model):
     _illustration_guests_xpath = "//div[@id='dialog1']//i[contains(@class,'guests')]"
     _vip_description_xpath = "//div[@id='dialog1']//p[1]"
     _vip_moreabout_vip_xpath = "//div[@id='dialog1']//p/a"
-    _buy_button_xpath = "//ul[@id='options']//span[text()='" + u"Купить" + "']"
+#    _buy_button_xpath = "//ul[@id='options']//span[text()='" + u"Купить" + "']"
+    _buy_one_day_xpath = u"//ul[@id='options']//span[contains(text(),'1')]/../..//div[contains(text(),'0')]"
+    _buy_seven_days_xpath = u"//ul[@id='options']//span[contains(text(),'7')]/../..//div[contains(text(),'0')]"
+    _buy_month_xpath = u"//ul[@id='options']//span[contains(text(),'30')]/../..//div[contains(text(),'0')]"
     _get_free_button_xpath = "//div[text()='" + u"Получить бесплатно" + "']"
 
     def __init__(self,browser,logger):
@@ -37,7 +40,9 @@ class VIPPopups(Model):
                     raise TestFailedException("Failed to validate")
             self.wait4xpath(settings.wait_for_element_time,self._vip_description_xpath)
             self.wait4xpath(settings.wait_for_element_time,self._vip_moreabout_vip_xpath)
-            self.wait4xpath(settings.wait_for_element_time,self._buy_button_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._buy_one_day_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._buy_seven_days_xpath)
+            self.wait4xpath(settings.wait_for_element_time,self._buy_month_xpath)
             self.wait4xpath(settings.wait_for_element_time,self._get_free_button_xpath)
         except Exception as e:
             raise TestFailedException("Failed to validate fans popup: " + e.message)
