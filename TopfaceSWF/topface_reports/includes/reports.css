@@ -1,0 +1,15 @@
+.log_content {
+    display: none;
+}
+
+.failed_tr {
+    background-color: #FF6D6D;
+}
+
+.passed_tr {
+    background-color: #5C8660;
+}
+
+.failed{
+    color: #FF6D6D
+}

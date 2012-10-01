@@ -29,11 +29,12 @@ def main(argv=None):
 if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding("utf-8")
-
     main()
-    subprocess.Popen("python srv.py " + "host=" + settings.local_host + " port=" + str(settings.report_port))
+
     report_server = ReportServer()
-    if not report_server.server_is_running():
+    if not report_server.server_is_running(settings.local_host,settings.report_port):
+        subprocess.Popen("python srv.py " + "host=" + settings.local_host + " port=" + str(settings.report_port))
+    if not report_server.server_is_running(settings.report_host,settings.report_port):
         subprocess.Popen("python srv.py " + "host=" + settings.report_host + " port=" + str(settings.report_port))
     starter = SeleniumStarter()
     starter.start()

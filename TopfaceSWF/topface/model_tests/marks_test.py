@@ -53,7 +53,7 @@ class MarksTestSuite(TestSuite):
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event)
             minor_marks = marks.get_minor_marks()
             for mark in minor_marks:
                 self.do_method(marks.mark_and_validate_mark,None,mark)
@@ -70,7 +70,7 @@ class MarksTestSuite(TestSuite):
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event)
             major_marks = marks.get_major_marks()
             self.do_method(marks.mark_major_marks_custom_comment,None,major_marks)
 
@@ -87,7 +87,7 @@ class MarksTestSuite(TestSuite):
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event)
             major_marks = marks.get_major_marks()
             self.do_method(marks.mark_major_marks_standart_comment,None,major_marks)
             window.close()
@@ -104,7 +104,7 @@ class MarksTestSuite(TestSuite):
             auth = AuthForm(self.browser, self.logger)
             energy = Energy(self.browser, self.logger)
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event])
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event)
             initial_energy_value = energy.get_profile_percent_value()
             marks_left_till_plus = marks.get_marks_left_till_energy_plus()
             marks_left = [int(s) for s in marks_left_till_plus.split() if s.isdigit()][0]
@@ -135,7 +135,7 @@ class MarksTestSuite(TestSuite):
             navigation = Navigation(self.browser,self.logger)
 #       login as user1
             self.logger.log("\r\nLogin as User1\r\n")
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
             self.do_method(window.open,None,AuthForm.User2.profile_url)
             marks.click(
                 marks.get_mark_by_value(1)

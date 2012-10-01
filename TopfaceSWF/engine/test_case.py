@@ -37,7 +37,6 @@ class TestCase(TestSuite):
         self.wait = None
         self.logger = None
         self.test_is_running = False
-        self.dao = DataAccessObject()
 
     #noinspection PyArgumentList
     def run_test(self):
@@ -99,22 +98,32 @@ class TestCase(TestSuite):
         self.__screen_path = settings.get_topface_reports_path() + name + ".png"
 
     def do_method(self,method,element_type=None,*args):
+        dao = DataAccessObject()
         t0 = time.time()
         self.logger.log("TIME0 = " + str(t0))
         method(*args)
-        self.logger.log("EXECUTION TIME = " + str(time.time() - t0) + " seconds")
+        result_time = time.time() - t0
+        self.logger.log("EXECUTION TIME = " + str(result_time) + " seconds")
+        try:
+            if element_type == profiling_events.login_event:
+                self.logger.log("INSERT INTO LOGIN_TIMELINE_TABLE")
+                dao.insert_into_login_timeline_table(result_time)
 
-#        if element_type == profiling_events.login_event:
-#            self.dao.insert_into_login_timeline_table()
-#
-#        elif element_type == profiling_events.message_sent_event:
-#            self.dao.insert_into_send_message_timeline_table()
-#
-#        elif element_type == profiling_events.questionary_edited_event:
-#            self.dao.insert_into_questionary_timeline_table()
-#
-#        elif element_type == profiling_events.user_marked_event:
-#            self.dao.insert_into_mark_user_timeline_table()
-#
-#        elif element_type == profiling_events.user_navigated_event:
-#            self.dao.insert_into_user_navigation_timeline_table()
+            elif element_type == profiling_events.message_sent_event:
+                self.logger.log("INSERT INTO PROFILE_EVENTS_TABLE")
+                dao.insert_into_send_message_timeline_table(result_time)
+
+            elif element_type == profiling_events.questionary_edited_event:
+                self.logger.log("INSERT INTO QUESTIONARY_TIMELINE_TABLE")
+                dao.insert_into_questionary_timeline_table(result_time)
+
+            elif element_type == profiling_events.user_marked_event:
+                self.logger.log("INSERT INTO MARKS_TIMELINE_TABLE")
+                dao.insert_into_mark_user_timeline_table(result_time)
+
+            elif element_type == profiling_events.user_navigated_event:
+                self.logger.log("INSERT INTO NAVIGATION_TIMELINE_TABLE")
+                dao.insert_into_user_navigation_timeline_table(result_time)
+
+        except TestFailedException as e:
+            raise TestFailedException("Failed to put in log time metrics " + e.message)

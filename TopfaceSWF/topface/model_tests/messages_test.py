@@ -46,7 +46,7 @@ class MessagesTestSuite(TestSuite):
 
             output_message = u"Привет!"
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
             window.open(auth.User2.profile_url)
             navigation.goto_messenger_from_profile()
 #            No UI validation

@@ -2,6 +2,7 @@
 import os
 from engine import markup
 import time
+from dao.dao import DataAccessObject
 import settings
 
 
@@ -9,71 +10,6 @@ __author__ = 'ngavrish'
 
 class ResultHandler:
 
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <testsuites disabled="" errors="" failures="" name="" tests="" time="">
-#    <testsuite disabled="" errors="" failures="" hostname="" id=""
-#    name="" package="" skipped="" tests="" time="" timestamp="">
-#    <properties>
-#    <property name="" value=""/>
-#    <property name="" value=""/>
-#</properties>
-#<testcase assertions="" classname="" name="" status="" time="">
-#<skipped/>
-#<error message="" type=""/>
-#<error message="" type=""/>
-#<failure message="" type=""/>
-#<failure message="" type=""/>
-#<system-out/>
-#<system-out/>
-#<system-err/>
-#<system-err/>
-#</testcase>
-#<testcase assertions="" classname="" name="" status="" time="">
-#<skipped/>
-#<error message="" type=""/>
-#<error message="" type=""/>
-#<failure message="" type=""/>
-#<failure message="" type=""/>
-#<system-out/>
-#<system-out/>
-#<system-err/>
-#<system-err/>
-#</testcase>
-#<system-out/>
-#<system-err/>
-#</testsuite>
-#<testsuite disabled="" errors="" failures="" hostname="" id=""
-#name="" package="" skipped="" tests="" time="" timestamp="">
-#<properties>
-#<property name="" value=""/>
-#<property name="" value=""/>
-#</properties>
-#<testcase assertions="" classname="" name="" status="" time="">
-#<skipped/>
-#<error message="" type=""/>
-#<error message="" type=""/>
-#<failure message="" type=""/>
-#<failure message="" type=""/>
-#<system-out/>
-#<system-out/>
-#<system-err/>
-#<system-err/>
-#</testcase>
-#<testcase assertions="" classname="" name="" status="" time="">
-#<skipped/>
-#<error message="" type=""/>
-#<error message="" type=""/>
-#<failure message="" type=""/>
-#<failure message="" type=""/>
-#<system-out/>
-#<system-out/>
-#<system-err/>
-#<system-err/>
-#</testcase>
-#<system-out/>
-#<system-err/>
-#</testsuite>
-#</testsuites>
     def __init__(self):
         self.build_clean = True
         self.http_protocol_prefix = "http://" + settings.report_host + ":" + str(settings.report_port) + "/"
@@ -85,6 +21,15 @@ class ResultHandler:
 
     def generate_xml(self,results):
         return []
+
+    def generate_login_data_source_script(self):
+        dao = DataAccessObject()
+        result = "var loginChartData = ["
+        points = dao.get_login_graph_data()
+        for point in points:
+            result = "{\ndate: " + point[1] + ",\nprice: " + point[0] + "\n},"
+        result += "];"
+
 
     def generate_html(self,results,build_folder):
         page = markup.page()
@@ -142,6 +87,17 @@ class ResultHandler:
             footer="" )
         page.style(".failed { color: red; }")
         page.style.close()
+
+        page.scripts({
+           self.http_protocol_prefix + "includes/loginDataChart.js":'javascript',
+           self.http_protocol_prefix + "includes/lineWithLogarithmicAxis.js":'javascript',
+           self.http_protocol_prefix + "includes/amcharts.js":'javascript'
+        })
+
+        page.scripts.close()
+        page.div("<div id=\"chartdiv\" style=\"width: 70%; height: 400px; float:right;\"></div>")
+        page.div.close()
+
         page.p()
         if self.build_clean:
             page.a(build_folder,href=html_page_name.replace("\\","/"))
@@ -174,6 +130,7 @@ class ResultHandler:
                         folder_name + "\\" + file)
 
     def handle(self,results):
+        self.generate_login_data_source_script()
 #        make folder for current report
         new_folder_name = time.strftime("%a%d%b%Y%H%M%S", time.localtime())
         self.current_report_folder = settings.get_topface_reports_path() + new_folder_name

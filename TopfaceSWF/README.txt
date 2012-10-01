@@ -5,12 +5,13 @@ Envirnoment:
 3. Install setup-tools
 4. Install 
 
+Add TopfaceSWF package to system path variable
 
 Steps to run:
 
-For Windows-users:
+cmd - automation.py
 
-cmd ->
-cd <path_to_directory_with_setup.py_file_inside> <press_enter>
-python setup.py install <enter>
-python runner.py <enter>
+If you want to rebuild application:
+run cmd
+change dir to TopfaceSWF directory
+run setup.py install

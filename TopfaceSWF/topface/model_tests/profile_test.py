@@ -41,7 +41,7 @@ class ProfileTestSuite(TestSuite):
             vip_popup = VIPPopups(self.browser,self.logger)
             marks = Marks(self.browser, self.logger)
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
             navigation.goto_top_menu_item(u"Профиль")
             profile.validate_profile_view()
             print "Profile view is validated"
@@ -90,7 +90,7 @@ class ProfileTestSuite(TestSuite):
             navigation = Navigation(self.browser,self.logger)
             questionary = Questionary(self.browser,self.logger)
 
-            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
             navigation.goto_top_menu_item(u"Профиль")
             questionary.expand()
             questionary.hide()
