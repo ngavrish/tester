@@ -1,4 +1,5 @@
 # coding=utf-8
+from datetime import datetime
 import os
 from engine import markup
 import time
@@ -24,12 +25,13 @@ class ResultHandler:
 
     def generate_login_data_source_script(self):
         dao = DataAccessObject()
-        result = "var loginChartData = ["
+        result = "var loginDataChart = ["
         points = dao.get_login_graph_data()
         for point in points:
-            result = "{\ndate: " + point[1] + ",\nprice: " + point[0] + "\n},"
+#            parse date
+            result += "{\ndate: new Date(\"" + point[1] + "\"),\nseconds: " + str(point[0]) + "\n},"
         result += "];"
-
+        self.save_to_file(result,settings.login_timelog_file)
 
     def generate_html(self,results,build_folder):
         page = markup.page()

@@ -1,48 +1,28 @@
-var loginChartData = [
-			{
-				date: new Date(2012, 3, 1),
-                price: 20
-            }, {
-                date: new Date(2012, 3, 2),
-                price: 75
-            }, {
-                date: new Date(2012, 3, 3),
-                price: 15
-            }, {
-                date: new Date(2012, 3, 4),
-                price: 75
-            }, {
-                date: new Date(2012, 3, 5),
-                price: 158
-            }, {
-                date: new Date(2012, 3, 6),
-                price: 57
-            }, {
-                date: new Date(2012, 3, 7),
-                price: 107
-            }, {
-                date: new Date(2012, 3, 8),
-                price: 89
-            }, {
-                date: new Date(2012, 3, 9),
-                price: 75
-            }, {
-                date: new Date(2012, 3, 10),
-                price: 132
-            }, {
-                date: new Date(2012, 3, 11),
-                price: 158
-            }, {
-                date: new Date(2012, 3, 12),
-                price: 56
-            }, {
-                date: new Date(2012, 3, 13),
-                price: 169
-            }, {
-                date: new Date(2012, 3, 14),
-                price: 24
-            }, {
-                date: new Date(2012, 3, 15),
-                price: 147
-            },
-];
+var loginDataChart = [{
+date: new Date("10/02/2012 13:02"),
+seconds: 30.61
+},{
+date: new Date("10/02/2012 13:03"),
+seconds: 25.88
+},{
+date: new Date("10/02/2012 13:04"),
+seconds: 29.76
+},{
+date: new Date("10/02/2012 13:04"),
+seconds: 27.49
+},{
+date: new Date("10/02/2012 13:22"),
+seconds: 30.12
+},{
+date: new Date("10/02/2012 13:22"),
+seconds: 26.34
+},{
+date: new Date("10/02/2012 13:25"),
+seconds: 30.01
+},{
+date: new Date("10/02/2012 13:25"),
+seconds: 26.12
+},{
+date: new Date("10/02/2012 13:27"),
+seconds: 32.75
+},];

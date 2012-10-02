@@ -76,9 +76,11 @@ report_port = 8888
 paste_host = ""
 paste_port = ""
 
-
 #topface database name
 topface_db = 'topface.db'
+
+#login timeline log
+login_timelog_file = __reports_path +  "\\includes\\loginDataChart.js"
 
 def get_product_name():
     return __product_name

@@ -16,7 +16,8 @@ class DataAccessObject(AbstractDataAccessObject):
 
     def insert_into_login_timeline_table(self,delta):
         try:
-            self.cursor.execute("INSERT INTO LOGIN_TIMELINE('seconds','event_time') VALUES (?,?)",(str(delta),datetime.now()))
+            self.cursor.execute("INSERT INTO LOGIN_TIMELINE('seconds','event_time') VALUES (?,?)",
+                                (str("%0.2f" % delta),datetime.now().strftime("%m/%d/%Y %H:%M")))
         except Exception as e:
             print e
             raise
@@ -36,7 +37,7 @@ class DataAccessObject(AbstractDataAccessObject):
     def create_mark_user_timeline_table(self):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS MARK_USER_TIMELINE(Id INTEGER PRIMARY KEY AUTOINCREMENT, seconds REAL)")
 
-    def insert_into_mark_user_timeline_table(self):
+    def insert_into_mark_user_timeline_table(self,delta):
         self.con.close()
 
     def delete_from_mark_user_timeline_table(self):
@@ -45,7 +46,7 @@ class DataAccessObject(AbstractDataAccessObject):
     def create_send_message_timeline_table(self):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS SEND_MESSAGE_TIMELINE(Id INTEGER PRIMARY KEY AUTOINCREMENT, seconds REAL)")
 
-    def insert_into_send_message_timeline_table(self):
+    def insert_into_send_message_timeline_table(self,delta):
         self.con.close()
 
     def delete_from_send_message_timeline_table(self):
@@ -54,7 +55,7 @@ class DataAccessObject(AbstractDataAccessObject):
     def create_user_navigation_timeline_table(self):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS NAVIGATION_TIMELINE(Id INTEGER PRIMARY KEY AUTOINCREMENT, seconds REAL)")
 
-    def insert_into_user_navigation_timeline_table(self):
+    def insert_into_user_navigation_timeline_table(self,delta):
         self.con.close()
 
     def delete_from_user_navigation_timeline_table(self):
@@ -63,7 +64,7 @@ class DataAccessObject(AbstractDataAccessObject):
     def create_questionary_editing_timeline_table(self):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS QUESTIONATY_EDITING_TIMELINE(Id INTEGER PRIMARY KEY AUTOINCREMENT, seconds REAL)")
 
-    def insert_into_questionary_timeline_table(self):
+    def insert_into_questionary_timeline_table(self,delta):
         self.con.close()
 
     def delete_from_questionary_timeline_table(self):

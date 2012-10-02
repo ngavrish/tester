@@ -5,19 +5,19 @@ var chart;
 
                 // SERIAL CHART    
                 chart = new AmCharts.AmSerialChart();
-                chart.pathToImages = "../amcharts/images/";
+                chart.pathToImages = "/includes/images/";
                 chart.zoomOutButton = {
                     backgroundColor: '#000000',
                     backgroundAlpha: 0.15
                 };
-                chart.dataProvider = loginChartData;
+                chart.dataProvider = loginDataChart;
                 chart.categoryField = "date";
 
                 // AXES
                 // category
                 var categoryAxis = chart.categoryAxis;
                 categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
-                categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
+                categoryAxis.minPeriod = "mm"; // our data is daily, so we set minPeriod to DD
                 categoryAxis.dashLength = 1;
                 categoryAxis.gridAlpha = 0.15;
                 categoryAxis.axisColor = "#DADADA";
@@ -48,8 +48,8 @@ var chart;
                 graph.bulletBorderColor = "#00BBCC";
                 graph.bulletBorderThickness = 2;
                 graph.bulletSize = 7;
-                graph.title = "Price";
-                graph.valueField = "price";
+                graph.title = "Time";
+                graph.valueField = "seconds";
                 graph.lineThickness = 2;
                 graph.lineColor = "#00BBCC";
                 chart.addGraph(graph);
