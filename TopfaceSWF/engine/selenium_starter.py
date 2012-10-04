@@ -29,6 +29,7 @@ class SeleniumStarter:
         dao.create_user_navigation_timeline_table()
         dao.create_questionary_editing_timeline_table()
         dao.create_send_message_timeline_table()
+        dao.create_buildhistory_table()
 
 
     def get_testsuite_instances(self):

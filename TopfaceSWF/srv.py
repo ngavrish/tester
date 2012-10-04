@@ -8,20 +8,16 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv
 #        check if we have something passed to the arguments
-    if len(argv[1:]) > 0:
-        for option in argv[1:]:
-            if option.find("host") > -1:
-                settings.paste_host = option.split("=")[1]
-            else:
-                settings.paste_host = settings.local_host
-            if option.find("port") > -1:
-                settings.paste_port = option.split("=")[1]
-            else:
-                settings.paste_port = settings.report_port
-    else:
+    settings.paste_host = settings.local_host
+    settings.paste_port = settings.report_port
+    for option in argv[1:]:
+        if option.find("host") > -1:
+            settings.paste_host = option.split("=")[1]
+        if option.find("port") > -1:
+            settings.paste_port = option.split("=")[1]
+
 #        setup default values from settings.py
-        settings.paste_host = settings.local_host
-        settings.paste_port = settings.report_port
+
 
 
 

@@ -15,17 +15,15 @@ class DataAccessObject(AbstractDataAccessObject):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS LOGIN_TIMELINE(Id INTEGER PRIMARY KEY AUTOINCREMENT, seconds REAL, event_time TEXT)")
 
     def insert_into_login_timeline_table(self,delta):
+        delta -= 20
         try:
             self.cursor.execute("INSERT INTO LOGIN_TIMELINE('seconds','event_time') VALUES (?,?)",
                                 (str("%0.2f" % delta),datetime.now().strftime("%m/%d/%Y %H:%M")))
         except Exception as e:
             print e
             raise
-        print "INSERTED"
         self.con.commit()
-        print "COMMITED"
-        self.con.close()
-        print "CLOSED"
+        print "INSERT DONE1"
 
     def delete_from_login_timeline_table(self):
         self.con.close()
@@ -69,3 +67,19 @@ class DataAccessObject(AbstractDataAccessObject):
 
     def delete_from_questionary_timeline_table(self):
         self.con.close()
+
+    def create_buildhistory_table(self):
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS BUILDHISTORY (Id INTEGER PRIMARY KEY AUTOINCREMENT, href TEXT, name TEXT, status INTEGER)")
+
+    def insert_into_buildhistory_table(self,href,name,status):
+        try:
+            self.cursor.execute("INSERT INTO BUILDHISTORY('href','name','status') VALUES (?,?,?)", (href,name,status))
+        except Exception as e:
+            print e
+            raise
+        self.con.commit()
+        print "INSERT DONE"
+
+    def get_buildhistory(self):
+        self.cursor.execute("SELECT href, name, status from BUILDHISTORY")
+        return self.cursor.fetchall()

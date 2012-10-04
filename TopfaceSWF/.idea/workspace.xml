@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ee00d2b-0bfe-4197-ad59-27d9d06c5b60" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/Filters.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/start.bat" />
+      <change type="DELETED" beforePath="C:\Users\user\Documents\GitHub\tester\TopfaceSWF\topface_reports\empty.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/dao.py" afterPath="$PROJECT_DIR$/dao/dao.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/selenium_starter.py" afterPath="$PROJECT_DIR$/engine/selenium_starter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/result_handler.py" afterPath="$PROJECT_DIR$/reports/result_handler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface_reports/includes/lineWithLogarithmicAxis.js" afterPath="$PROJECT_DIR$/topface_reports/includes/lineWithLogarithmicAxis.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srv.py" afterPath="$PROJECT_DIR$/srv.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface/model/marks.py" afterPath="$PROJECT_DIR$/topface/model/marks.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface_reports/includes/loginDataChart.js" afterPath="$PROJECT_DIR$/topface_reports/includes/loginDataChart.js" />
     </list>
     <ignored path="TopfaceSWF.iws" />
@@ -28,10 +34,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="result_handler.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reports/result_handler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="82" column="108" selection-start="3174" selection-end="3174" vertical-scroll-proportion="-3.04">
+              <folding>
+                <element signature="e#15#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="72" selection-start="1313" selection-end="1313" vertical-scroll-proportion="0.3968254">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test_case.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/test_case.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="50" selection-start="3836" selection-end="3836" vertical-scroll-proportion="0.0">
+            <state line="128" column="87" selection-start="4641" selection-end="4641" vertical-scroll-proportion="-18.6">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dao.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/dao.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="79" column="25" selection-start="2992" selection-end="2992" vertical-scroll-proportion="-17.4">
               <folding />
             </state>
           </provider>
@@ -40,49 +75,16 @@
       <file leaf-file-name="srv.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/srv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="58" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dao.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dao/dao.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="84" selection-start="716" selection-end="716" vertical-scroll-proportion="0.55785835">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="28" selection-start="1269" selection-end="1269" vertical-scroll-proportion="0.0">
+            <state line="35" column="10" selection-start="912" selection-end="912" vertical-scroll-proportion="-6.92">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="result_handler.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reports/result_handler.py">
+      <file leaf-file-name="selenium_starter.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/engine/selenium_starter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="8" selection-start="801" selection-end="801" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#15#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="marks_test.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface/model_tests/marks_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="53" selection-start="5340" selection-end="5340" vertical-scroll-proportion="0.0">
+            <state line="76" column="12" selection-start="3328" selection-end="3328" vertical-scroll-proportion="-18.6">
               <folding />
             </state>
           </provider>
@@ -91,7 +93,7 @@
       <file leaf-file-name="login_test.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/topface/model_tests/login_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="44" column="14" selection-start="1443" selection-end="1443" vertical-scroll-proportion="-12.24">
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -99,20 +101,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="messages_test.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface/model_tests/messages_test.py">
+      <file leaf-file-name="marks.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/topface/model/marks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="79" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.0">
+            <state line="328" column="57" selection-start="15669" selection-end="15669" vertical-scroll-proportion="-17.16">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile_test.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/topface/model_tests/profile_test.py">
+      <file leaf-file-name="Filters.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/Filters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="56" selection-start="1571" selection-end="1595" vertical-scroll-proportion="-7.56">
-              <folding />
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding>
+                <element signature="e#25#55#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="automation.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/automation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="0" selection-start="1445" selection-end="1497" vertical-scroll-proportion="-17.92">
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,22 +145,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/topface/model_tests/login_test.py" />
-        <option value="C:/Python27/Lib/site-packages/topface/model/profile.py" />
-        <option value="$PROJECT_DIR$/topface/model/profile.py" />
-        <option value="$PROJECT_DIR$/topface/model/auth.py" />
         <option value="$PROJECT_DIR$/topface/model/js_popups/vip_popups.py" />
         <option value="C:/Python27/Lib/site-packages/topface/model/marks.py" />
-        <option value="$PROJECT_DIR$/topface/model/marks.py" />
         <option value="$PROJECT_DIR$/runner.py" />
-        <option value="$PROJECT_DIR$/engine/test_case.py" />
-        <option value="$PROJECT_DIR$/srv.py" />
         <option value="$PROJECT_DIR$/topface/model_tests/messages_test.py" />
         <option value="$PROJECT_DIR$/topface/model_tests/marks_test.py" />
         <option value="$PROJECT_DIR$/topface/model_tests/profile_test.py" />
-        <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/topface/model/marks.py" />
+        <option value="$PROJECT_DIR$/demo/Filters.py" />
+        <option value="$PROJECT_DIR$/filtrs.py" />
+        <option value="$PROJECT_DIR$/engine/selenium_starter.py" />
+        <option value="$PROJECT_DIR$/engine/test_case.py" />
         <option value="$PROJECT_DIR$/dao/dao.py" />
         <option value="$PROJECT_DIR$/reports/result_handler.py" />
+        <option value="$PROJECT_DIR$/automation.py" />
+        <option value="$PROJECT_DIR$/srv.py" />
+        <option value="$PROJECT_DIR$/settings.py" />
       </list>
     </option>
   </component>
@@ -181,6 +196,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -329,24 +354,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -457,18 +472,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2635838" sideWeight="0.7171875" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2635838" sideWeight="0.696875" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.225" sideWeight="0.73641616" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2265625" sideWeight="0.73641616" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2635838" sideWeight="0.27734375" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2635838" sideWeight="0.29765624" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -534,117 +549,77 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/topface/model/profile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="24" selection-start="10971" selection-end="10971" vertical-scroll-proportion="-36.88">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model/marks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="255" column="80" selection-start="11907" selection-end="11907" vertical-scroll-proportion="-12.12">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/abstract_dao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="6" selection-start="95" selection-end="95" vertical-scroll-proportion="0.1722973">
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/selenium_starter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="8" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/automation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/topface/profiling_events.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.08614865">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.08614865" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model_tests/marks_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="53" selection-start="5340" selection-end="5340" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model_tests/messages_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="79" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/topface/model_tests/profile_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="56" selection-start="1571" selection-end="1595" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/topface/model_tests/login_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="44" column="14" selection-start="1443" selection-end="1443" vertical-scroll-proportion="-12.24">
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model_tests/messages_test.py">
+    <entry file="file://$PROJECT_DIR$/topface/model/marks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="79" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.0">
+        <state line="328" column="57" selection-start="15669" selection-end="15669" vertical-scroll-proportion="-17.16">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model_tests/profile_test.py">
+    <entry file="file://$PROJECT_DIR$/demo/Filters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="56" selection-start="1571" selection-end="1595" vertical-scroll-proportion="-7.56">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#25#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filtrs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="13" selection-start="3532" selection-end="3532" vertical-scroll-proportion="-16.48">
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/engine/markup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="74" selection-start="6441" selection-end="6445" vertical-scroll-proportion="0.6825397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="58" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model_tests/marks_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="53" selection-start="5340" selection-end="5340" vertical-scroll-proportion="0.0">
+        <state line="337" column="8" selection-start="14302" selection-end="14302" vertical-scroll-proportion="0.33277026">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/test_case.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="50" selection-start="3836" selection-end="3836" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="28" selection-start="1269" selection-end="1269" vertical-scroll-proportion="0.0">
+        <state line="128" column="87" selection-start="4641" selection-end="4641" vertical-scroll-proportion="-18.6">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reports/result_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="8" selection-start="801" selection-end="801" vertical-scroll-proportion="0.0">
+        <state line="82" column="108" selection-start="3174" selection-end="3174" vertical-scroll-proportion="-3.04">
           <folding>
             <element signature="e#15#44#0" expanded="true" />
           </folding>
@@ -653,10 +628,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dao/dao.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="84" selection-start="716" selection-end="716" vertical-scroll-proportion="0.55785835">
+        <state line="79" column="25" selection-start="2992" selection-end="2992" vertical-scroll-proportion="-17.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/selenium_starter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="12" selection-start="3328" selection-end="3328" vertical-scroll-proportion="-18.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1445" selection-end="1497" vertical-scroll-proportion="-17.92">
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="10" selection-start="912" selection-end="912" vertical-scroll-proportion="-6.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="72" selection-start="1313" selection-end="1313" vertical-scroll-proportion="0.3968254">
+          <folding />
         </state>
       </provider>
     </entry>

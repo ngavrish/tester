@@ -1,28 +1,40 @@
 var loginDataChart = [{
-date: new Date("10/02/2012 13:02"),
-seconds: 30.61
+date: new Date("10/04/2012 15:37"),
+seconds: 8.87
 },{
-date: new Date("10/02/2012 13:03"),
-seconds: 25.88
+date: new Date("10/04/2012 15:38"),
+seconds: 6.02
 },{
-date: new Date("10/02/2012 13:04"),
-seconds: 29.76
+date: new Date("10/04/2012 15:41"),
+seconds: 8.94
 },{
-date: new Date("10/02/2012 13:04"),
-seconds: 27.49
+date: new Date("10/04/2012 15:41"),
+seconds: 6.59
 },{
-date: new Date("10/02/2012 13:22"),
-seconds: 30.12
+date: new Date("10/04/2012 16:28"),
+seconds: 9.4
 },{
-date: new Date("10/02/2012 13:22"),
-seconds: 26.34
+date: new Date("10/04/2012 16:31"),
+seconds: 11.18
 },{
-date: new Date("10/02/2012 13:25"),
-seconds: 30.01
+date: new Date("10/04/2012 16:31"),
+seconds: 7.47
 },{
-date: new Date("10/02/2012 13:25"),
-seconds: 26.12
+date: new Date("10/04/2012 16:42"),
+seconds: 8.86
 },{
-date: new Date("10/02/2012 13:27"),
-seconds: 32.75
+date: new Date("10/04/2012 16:43"),
+seconds: 9.2
+},{
+date: new Date("10/04/2012 16:46"),
+seconds: 8.43
+},{
+date: new Date("10/04/2012 16:47"),
+seconds: 9.8
+},{
+date: new Date("10/04/2012 19:50"),
+seconds: 7.79
+},{
+date: new Date("10/04/2012 19:52"),
+seconds: 18.03
 },];

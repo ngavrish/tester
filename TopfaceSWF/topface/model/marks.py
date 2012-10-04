@@ -29,6 +29,7 @@ class Marks(Model):
     _comments_rate_bar_xpath = ".//*[@id='comments']//div[@class='commentRateBar']"
     _feed_profile_links_xpath = "//div[@id='comments']//div[@class='comment-avatar-new']//a"
     _feed_click4more_xpath = "//div[@id='comments']//a[@class='show-more icon-expand']"
+    _fb_popup_close_link_xpath = "//a[@class='fb_dialog_close_icon']"
 
     def __init__(self,browser,logger):
         Model.__init__(self, browser, logger)
@@ -288,6 +289,11 @@ class Marks(Model):
                     assert photo_href1 != photo_href2
                 except AssertionError:
                     raise TestFailedException("User haven't been changed after marking")
+                try:
+                    self.click(
+                        self.get_element_by_xpath(self._fb_popup_close_link_xpath))
+                except Exception:
+                    self.logger.log("Fb Popup was not found")
             else:
                 raise TestFailedException("User standart message failure. Error count >= " +
                                           str(self.custom_top_mark_message_treshold))
@@ -316,6 +322,11 @@ class Marks(Model):
                                               "Error count during sending comments = " + str(error_count))
             buttons.send_comment("topmark")
             photo_href2 = self.get_photo2mark_href()
+            try:
+                self.click(
+                    self.get_element_by_xpath(self._fb_popup_close_link_xpath))
+            except Exception:
+                self.logger.log("Fb Popup was not found")
             try:
                 print photo_href1
                 print photo_href2

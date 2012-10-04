@@ -12,8 +12,9 @@ __author__ = 'ngavrish'
 class ResultHandler:
 
     def __init__(self):
-        self.build_clean = True
+        self.build_clean = 1
         self.http_protocol_prefix = "http://" + settings.report_host + ":" + str(settings.report_port) + "/"
+        self.dao = DataAccessObject()
 
     def define_failed(self,test_suite):
         for test_case in test_suite:
@@ -24,9 +25,8 @@ class ResultHandler:
         return []
 
     def generate_login_data_source_script(self):
-        dao = DataAccessObject()
         result = "var loginDataChart = ["
-        points = dao.get_login_graph_data()
+        points = self.dao.get_login_graph_data()
         for point in points:
 #            parse date
             result += "{\ndate: new Date(\"" + point[1] + "\"),\nseconds: " + str(point[0]) + "\n},"
@@ -48,7 +48,7 @@ class ResultHandler:
         for test_suite in results:
             if self.define_failed(results[test_suite]):
                 page.tr(class_="failed_tr")
-                self.build_clean = False
+                self.build_clean = 0
             else:
                 page.tr(class_="passed_tr")
             page.td()
@@ -78,7 +78,9 @@ class ResultHandler:
         return page
 
     def create_index(self,html_page_name):
-        build_folder = html_page_name[:html_page_name.find("\\")-1].replace("\\","/")
+        name = ""
+        stamp = html_page_name[:html_page_name.find("\\")-1].replace("\\","/").split("_")
+        name = stamp[1] + " " + stamp[2] + " " + stamp[3] + " " + stamp[4] + ":" + stamp[5] + ":" + stamp[6]
         page = markup.page()
         page.init( title="Report Page",
             encoding='utf-8',
@@ -96,33 +98,22 @@ class ResultHandler:
            self.http_protocol_prefix + "includes/amcharts.js":'javascript'
         })
 
-        page.scripts.close()
         page.div("<div id=\"chartdiv\" style=\"width: 70%; height: 400px; float:right;\"></div>")
         page.div.close()
+        self.dao.insert_into_buildhistory_table(html_page_name.replace("\\","/"),name,self.build_clean)
+        self.save_to_file(self.fill_page(page),settings.get_topface_reports_path()+"index.html")
 
-        page.p()
-        if self.build_clean:
-            page.a(build_folder,href=html_page_name.replace("\\","/"))
-        else:
-            page.a(build_folder, class_="failed", href=html_page_name.replace("\\","/"))
-        page.p.close()
-        self.save_to_file(page,settings.get_topface_reports_path()+"index.html")
-
-    def update_index_report(self,html_page_name):
-        build_folder = html_page_name[:html_page_name.find("\\")-1].replace("\\","/")
-        os.chdir(settings.get_topface_reports_path())
-        for file in os.listdir("."):
-            if file == "index.html":
-                with open(file, "a") as index_file:
-                    if self.build_clean:
-                        index_file.write("<p><a href=\"" + html_page_name.replace("\\","/") + "\">" +
-                                         build_folder + "</a></p>")
-                    else:
-                        index_file.write("<p><a class=\"failed\" href=\"" + html_page_name.replace("\\","/") + "\">" +
-                                         build_folder + "</a></p>")
-                    index_file.close()
-                    return None
-        self.create_index(html_page_name)
+    def fill_page(self,page):
+        builds = self.dao.get_buildhistory()
+        for build in builds:
+            page.p()
+            if build[2]:
+                page.a(build[1],href=build[0])
+            else:
+                page.a(build[1],class_="failed",href=build[0])
+            page.br()
+            page.p.close()
+        return page
 
     def grab_screenshots_to_current_report_folder(self, folder_name):
         os.chdir(settings.get_topface_reports_path())
@@ -134,7 +125,7 @@ class ResultHandler:
     def handle(self,results):
         self.generate_login_data_source_script()
 #        make folder for current report
-        new_folder_name = time.strftime("%a%d%b%Y%H%M%S", time.localtime())
+        new_folder_name = time.strftime("%a_%d_%b_%Y_%H_%M_%S", time.localtime())
         self.current_report_folder = settings.get_topface_reports_path() + new_folder_name
         os.mkdir(self.current_report_folder)
 #       handle screenshots
@@ -151,7 +142,7 @@ class ResultHandler:
         self.save_to_file(
             xml_page,xml_page_name)
 #        prepare index-reporting file
-        self.update_index_report(new_folder_name + "\\" + settings.get_global_topface_reports_name() + ".html")
+        self.create_index(new_folder_name + "\\" + settings.get_global_topface_reports_name() + ".html")
 
     def save_to_file(self,file,name):
         result_file = open(name,'w+')
