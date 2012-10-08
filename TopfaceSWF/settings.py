@@ -32,7 +32,7 @@ __global_reports_name = "TopfaceSFW"
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
+testsuite = ["login_test"]#,
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   selenium server host
@@ -66,15 +66,15 @@ like_amount = 2
 mark_amount = 100
 
 #   reporting-server host
-report_host = '192.168.2.87'
+ip_host = '192.168.2.146'
 local_host = 'localhost'
 
 #   reporting-server port
-report_port = 8888
+report_port = "8888"
 
 #port/host that are finally setup in srv.py from cmd-parsing to start paste
-paste_host = ""
-paste_port = ""
+
+paste_port = "8888"
 
 #topface database name
 topface_db = 'topface.db'

@@ -13,7 +13,7 @@ class ResultHandler:
 
     def __init__(self):
         self.build_clean = 1
-        self.http_protocol_prefix = "http://" + settings.report_host + ":" + str(settings.report_port) + "/"
+        self.http_protocol_prefix = "http://" + settings.ip_host + ":" + str(settings.report_port) + "/"
         self.dao = DataAccessObject()
 
     def define_failed(self,test_suite):
@@ -86,7 +86,8 @@ class ResultHandler:
             encoding='utf-8',
             charset='utf-8',
             css=(self.http_protocol_prefix + "includes/reports.css" ),
-            script = {self.http_protocol_prefix + "includes/jquery18.js":'javascript'},
+            script = {self.http_protocol_prefix + "includes/jquery18.js":'javascript',
+                      self.http_protocol_prefix + "includes/amcharts.js":'javascript'},
             header="Topface Tests Report",
             footer="" )
         page.style(".failed { color: red; }")
@@ -95,7 +96,6 @@ class ResultHandler:
         page.scripts({
            self.http_protocol_prefix + "includes/loginDataChart.js":'javascript',
            self.http_protocol_prefix + "includes/lineWithLogarithmicAxis.js":'javascript',
-           self.http_protocol_prefix + "includes/amcharts.js":'javascript'
         })
 
         page.div("<div id=\"chartdiv\" style=\"width: 70%; height: 400px; float:right;\"></div>")

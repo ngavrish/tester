@@ -9,7 +9,7 @@ def main(argv=None):
         argv = sys.argv
 #        check if we have something passed to the arguments
     settings.paste_host = settings.local_host
-    settings.paste_port = settings.report_port
+    settings.paste_port = settings.paste_port
     for option in argv[1:]:
         if option.find("host") > -1:
             settings.paste_host = option.split("=")[1]
@@ -17,9 +17,6 @@ def main(argv=None):
             settings.paste_port = option.split("=")[1]
 
 #        setup default values from settings.py
-
-
-
 
 class ReportServer:
 
@@ -41,9 +38,10 @@ class ReportServer:
         except Exception:
             return False
 
-    def start_server(self, paste_host=settings.report_host, paste_port=settings.report_port):
+    def start_server(self, paste_host=settings.ip_host, paste_port=settings.paste_port):
         try:
             app = fileapp.DirectoryApp(settings.get_topface_reports_path())
+            print "starting at " + paste_host + ":" + paste_port
             httpserver.serve(app, paste_host, int(paste_port))
         except Exception:
             print "Couldn't start server"
