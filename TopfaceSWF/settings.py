@@ -32,7 +32,7 @@ __global_reports_name = "TopfaceSFW"
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["login_test"]#,
+testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   selenium server host
