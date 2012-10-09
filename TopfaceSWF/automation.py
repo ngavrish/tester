@@ -32,10 +32,8 @@ if __name__ == "__main__":
     main()
 
     report_server = ReportServer()
-    if not report_server.server_is_running(settings.local_host,settings.paste_port):
-        subprocess.Popen("python srv.py " + "host=" + settings.local_host + " port=" + str(settings.paste_port))
-    if not report_server.server_is_running(settings.ip_host,settings.paste_port):
-        subprocess.Popen("python srv.py " + "host=" + settings.ip_host + " port=" + str(settings.paste_port))
+    if not report_server.server_is_running(settings.host,settings.port):
+        subprocess.Popen("python srv.py " + "host=" + settings.host + " port=" + str(settings.port))
     starter = SeleniumStarter()
     starter.start()
 

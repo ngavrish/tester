@@ -13,3 +13,18 @@
 .failed{
     color: #FF6D6D
 }
+
+#management_panel {
+    float: left;
+    height: 100px;
+    width: 100%;
+}
+
+#refresh_main_view {
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 50px;
+    margin: 25px;
+    width: 100px;
+}

@@ -81,5 +81,5 @@ class DataAccessObject(AbstractDataAccessObject):
         print "INSERT DONE"
 
     def get_buildhistory(self):
-        self.cursor.execute("SELECT href, name, status from BUILDHISTORY")
+        self.cursor.execute("SELECT href, name, status from BUILDHISTORY ORDER BY id DESC LIMIT 24")
         return self.cursor.fetchall()

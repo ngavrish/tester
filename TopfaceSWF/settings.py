@@ -32,7 +32,7 @@ __global_reports_name = "TopfaceSFW"
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["login_test"]#,
+testsuite = ["messages_test"]#,
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   selenium server host
@@ -65,19 +65,13 @@ like_amount = 2
 #   amount of marks for research
 mark_amount = 100
 
-#   reporting-server host
-ip_host = '192.168.2.146'
-local_host = 'localhost'
-
-#   reporting-server port
-report_port = "8888"
-
-#port/host that are finally setup in srv.py from cmd-parsing to start paste
-
-paste_port = "8888"
+#   reporting-server host/port
+domain_host = "tester84"
+host = '0.0.0.0'
+port = "8889"
 
 #topface database name
-topface_db = 'topface.db'
+topface_db = 'topface_dev.db'
 
 #login timeline log
 login_timelog_file = __reports_path +  "\\includes\\loginDataChart.js"

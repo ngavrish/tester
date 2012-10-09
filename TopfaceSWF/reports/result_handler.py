@@ -13,7 +13,7 @@ class ResultHandler:
 
     def __init__(self):
         self.build_clean = 1
-        self.http_protocol_prefix = "http://" + settings.ip_host + ":" + str(settings.report_port) + "/"
+        self.http_protocol_prefix = "http://" + settings.domain_host + ":" + str(settings.port) + "/"
         self.dao = DataAccessObject()
 
     def define_failed(self,test_suite):
@@ -77,10 +77,7 @@ class ResultHandler:
         page.table.close()
         return page
 
-    def create_index(self,html_page_name):
-        name = ""
-        stamp = html_page_name[:html_page_name.find("\\")-1].replace("\\","/").split("_")
-        name = stamp[1] + " " + stamp[2] + " " + stamp[3] + " " + stamp[4] + ":" + stamp[5] + ":" + stamp[6]
+    def create_index(self):
         page = markup.page()
         page.init( title="Report Page",
             encoding='utf-8',
@@ -94,13 +91,15 @@ class ResultHandler:
         page.style.close()
 
         page.scripts({
-           self.http_protocol_prefix + "includes/loginDataChart.js":'javascript',
-           self.http_protocol_prefix + "includes/lineWithLogarithmicAxis.js":'javascript',
+            self.http_protocol_prefix + "includes/main_view.js":'javascript',
+            self.http_protocol_prefix + "includes/loginDataChart.js":'javascript',
+            self.http_protocol_prefix + "includes/lineWithLogarithmicAxis.js":'javascript',
         })
 
+        page.div("<div id='management_panel'><a id='refresh_main_view'>" + u"Обновить" + "</a></div>")
+        page.div.close()
         page.div("<div id=\"chartdiv\" style=\"width: 70%; height: 400px; float:right;\"></div>")
         page.div.close()
-        self.dao.insert_into_buildhistory_table(html_page_name.replace("\\","/"),name,self.build_clean)
         self.save_to_file(self.fill_page(page),settings.get_topface_reports_path()+"index.html")
 
     def fill_page(self,page):
@@ -142,7 +141,11 @@ class ResultHandler:
         self.save_to_file(
             xml_page,xml_page_name)
 #        prepare index-reporting file
-        self.create_index(new_folder_name + "\\" + settings.get_global_topface_reports_name() + ".html")
+        html_page_name = new_folder_name + "\\" + settings.get_global_topface_reports_name() + ".html"
+        stamp = html_page_name[:html_page_name.find("\\")-1].replace("\\","/").split("_")
+        name = stamp[1] + " " + stamp[2] + " " + stamp[3] + " " + stamp[4] + ":" + stamp[5] + ":" + stamp[6]
+        self.dao.insert_into_buildhistory_table(html_page_name.replace("\\","/"),name,self.build_clean)
+        self.create_index()
 
     def save_to_file(self,file,name):
         result_file = open(name,'w+')
