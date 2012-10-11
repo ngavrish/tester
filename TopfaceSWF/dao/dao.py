@@ -15,7 +15,6 @@ class DataAccessObject(AbstractDataAccessObject):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS LOGIN_TIMELINE(Id INTEGER PRIMARY KEY AUTOINCREMENT, seconds REAL, event_time TEXT)")
 
     def insert_into_login_timeline_table(self,delta):
-        delta -= 20
         try:
             self.cursor.execute("INSERT INTO LOGIN_TIMELINE('seconds','event_time') VALUES (?,?)",
                                 (str("%0.2f" % delta),datetime.now().strftime("%m/%d/%Y %H:%M")))

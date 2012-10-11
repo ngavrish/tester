@@ -1,3 +1,8 @@
+body {
+    background-color: #a2a2a2;
+    
+}
+
 .log_content {
     display: none;
 }
@@ -21,10 +26,47 @@
 }
 
 #refresh_main_view {
+    border: 1px solid black;
     cursor: pointer;
     display: block;
     float: left;
+    height: 40px;
+    margin: 20px;
+    padding-top: 20px;
+    text-align: center;
+    width: 100px;
+}
+
+#start_tests {
+    border: 1px solid black;
+    cursor: pointer;
+    display: block;
+    float: right;
     height: 50px;
     margin: 25px;
+    padding-top: 10px;
+    text-align: center;
     width: 100px;
+}
+
+#starting_tests_panel {
+    display: none;
+    float: left;
+    height: 150px;
+    width: 100%;
+}
+
+#ajax_test_params {
+    height: 80px;
+    margin-left: 2.5%;
+    width: 95%;
+}
+
+#ajax_start_tests {
+    border: 1px solid black;
+    float: right;
+    height: 25px;
+    margin-right: 2.5%;
+    margin-top: 20px;
+    width: 75px;
 }

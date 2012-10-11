@@ -96,7 +96,11 @@ class ResultHandler:
             self.http_protocol_prefix + "includes/lineWithLogarithmicAxis.js":'javascript',
         })
 
-        page.div("<div id='management_panel'><a id='refresh_main_view'>" + u"Обновить" + "</a></div>")
+        page.div("<a id='refresh_main_view'>" + u"Обновить" + "</a><a id='start_tests'>" +
+                 u"Запустить тесты" + "</a>", id='management_panel')
+        page.div.close()
+        page.div("<div id='starting_tests_panel'><textarea id='ajax_test_params' name='ajax_test_params'></textarea><br>" +
+                 "<button id='ajax_start_tests'>" + u"Поехали!" + "</button></div>")
         page.div.close()
         page.div("<div id=\"chartdiv\" style=\"width: 70%; height: 400px; float:right;\"></div>")
         page.div.close()

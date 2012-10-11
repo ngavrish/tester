@@ -1,5 +1,7 @@
 import httplib
 import re
+from paste.request import parse_formvars
+from engine.selenium_starter import SeleniumStarter
 from paste import fileapp, httpserver
 import sys
 from paste.urlmap import URLMap
@@ -26,7 +28,33 @@ class ReportServer:
         self.root_app = URLMap()
         self.root_app['/'] = fileapp.DirectoryApp(settings.get_topface_reports_path())
         self.root_app['/update'] = self.update_view
+        self.root_app['/start'] = self.start_tests
 
+    def parse_settings(self,args):
+        if args is not None:
+            args = re.split('\W+=\W+',args)
+            for option in args:
+                if option.find("-p") > -1:
+                    settings.parallel = True
+                if option.find("-s") > -1:
+                    settings.slow_mode = True
+                if option.find("testsuite") > -1:
+                    settings.testsuite = re.split('\W+',option.split("=")[1])
+                if option.find("server_host") > -1:
+                    settings.server_host = option.split("=")[1]
+                if option.find("remote_port") > -1:
+                    settings.remote_port = option.split("=")[1]
+                if option.find("target_url") > -1:
+                    settings.target_url = option.split("=")[1]
+                if option.find("remoute_amount") > -1:
+                    settings.remote_amount = option.split("=")[1]
+
+    def start_tests(self,environ,start_response):
+        param_string = parse_formvars(environ)['params']
+        self.parse_settings(param_string)
+        SeleniumStarter().start()
+        start_response('200 Ok', [('content-type', 'text/html')])
+        return ["OK"]
 
     def update_view(self, environ, start_response):
         result_handler = ResultHandler()

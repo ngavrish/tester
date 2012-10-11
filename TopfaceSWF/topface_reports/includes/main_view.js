@@ -14,4 +14,20 @@ $(document).ready(function() {
         });
     });
 
+    $("#start_tests").click(function() {
+        $("#starting_tests_panel").toggle();
+    });
+
+    $("#ajax_start_tests").click(function() {
+        var param_string = $("#ajax_test_params").val();
+        $.ajax({
+            type: "POST",
+            data: {params : param_string},
+            url: "http://tester84:8889/start",
+            success: function(data) {
+                alert(data);
+            }
+        })
+    });
+
 });
