@@ -2,18 +2,19 @@
 from time import sleep
 from engine.test_suite import TestSuite
 from engine.test_case import TestCase
-from topface.model.auth import AuthForm
-from topface.model.browser_window import BrowserWindow
-from topface.model.navigation import Navigation
-from topface.model.messanger import Messenger
 from topface import profiling_events
+from topface.model.custom_objects.auth import AuthForm
+from topface.model.custom_objects.browser_window import BrowserWindow
+from topface.model.custom_objects.messanger import Messenger
+from topface.model.custom_objects.navigation import Navigation
 
 __author__ = 'ngavrish'
 
 
 class MessagesTestSuite(TestSuite):
 
-    def __init__(self):
+    def __init__(self,name):
+        TestSuite.__init__(self,name)
         self.test_cases = []
         self.result = {}
 

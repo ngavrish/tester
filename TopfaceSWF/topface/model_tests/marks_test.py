@@ -4,24 +4,21 @@ from datetime import datetime
 from engine.test_case import TestCase
 from engine.test_failed_exception import TestFailedException
 from engine.test_suite import TestSuite
-import math
-from topface.model.auth import AuthForm
-from topface.model.buttons import Buttons
-from topface.model.marks import Marks
-from topface.model.navigation import Navigation
+from topface.model.custom_objects.auth import AuthForm
+from topface.model.custom_objects.marks import Marks
+from topface.model.custom_objects.navigation import Navigation
 import settings
-from topface.model.browser_window import BrowserWindow
-from topface.model.comments import Comments
-from topface.model.energy import Energy
+from topface.model.custom_objects.browser_window import BrowserWindow
+from topface.model.custom_objects.energy import Energy
 from topface import profiling_events
-from topface.model.js_popups.alert_popups import AlertPopups
 
 __author__ = 'ngavrish'
 
 #noinspection PyMethodOverriding
 class MarksTestSuite(TestSuite):
 
-    def __init__(self):
+    def __init__(self,name):
+        TestSuite.__init__(self,name)
         self.test_cases = []
         self.result = {}
 
@@ -30,10 +27,10 @@ class MarksTestSuite(TestSuite):
 
         """
         self.test_cases = [
-           self.MarkUserOne2Eight("MarkUserOne2EightTest"),
-           self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
-           self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
-           self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
+#           self.MarkUserOne2Eight("MarkUserOne2EightTest"),
+#           self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
+#           self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
+#           self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
            self.MarkFactTest("MarkFactTest")
         ]
 

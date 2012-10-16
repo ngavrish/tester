@@ -1,0 +1,35 @@
+<commands>
+
+<!--simple actions-->
+<click xpath="div[@id='id']" />
+<enterText xpath="div[@id='']" text="text"/>
+<selectFromDropdownByIndex dropdownXpath="xpath" elementIndex="index" />
+<selectFromDropdownByValue dropdownXpath="xpath" elementValue="value" />
+<selectFromDropdownByText  dropdownXpath="xpath" elementText="text" />
+<hover xpath="xpath" />
+
+<!--business actions-->
+<authorize user="User1" platform="fb-sa" />
+<markUser markValue="5" markAmount="1" />
+<filterCity cityName="Киев" />
+
+<!--window actions-->
+<openUrl url="url" />
+<switchToPopup/>
+<switchToRoot/>
+<logout/>
+<close/>
+
+<assertText xpath="xpath" expectedText="expValue"/>
+<assertAttribute xpath="xpath" expectedValue="attribute" />
+<assertHtml xpath="xpath" expectedHtml="Html"/>
+<assertElemen xpath="xpath" />
+
+<platfroms>
+    <fb-sa/>
+    <vk-sa/>
+    <fb/>
+    <vk/>
+</platfroms>
+
+</commands>

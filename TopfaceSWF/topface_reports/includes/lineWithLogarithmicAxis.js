@@ -2,7 +2,6 @@ var chart;
             var average = 90.4;
 
             AmCharts.ready(function () {
-
                 // SERIAL CHART    
                 chart = new AmCharts.AmSerialChart();
                 chart.pathToImages = "/includes/images/";

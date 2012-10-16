@@ -22,6 +22,9 @@ __product_name = "topface"
 #   root path for test reports
 __reports_path = os.path.dirname(os.path.abspath(__file__)) + "\\topface_reports\\"
 
+#   root path for xml test cases
+__xml_test_cases_path = os.path.dirname(os.path.abspath(__file__)) + "\\xml_test_cases\\"
+
 #   To run selenium framework you need to have
 #   Selenium jar-files and specific drivers somewhere on your File System
 __selenium_path = "C:\\selenium"
@@ -33,10 +36,11 @@ test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
 testsuite = ["messages_test"]#,
-# List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
-#   selenium server host
-server_host = "http://localhost:4444"
+#   xml test suites to run
+xml_testsuite = ["demo_xml"]
+
+# List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   target testing url
 prod = "http://topface.com"
@@ -81,6 +85,9 @@ def get_product_name():
 
 def get_topface_reports_path():
     return __reports_path
+
+def get_xml_testsuites_path():
+    return __xml_test_cases_path
 
 def get_global_topface_reports_name():
     return __global_reports_name

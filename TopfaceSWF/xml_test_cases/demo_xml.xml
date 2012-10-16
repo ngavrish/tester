@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<testsuite>
+    <testcase name="demo_test_case">
+        <authorize value="User1" platform="fb-sa"/>
+        <logout/>
+        <close/>
+    </testcase>
+</testsuite>
