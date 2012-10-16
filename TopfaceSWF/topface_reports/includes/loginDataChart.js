@@ -352,4 +352,271 @@ seconds: 20.11
 },{
 date: new Date("10/09/2012 18:50"),
 seconds: 19.54
+},{
+date: new Date("10/09/2012 19:33"),
+seconds: 45.26
+},{
+date: new Date("10/09/2012 19:34"),
+seconds: 18.87
+},{
+date: new Date("10/09/2012 19:35"),
+seconds: 20.05
+},{
+date: new Date("10/09/2012 19:36"),
+seconds: 19.46
+},{
+date: new Date("10/09/2012 19:37"),
+seconds: 22.11
+},{
+date: new Date("10/09/2012 19:46"),
+seconds: 21.33
+},{
+date: new Date("10/09/2012 19:47"),
+seconds: 21.97
+},{
+date: new Date("10/11/2012 11:15"),
+seconds: 18.89
+},{
+date: new Date("10/11/2012 11:16"),
+seconds: 19.34
+},{
+date: new Date("10/11/2012 11:16"),
+seconds: 19.38
+},{
+date: new Date("10/11/2012 11:18"),
+seconds: 19.57
+},{
+date: new Date("10/11/2012 11:18"),
+seconds: 21.72
+},{
+date: new Date("10/11/2012 11:32"),
+seconds: 96.64
+},{
+date: new Date("10/11/2012 11:35"),
+seconds: 44.13
+},{
+date: new Date("10/11/2012 11:37"),
+seconds: 19.54
+},{
+date: new Date("10/11/2012 12:32"),
+seconds: 19.65
+},{
+date: new Date("10/11/2012 12:33"),
+seconds: 17.15
+},{
+date: new Date("10/11/2012 12:34"),
+seconds: 18.11
+},{
+date: new Date("10/11/2012 12:35"),
+seconds: 19.04
+},{
+date: new Date("10/11/2012 12:36"),
+seconds: 20.11
+},{
+date: new Date("10/11/2012 12:37"),
+seconds: 24.12
+},{
+date: new Date("10/11/2012 12:38"),
+seconds: 21.14
+},{
+date: new Date("10/11/2012 12:39"),
+seconds: 20.23
+},{
+date: new Date("10/11/2012 13:32"),
+seconds: 20.14
+},{
+date: new Date("10/11/2012 13:33"),
+seconds: 19.13
+},{
+date: new Date("10/11/2012 14:32"),
+seconds: 19.44
+},{
+date: new Date("10/11/2012 14:33"),
+seconds: 20.45
+},{
+date: new Date("10/11/2012 14:34"),
+seconds: 19.08
+},{
+date: new Date("10/11/2012 14:35"),
+seconds: 18.97
+},{
+date: new Date("10/11/2012 14:36"),
+seconds: 21.77
+},{
+date: new Date("10/11/2012 18:50"),
+seconds: 19.82
+},{
+date: new Date("10/11/2012 18:52"),
+seconds: 20.52
+},{
+date: new Date("10/11/2012 18:53"),
+seconds: 21.63
+},{
+date: new Date("10/11/2012 19:33"),
+seconds: 19.3
+},{
+date: new Date("10/11/2012 19:33"),
+seconds: 19.92
+},{
+date: new Date("10/11/2012 19:34"),
+seconds: 19.78
+},{
+date: new Date("10/11/2012 19:35"),
+seconds: 23.62
+},{
+date: new Date("10/11/2012 19:36"),
+seconds: 21.3
+},{
+date: new Date("10/11/2012 19:37"),
+seconds: 19.63
+},{
+date: new Date("10/11/2012 19:38"),
+seconds: 19.35
+},{
+date: new Date("10/11/2012 19:39"),
+seconds: 19.13
+},{
+date: new Date("10/11/2012 20:32"),
+seconds: 21.4
+},{
+date: new Date("10/11/2012 20:33"),
+seconds: 18.94
+},{
+date: new Date("10/11/2012 20:34"),
+seconds: 21.44
+},{
+date: new Date("10/11/2012 20:35"),
+seconds: 19.92
+},{
+date: new Date("10/11/2012 20:36"),
+seconds: 19.67
+},{
+date: new Date("10/11/2012 22:33"),
+seconds: 21.82
+},{
+date: new Date("10/11/2012 22:34"),
+seconds: 21.72
+},{
+date: new Date("10/11/2012 22:35"),
+seconds: 23.34
+},{
+date: new Date("10/11/2012 22:36"),
+seconds: 22.82
+},{
+date: new Date("10/12/2012 11:23"),
+seconds: 20.59
+},{
+date: new Date("10/12/2012 11:24"),
+seconds: 20.52
+},{
+date: new Date("10/12/2012 11:25"),
+seconds: 19.9
+},{
+date: new Date("10/12/2012 11:33"),
+seconds: 25.45
+},{
+date: new Date("10/12/2012 11:34"),
+seconds: 21.32
+},{
+date: new Date("10/12/2012 11:35"),
+seconds: 19.95
+},{
+date: new Date("10/12/2012 11:35"),
+seconds: 21.0
+},{
+date: new Date("10/12/2012 11:36"),
+seconds: 22.14
+},{
+date: new Date("10/12/2012 14:35"),
+seconds: 21.86
+},{
+date: new Date("10/12/2012 14:35"),
+seconds: 22.61
+},{
+date: new Date("10/12/2012 14:36"),
+seconds: 20.08
+},{
+date: new Date("10/12/2012 14:37"),
+seconds: 18.54
+},{
+date: new Date("10/12/2012 14:38"),
+seconds: 20.43
+},{
+date: new Date("10/12/2012 15:49"),
+seconds: 20.63
+},{
+date: new Date("10/12/2012 15:49"),
+seconds: 19.43
+},{
+date: new Date("10/12/2012 18:33"),
+seconds: 21.97
+},{
+date: new Date("10/12/2012 18:33"),
+seconds: 20.28
+},{
+date: new Date("10/12/2012 18:34"),
+seconds: 22.32
+},{
+date: new Date("10/12/2012 18:35"),
+seconds: 20.21
+},{
+date: new Date("10/12/2012 18:36"),
+seconds: 21.45
+},{
+date: new Date("10/15/2012 14:33"),
+seconds: 21.03
+},{
+date: new Date("10/15/2012 14:33"),
+seconds: 18.98
+},{
+date: new Date("10/15/2012 14:34"),
+seconds: 19.07
+},{
+date: new Date("10/15/2012 14:35"),
+seconds: 19.85
+},{
+date: new Date("10/15/2012 14:36"),
+seconds: 22.58
+},{
+date: new Date("10/15/2012 16:32"),
+seconds: 18.24
+},{
+date: new Date("10/15/2012 16:33"),
+seconds: 19.38
+},{
+date: new Date("10/15/2012 16:34"),
+seconds: 26.98
+},{
+date: new Date("10/15/2012 16:35"),
+seconds: 20.1
+},{
+date: new Date("10/15/2012 16:36"),
+seconds: 20.18
+},{
+date: new Date("10/15/2012 17:42"),
+seconds: 22.54
+},{
+date: new Date("10/15/2012 18:33"),
+seconds: 19.33
+},{
+date: new Date("10/15/2012 18:33"),
+seconds: 23.58
+},{
+date: new Date("10/15/2012 18:34"),
+seconds: 18.96
+},{
+date: new Date("10/15/2012 18:35"),
+seconds: 17.91
+},{
+date: new Date("10/15/2012 18:36"),
+seconds: 20.31
+},{
+date: new Date("10/15/2012 18:37"),
+seconds: 18.86
+},{
+date: new Date("10/15/2012 18:38"),
+seconds: 19.71
+},{
+date: new Date("10/15/2012 18:39"),
+seconds: 22.75
 },];

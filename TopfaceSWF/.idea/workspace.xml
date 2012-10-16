@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8ee00d2b-0bfe-4197-ad59-27d9d06c5b60" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dao/dao.py" afterPath="$PROJECT_DIR$/dao/dao.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/topface_reports/includes/loginDataChart.js" afterPath="$PROJECT_DIR$/topface_reports/includes/loginDataChart.js" />
     </list>
     <ignored path="TopfaceSWF.iws" />
@@ -45,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dao.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="dao.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/dao.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="0" selection-start="2682" selection-end="2682" vertical-scroll-proportion="0.44765344">
+            <state line="75" column="30" selection-start="2908" selection-end="2908" vertical-scroll-proportion="-13.64">
               <folding />
             </state>
           </provider>
@@ -57,16 +55,16 @@
       <file leaf-file-name="auth.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/topface/model/auth.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="175" column="0" selection-start="5921" selection-end="5921" vertical-scroll-proportion="-8.84">
+            <state line="175" column="0" selection-start="5921" selection-end="5921" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="srv.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="srv.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/srv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="86" selection-start="1207" selection-end="1217" vertical-scroll-proportion="0.0">
+            <state line="51" column="72" selection-start="1634" selection-end="1634" vertical-scroll-proportion="0.9400353">
               <folding />
             </state>
           </provider>
@@ -181,16 +179,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -339,14 +327,24 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -457,7 +455,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -574,9 +572,11 @@
         <state line="128" column="87" selection-start="4641" selection-end="4641" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srv.py">
+    <entry file="file://$PROJECT_DIR$/topface/model/auth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="86" selection-start="1207" selection-end="1217" vertical-scroll-proportion="0.0" />
+        <state line="175" column="0" selection-start="5921" selection-end="5921" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/selenium_starter.py">
@@ -604,16 +604,16 @@
         <state line="39" column="0" selection-start="1465" selection-end="1465" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/topface/model/auth.py">
+    <entry file="file://$PROJECT_DIR$/dao/dao.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="0" selection-start="5921" selection-end="5921" vertical-scroll-proportion="-8.84">
+        <state line="75" column="30" selection-start="2908" selection-end="2908" vertical-scroll-proportion="-13.64">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dao/dao.py">
+    <entry file="file://$PROJECT_DIR$/srv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2682" selection-end="2682" vertical-scroll-proportion="0.44765344">
+        <state line="51" column="72" selection-start="1634" selection-end="1634" vertical-scroll-proportion="0.9400353">
           <folding />
         </state>
       </provider>
