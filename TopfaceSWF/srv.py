@@ -50,6 +50,8 @@ class ReportServer:
                         settings.remote_port = option.split("=")[1]
                     if option.find("target_url") > -1:
                         settings.target_url = option.split("=")[1]
+                    if option.find("browser") > -1:
+                        settings.global_browser = option.split("=")[1]
                     if option.find("remoute_amount") > -1:
                         settings.remote_amount = option.split("=")[1]
         except Exception as e:

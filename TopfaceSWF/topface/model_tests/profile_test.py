@@ -16,6 +16,7 @@ class ProfileTestSuite(TestSuite):
 
     def __init__(self,name):
         TestSuite.__init__(self,name)
+        self.browser_name = TestSuite.browser_name
         self.test_cases = []
         self.result = {}
 
@@ -25,7 +26,7 @@ class ProfileTestSuite(TestSuite):
             self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
-            run_test_results = test_case.run_test()
+            run_test_results = test_case.run_test(self.browser_name)
             self.result[run_test_results.keys()[0]] = run_test_results.values()[0]
         return {self.__class__.__name__: self.result}
 

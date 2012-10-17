@@ -34,8 +34,11 @@ __global_reports_name = "TopfaceSFW"
 
 test_packages = ["model_tests","research_tests"]
 
+#   if global browser is set, no browser mapping used
+global_browser = None
+
 #   test suite to run
-testsuite = ["messages_test"]#,
+testsuite = ["login_test","messages_test"]#,
 
 #   xml test suites to run
 xml_testsuite = ["demo_xml"]
@@ -72,10 +75,10 @@ mark_amount = 100
 #   reporting-server host/port
 domain_host = "tester84"
 host = '0.0.0.0'
-port = "8889"
+port = "8888"
 
 #topface database name
-topface_db = 'topface_dev.db'
+topface_db = 'topface.db'
 
 #login timeline log
 login_timelog_file = __reports_path +  "\\includes\\loginDataChart.js"

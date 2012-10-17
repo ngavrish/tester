@@ -6,7 +6,7 @@ from test_failed_exception import TestFailedException
 from test_suite import TestSuite
 from reports import logger
 import settings
-from selenium.webdriver import Firefox,Ie
+from selenium.webdriver import Firefox,Ie,Opera,Chrome
 from selenium.webdriver.support.wait import WebDriverWait
 from topface import profiling_events
 
@@ -39,15 +39,21 @@ class TestCase(TestSuite):
         self.test_is_running = False
 
     #noinspection PyArgumentList
-    def run_test(self):
+    def run_test(self,browser_name):
         """
 
         """
 #        print "Browser  name = " + TestSuite().get_browser_name()
-        if TestSuite.browser_name == "firefox":
+        print "BROWSER NAME = " + browser_name
+        if browser_name == "firefox":
             self.browser = Firefox()
-        elif TestSuite.browser_name == "ie":
+        elif browser_name == "ie":
             self.browser = Ie()
+        elif browser_name == "opera":
+            self.browser = Opera()
+        elif browser_name == "chrome":
+            self.browser = Chrome()
+
         self.logger = logger.Logger(self.get_log_path())
         self.logger.log_name = self.get_log_name()
         self.logger.log("====================\r\n")

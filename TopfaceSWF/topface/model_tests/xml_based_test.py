@@ -10,6 +10,7 @@ class XMLTestSuite(TestSuite):
 
     def __init__(self,name):
         TestSuite.__init__(self,name)
+        self.browser_name = TestSuite.browser_name
         self.test_cases = []
         self.result = {}
 
@@ -18,8 +19,9 @@ class XMLTestSuite(TestSuite):
         test_cases = test_suite.getElementsByTagName('testcase')
         for test_case in test_cases:
             self.test_cases.append(self.XMLTestCase(test_case.getAttribute("name"),test_case.childNodes))
+
         for test_case in self.test_cases:
-            run_test_results = test_case.run_test()
+            run_test_results = test_case.run_test(self.browser_name)
             self.result[run_test_results.keys()[0]] = run_test_results.values()[0]
         return {xml_source[:xml_source.rfind(".xml")]: self.result}
 
