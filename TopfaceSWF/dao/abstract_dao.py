@@ -9,7 +9,7 @@ class AbstractDataAccessObject:
     __metaclass__ = ABCMeta
 
     def __init__(self):
-        self.con = lite.connect(settings.topface_db)
+        self.con = lite.connect(settings.get_topface_reports_path() + settings.topface_db)
         self.cursor = self.con.cursor()
 
     def drop_table(self,table_name):
