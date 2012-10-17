@@ -22,6 +22,9 @@ __product_name = "topface"
 #   root path for test reports
 __reports_path = os.path.dirname(os.path.abspath(__file__)) + "\\topface_reports\\"
 
+#   root path for xml test cases
+__xml_test_cases_path = os.path.dirname(os.path.abspath(__file__)) + "\\xml_test_cases\\"
+
 #   To run selenium framework you need to have
 #   Selenium jar-files and specific drivers somewhere on your File System
 __selenium_path = "C:\\selenium"
@@ -32,11 +35,12 @@ __global_reports_name = "TopfaceSFW"
 test_packages = ["model_tests","research_tests"]
 
 #   test suite to run
-testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
-# List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
+testsuite = ["messages_test"]#,
 
-#   selenium server host
-server_host = "http://localhost:4444"
+#   xml test suites to run
+xml_testsuite = ["demo_xml"]
+
+# List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
 #   target testing url
 prod = "http://topface.com"
@@ -65,19 +69,13 @@ like_amount = 2
 #   amount of marks for research
 mark_amount = 100
 
-#   reporting-server host
-ip_host = '192.168.2.146'
-local_host = 'localhost'
-
-#   reporting-server port
-report_port = "8888"
-
-#port/host that are finally setup in srv.py from cmd-parsing to start paste
-
-paste_port = "8888"
+#   reporting-server host/port
+domain_host = "tester84"
+host = '0.0.0.0'
+port = "8889"
 
 #topface database name
-topface_db = 'topface.db'
+topface_db = 'topface_dev.db'
 
 #login timeline log
 login_timelog_file = __reports_path +  "\\includes\\loginDataChart.js"
@@ -87,6 +85,9 @@ def get_product_name():
 
 def get_topface_reports_path():
     return __reports_path
+
+def get_xml_testsuites_path():
+    return __xml_test_cases_path
 
 def get_global_topface_reports_name():
     return __global_reports_name

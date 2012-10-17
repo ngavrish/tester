@@ -1,17 +1,16 @@
 from engine.test_case import TestCase
 from engine.test_failed_exception import TestFailedException
 from engine.test_suite import TestSuite
-from topface.model.model import Model
 import settings
-from topface.model.auth import AuthForm
-from topface.model.browser_window import BrowserWindow
+from topface.model.custom_objects.auth import AuthForm
+from topface.model.custom_objects.browser_window import BrowserWindow
 
 __author__ = 'ngavrish'
 
-#noinspection PyMethodOverriding
 class LoginTestSuite(TestSuite):
 
-    def __init__(self):
+    def __init__(self, name):
+        TestSuite.__init__(self, name)
         self.test_cases = []
         self.result = {}
 

@@ -1,20 +1,21 @@
 # coding=utf-8
 from engine.test_case import TestCase
 from engine.test_suite import TestSuite
-from topface.model.auth import AuthForm
-from topface.model.browser_window import BrowserWindow
-from topface.model.navigation import Navigation
 from topface import profiling_events
-from topface.model.js_popups.vip_popups import VIPPopups
-from topface.model.profile import Profile
-from topface.model.questionary import Questionary
-from topface.model.marks import Marks
+from topface.model.custom_objects.auth import AuthForm
+from topface.model.custom_objects.browser_window import BrowserWindow
+from topface.model.custom_objects.marks import Marks
+from topface.model.custom_objects.navigation import Navigation
+from topface.model.custom_objects.profile import Profile
+from topface.model.custom_objects.questionary import Questionary
+from topface.model.custom_objects.js_popups.vip_popups import VIPPopups
 
 __author__ = 'ngavrish'
 
 class ProfileTestSuite(TestSuite):
 
-    def __init__(self):
+    def __init__(self,name):
+        TestSuite.__init__(self,name)
         self.test_cases = []
         self.result = {}
 

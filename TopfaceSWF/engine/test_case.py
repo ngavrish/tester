@@ -43,6 +43,7 @@ class TestCase(TestSuite):
         """
 
         """
+#        print "Browser  name = " + TestSuite().get_browser_name()
         if TestSuite.browser_name == "firefox":
             self.browser = Firefox()
         elif TestSuite.browser_name == "ie":
