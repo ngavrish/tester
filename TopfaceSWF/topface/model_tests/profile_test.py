@@ -23,6 +23,7 @@ class ProfileTestSuite(TestSuite):
     def run(self):
         self.test_cases = [
             self.ProfileNavigationTest("Profile_Navigation_Test"),
+            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
             self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
@@ -41,7 +42,6 @@ class ProfileTestSuite(TestSuite):
             navigation = Navigation(self.browser,self.logger)
             profile = Profile(self.browser,self.logger)
             vip_popup = VIPPopups(self.browser,self.logger)
-            marks = Marks(self.browser, self.logger)
 
             self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
             navigation.goto_top_menu_item(u"Профиль")
@@ -67,6 +67,18 @@ class ProfileTestSuite(TestSuite):
             profile.validate_horo_view()
 #            logout and login with another user to mark that user again to fix the profile marks reset
             window.logout()
+
+    class ProfileNavigationFixMarksResetTest(TestCase):
+
+        def __init__(self,test_name):
+            self.set_log_name(test_name)
+
+        def run(self, browser, logger):
+            auth = AuthForm(self.browser, self.logger)
+            window = BrowserWindow(self.browser,self.logger)
+            profile = Profile(self.browser,self.logger)
+            marks = Marks(self.browser, self.logger)
+
             self.do_method(auth.login_with_vk_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
 #            navigate to resetted user profile
             window.open(auth.User1.profile_url_fb)

@@ -74,6 +74,7 @@ class BrowserWindow(ObjectModel):
             self.click(self.get_element_by_id(self._exit_link_id))
             WebDriverWait(self.browser, settings.wait_for_element_time).\
                         until(lambda driver: driver.find_element_by_xpath(self._social_switcher_wrapper_xpath))
+            self.close()
         except Exception:
             raise TestFailedException("Failed to logout")
 

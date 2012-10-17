@@ -14,10 +14,16 @@ $(document).ready(function() {
 
     $("#start_tests").click(function() {
         $("#starting_tests_panel").toggle();
+        if ($("#ajax_test_params").attr('class') == 'ajax_test_params_active') {
+            $("#ajax_test_params").attr('class','ajax_test_params_nonactive')
+        }
     });
 
     $("#ajax_test_params").click(function() {
-        $(this).empty()
+        if ($("#ajax_test_params").attr('class') == 'ajax_test_params_nonactive') {
+            $("#ajax_test_params").val(null);
+        }
+        $(this).attr('class','ajax_test_params_active');
     });
 
     $("#ajax_start_tests").click(function() {
@@ -25,7 +31,7 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             data: {params : param_string},
-            url: "http://tester84:8889/start",
+            url: "http://tester84:8888/start",
             success: function(data) {
                 alert(data);
             }
@@ -45,7 +51,7 @@ $(document).ready(function() {
     function refresh_view() {
         $.ajax({
             type: "GET",
-            url: "http://tester84:8889/update",
+            url: "http://tester84:8888/update",
             success: function(data) {
                 $("#buildhistory_wrapper").empty();
                 var html_string;

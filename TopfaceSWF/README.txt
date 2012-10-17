@@ -3,7 +3,7 @@ Envirnoment:
 1. Install python 2.7.x (last stable version)
 2. Install pypi
 3. Install setup-tools
-4. Install 
+4. Install sqlite
 
 Add TopfaceSWF package to system path variable
 

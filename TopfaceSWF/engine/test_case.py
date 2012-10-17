@@ -44,6 +44,9 @@ class TestCase(TestSuite):
 
         """
 #        print "Browser  name = " + TestSuite().get_browser_name()
+        if settings.global_browser is not None:
+            browser_name = settings.global_browser
+
         print "BROWSER NAME = " + browser_name
         if browser_name == "firefox":
             self.browser = Firefox()

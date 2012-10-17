@@ -691,4 +691,148 @@ seconds: 34.82
 },{
 date: new Date("10/17/2012 12:07"),
 seconds: 112.78
+},{
+date: new Date("10/17/2012 13:59"),
+seconds: 17.56
+},{
+date: new Date("10/17/2012 14:14"),
+seconds: 52.16
+},{
+date: new Date("10/17/2012 14:23"),
+seconds: 22.73
+},{
+date: new Date("10/17/2012 14:24"),
+seconds: 65.52
+},{
+date: new Date("10/17/2012 14:26"),
+seconds: 18.91
+},{
+date: new Date("10/17/2012 14:27"),
+seconds: 20.36
+},{
+date: new Date("10/17/2012 14:38"),
+seconds: 19.68
+},{
+date: new Date("10/17/2012 14:39"),
+seconds: 22.38
+},{
+date: new Date("10/17/2012 14:49"),
+seconds: 25.27
+},{
+date: new Date("10/17/2012 15:07"),
+seconds: 25.01
+},{
+date: new Date("10/17/2012 15:08"),
+seconds: 26.81
+},{
+date: new Date("10/17/2012 15:08"),
+seconds: 23.07
+},{
+date: new Date("10/17/2012 15:22"),
+seconds: 20.06
+},{
+date: new Date("10/17/2012 15:23"),
+seconds: 18.38
+},{
+date: new Date("10/17/2012 15:24"),
+seconds: 33.96
+},{
+date: new Date("10/17/2012 15:26"),
+seconds: 19.04
+},{
+date: new Date("10/17/2012 15:26"),
+seconds: 22.85
+},{
+date: new Date("10/17/2012 15:27"),
+seconds: 19.63
+},{
+date: new Date("10/17/2012 15:28"),
+seconds: 21.04
+},{
+date: new Date("10/17/2012 15:33"),
+seconds: 30.21
+},{
+date: new Date("10/17/2012 15:34"),
+seconds: 18.71
+},{
+date: new Date("10/17/2012 15:35"),
+seconds: 19.82
+},{
+date: new Date("10/17/2012 15:36"),
+seconds: 21.29
+},{
+date: new Date("10/17/2012 15:37"),
+seconds: 22.51
+},{
+date: new Date("10/17/2012 15:38"),
+seconds: 20.23
+},{
+date: new Date("10/17/2012 15:39"),
+seconds: 42.7
+},{
+date: new Date("10/17/2012 15:45"),
+seconds: 38.36
+},{
+date: new Date("10/17/2012 15:46"),
+seconds: 23.58
+},{
+date: new Date("10/17/2012 15:47"),
+seconds: 42.73
+},{
+date: new Date("10/17/2012 15:48"),
+seconds: 33.6
+},{
+date: new Date("10/17/2012 15:49"),
+seconds: 53.24
+},{
+date: new Date("10/17/2012 15:50"),
+seconds: 19.73
+},{
+date: new Date("10/17/2012 15:51"),
+seconds: 55.61
+},{
+date: new Date("10/17/2012 15:56"),
+seconds: 74.9
+},{
+date: new Date("10/17/2012 15:59"),
+seconds: 146.7
+},{
+date: new Date("10/17/2012 16:00"),
+seconds: 17.17
+},{
+date: new Date("10/17/2012 16:01"),
+seconds: 41.86
+},{
+date: new Date("10/17/2012 16:34"),
+seconds: 42.76
+},{
+date: new Date("10/17/2012 16:35"),
+seconds: 24.35
+},{
+date: new Date("10/17/2012 16:36"),
+seconds: 21.94
+},{
+date: new Date("10/17/2012 16:38"),
+seconds: 19.85
+},{
+date: new Date("10/17/2012 16:39"),
+seconds: 48.07
+},{
+date: new Date("10/17/2012 16:39"),
+seconds: 23.64
+},{
+date: new Date("10/17/2012 16:40"),
+seconds: 20.97
+},{
+date: new Date("10/17/2012 16:41"),
+seconds: 44.21
+},{
+date: new Date("10/17/2012 16:44"),
+seconds: 53.24
+},{
+date: new Date("10/17/2012 16:44"),
+seconds: 21.62
+},{
+date: new Date("10/17/2012 16:47"),
+seconds: 21.63
 },];

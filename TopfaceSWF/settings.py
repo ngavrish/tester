@@ -38,13 +38,14 @@ test_packages = ["model_tests","research_tests"]
 global_browser = None
 
 #   test suite to run
-testsuite = ["login_test","messages_test"]#,
+testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
 
 #   xml test suites to run
 xml_testsuite = ["demo_xml"]
 
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
+# demo_xml
 #   target testing url
 prod = "http://topface.com"
 delta = "http://delta.topface.com"

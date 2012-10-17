@@ -28,11 +28,13 @@ class MarksTestSuite(TestSuite):
 
         """
         self.test_cases = [
-#           self.MarkUserOne2Eight("MarkUserOne2EightTest"),
-#           self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
-#           self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
-#           self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
-           self.MarkFactTest("MarkFactTest")
+           self.MarkUserOne2Eight("MarkUserOne2EightTest"),
+           self.MarkUserTopUserMessage("MarkUserTopUserMessage"),#has bug
+           self.MarkUserTopStandartMessages("MarkUserTopStandartMessages"),
+           self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
+           self.MarkFactTest_MarkUser2("MarkFactTest_MarkUser2"),
+           self.MarkFactTest_ValidateAndMarkBackUser1("MarkFactTest_ValidateAndMarkBackUser1"),
+           self.MarkFactTest_ValidateUser1("MarkFactTest_ValidateUser1")
         ]
 
         for test_case in self.test_cases:
@@ -121,7 +123,9 @@ class MarksTestSuite(TestSuite):
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
-    class MarkFactTest(TestCase):
+
+#    SINGLE TESTCASE IN THREE TEST METHODS
+    class MarkFactTest_MarkUser2(TestCase):
         def __init__(self, test_name):
             self.set_log_name(test_name)
 
@@ -141,15 +145,41 @@ class MarksTestSuite(TestSuite):
             self.do_method(marks.validate_profile_mark_sent)
             window.logout()
 
+    class MarkFactTest_ValidateAndMarkBackUser1(TestCase):
+        def __init__(self, test_name):
+            self.set_log_name(test_name)
+
+        def run(self, browser, logger):
+
+            marks = Marks(self.browser, self.logger)
+            window = BrowserWindow(self.browser, self.logger)
+            auth = AuthForm(self.browser, self.logger)
+            navigation = Navigation(self.browser,self.logger)
+            #       login as user1
             self.logger.log("\r\nLogin as User2\r\n")
+
             self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User2)
             self.do_method(navigation.goto_side_menu_item,None,u"Оценки")
             self.do_method(marks.validate_new_mark_in_feed,None,AuthForm.User1.profile_url_fb,datetime.now().strftime("%d"))
             self.do_method(marks.rate_answer,None,AuthForm.User1.profile_url_fb)
             window.logout()
 
+    class MarkFactTest_ValidateUser1(TestCase):
+        def __init__(self, test_name):
+            self.set_log_name(test_name)
+
+        def run(self, browser, logger):
+
+            marks = Marks(self.browser, self.logger)
+            window = BrowserWindow(self.browser, self.logger)
+            auth = AuthForm(self.browser, self.logger)
+            navigation = Navigation(self.browser,self.logger)
+            #       login as user1
             self.logger.log("\r\nLogin as User1\r\n")
+
             self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
             self.do_method(navigation.goto_side_menu_item,None,u"Оценки")
             self.do_method(marks.validate_new_mark_in_feed,None,AuthForm.User2.profile_url,datetime.now().strftime("%d"))
             window.close()
+#    /SINGLE TESTCASE IN THREE TEST METHODS
+

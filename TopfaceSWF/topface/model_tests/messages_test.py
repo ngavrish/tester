@@ -23,7 +23,8 @@ class MessagesTestSuite(TestSuite):
         """
         """
         self.test_cases = [
-            self.MessagesFacebookFactTest("MessagesFacebookFactTest")
+            self.MessagesFacebookSentTest("MessagesFacebookSentTest"),
+            self.MessagesFacebookValidateTest("MessagesFacebookValidateTest")
         ]
         for test_case in self.test_cases:
             run_test_results = test_case.run_test(self.browser_name)
@@ -31,7 +32,8 @@ class MessagesTestSuite(TestSuite):
         print "Test cases amount = " + str(len(self.result))
         return {self.__class__.__name__: self.result}
 
-    class MessagesFacebookFactTest(TestCase):
+#    MESSAGES FACT TEST - SINGLE TESTCASE IN SEVERAL TESTMETHODS
+    class MessagesFacebookSentTest(TestCase):
         """
         No UI validation stuff mostly
         Just hard simple business-logic
@@ -59,6 +61,22 @@ class MessagesTestSuite(TestSuite):
             navigation.goto_tab_menu_item(u"Отправленные")
             messenger.delete_last_message_from_output_feed_fb(output_message)
             window.logout()
+
+    class MessagesFacebookValidateTest(TestCase):
+        """
+        No UI validation stuff mostly
+        Just hard simple business-logic
+        """
+        _root_window = ""
+        def __init__(self, test_name):
+            self.set_log_name(test_name)
+
+        def run(self, browser, logger):
+            auth = AuthForm(self.browser, self.logger)
+            window = BrowserWindow(self.browser,self.logger)
+            navigation = Navigation(self.browser,self.logger)
+            messenger = Messenger(self.browser, self.logger)
+
             print "User 1 message validation finished successfully"
 
             self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User2)
@@ -69,6 +87,6 @@ class MessagesTestSuite(TestSuite):
             messenger.validate_last_message_in_feed_fb(output_message)
             navigation.goto_tab_menu_item(u"Входящие")
             messenger.validate_last_message_in_feed_fb(output_message)
-
-
             window.close()
+
+#    /MESSAGES FACT TEST - SINGLE TESTCASE IN SEVERAL TESTMETHODS
