@@ -147,6 +147,19 @@ body {
 	margin-left: 20px;
 }
 
+.graph_header {
+	font-family: Arial,serif;
+	font-size: 14pt;    
+	margin-left: 20px;
+}
+
+.graph_subheader {
+	font-family: Arial,serif;
+	font-size: 12pt;
+	font-weight: bold;    
+	margin-left: 20px;
+}
+
 #chartdiv {
     float:right;
 }
