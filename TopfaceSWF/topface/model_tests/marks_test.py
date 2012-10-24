@@ -34,7 +34,8 @@ class MarksTestSuite(TestSuite):
            self.MarkEnergyChargeTest("MarkEnergyChargeTest"), #has bug
            self.MarkFactTest_MarkUser2("MarkFactTest_MarkUser2"),
            self.MarkFactTest_ValidateAndMarkBackUser1("MarkFactTest_ValidateAndMarkBackUser1"),
-           self.MarkFactTest_ValidateUser1("MarkFactTest_ValidateUser1")
+           self.MarkFactTest_ValidateUser1("MarkFactTest_ValidateUser1"),
+           self.ValidateUnquieUsersInsearch("UniqueUsersValidation")
         ]
 
         for test_case in self.test_cases:
@@ -183,3 +184,28 @@ class MarksTestSuite(TestSuite):
             window.close()
 #    /SINGLE TESTCASE IN THREE TEST METHODS
 
+    class ValidateUnquieUsersInsearch(TestCase):
+        def __init__(self,test_name):
+            self.set_log_name(test_name)
+
+        def run(self,browser,logger):
+            marks = Marks(self.browser, self.logger)
+            window = BrowserWindow(self.browser, self.logger)
+            auth = AuthForm(self.browser, self.logger)
+
+            self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User1)
+            marked_users = [marks.get_photo2mark_href()]
+            for i in range(marks.unique_amount):
+                marks.like()
+                href2like = marks.get_photo2mark_href()
+                if href2like in marked_users:
+                    print marked_users
+                    print href2like
+                    raise TestFailedException("Found duplicate user in main search")
+                marked_users.append(href2like)
+                marks.mark()
+                href2like = marks.get_photo2mark_href()
+                if href2like in marked_users:
+                    raise TestFailedException("Found duplicate user in main search")
+                marked_users.append(href2like)
+            window.close()

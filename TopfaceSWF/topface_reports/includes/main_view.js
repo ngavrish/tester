@@ -8,30 +8,34 @@
 
 $(document).ready(function() {
 
+    var ajax_test_params = $("#ajax_test_params");
+
     $("#refresh_main_view").click(function() {
         refresh_view();
+        alert("Данные успешно обновлены");
     });
 
     $("#start_tests").click(function() {
         $("#starting_tests_panel").toggle();
-        if ($("#ajax_test_params").attr('class') == 'ajax_test_params_active') {
-            $("#ajax_test_params").attr('class','ajax_test_params_nonactive')
+        if (ajax_test_params.attr('class') == 'ajax_test_params_active') {
+            ajax_test_params.attr('class','ajax_test_params_nonactive')
         }
     });
 
-    $("#ajax_test_params").click(function() {
-        if ($("#ajax_test_params").attr('class') == 'ajax_test_params_nonactive') {
-            $("#ajax_test_params").val(null);
+    ajax_test_params.click(function() {
+        if (ajax_test_params.attr('class') == 'ajax_test_params_nonactive') {
+            ajax_test_params.val(null);
         }
         $(this).attr('class','ajax_test_params_active');
     });
 
     $("#ajax_start_tests").click(function() {
         var param_string = $("#ajax_test_params").val();
+        alert("Тесты запущены");
         $.ajax({
             type: "POST",
             data: {params : param_string},
-            url: "http://tester84:8888/start",
+            url: "http://selenium-pc:8888/start",
             success: function(data) {
                 alert(data);
             }
@@ -49,11 +53,12 @@ $(document).ready(function() {
     });
 
     function refresh_view() {
+        var buildhostory_wrapper = $("#buildhistory_wrapper");
         $.ajax({
             type: "GET",
-            url: "http://tester84:8888/update",
+            url: "http://selenium-pc:8888/update",
             success: function(data) {
-                $("#buildhistory_wrapper").empty();
+                buildhostory_wrapper.empty();
                 var html_string;
                 for (var item in data) {
     //                failed test suite
@@ -62,7 +67,7 @@ $(document).ready(function() {
                     } else {
                         html_string = "<p><a href=\"" + data[item][0] + "\">" + data[item][1] + "</a></p>";
                     }
-                    $("#buildhistory_wrapper").append(html_string);
+                    buildhostory_wrapper.append(html_string);
                 }
                 AmCharts.ready();
             }

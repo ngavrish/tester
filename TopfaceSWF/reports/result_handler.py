@@ -143,6 +143,13 @@ class ResultHandler:
                 os.rename(settings.get_topface_reports_path() + "\\" + file,
                         folder_name + "\\" + file)
 
+    def grab_logs_to_current_report_folder(self, folder_name):
+        os.chdir(settings.get_topface_reports_path())
+        for file in os.listdir("."):
+            if file.endswith(".log"):
+                os.rename(settings.get_topface_reports_path() + "\\" + file,
+                    folder_name + "\\" + file)
+
     def handle(self,results):
 #        make folder for current report
         new_folder_name = time.strftime("%a_%d_%b_%Y_%H_%M_%S", time.localtime())
@@ -150,6 +157,7 @@ class ResultHandler:
         os.mkdir(self.current_report_folder)
 #       handle screenshots
         self.grab_screenshots_to_current_report_folder(self.current_report_folder)
+        self.grab_logs_to_current_report_folder(self.current_report_folder)
 #       start constructing reports
         html_page = self.generate_html(results,new_folder_name)
         html_page_name = self.current_report_folder + "\\" +\

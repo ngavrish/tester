@@ -1,4 +1,3 @@
-from pywin.mfc.object import Object
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait

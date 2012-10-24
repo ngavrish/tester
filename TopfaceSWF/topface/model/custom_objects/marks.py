@@ -18,6 +18,7 @@ __author__ = 'ngavrish'
 class Marks(ObjectModel):
 
     custom_top_mark_message_treshold = 2
+    unique_amount = 1000
     _star_box_id = "starBox"
     _mark_sent_confirmation_message_xpath = ".//*[@id='starBox']/div[@class='rate-sent-notice']"
     _minor_marks_xpath = ".//*[@id='starBox']//a[@data-index!='0' "\
@@ -345,3 +346,4 @@ class Marks(ObjectModel):
             assert marks_left_new_after_click == (marks_left_new_before_click - 1)
         except AssertionError:
             raise TestFailedException("Click wrongly changed amount of left clicks on step " + str(i))
+

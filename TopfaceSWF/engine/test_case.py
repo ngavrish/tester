@@ -76,7 +76,7 @@ class TestCase(TestSuite):
             self.logger.log("\r\n ERROR: " + e.value + "\r\n Stacktrace: "
                             + traceback.format_exc() + "<<<< TEST FAILED >>>>\r\n")
             try:
-                self.browser.close()
+                self.browser.quit()
             except NoSuchWindowException as e:
                 print "ERROR: Cannot close window after Test Failed: " + e.message
                 self.logger.log("ERROR: Cannot close window after Test Failed: " + e.message)

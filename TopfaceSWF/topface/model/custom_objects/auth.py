@@ -16,7 +16,7 @@ class AuthForm(ObjectModel):
     """
 
     _social_switcher_id = "socialSwitcher"
-    _social_list_xpath = "//div[@class='auth-form']//div[@class='social-list' and @style='display: block;']"
+    _social_list_xpath = "//div[@class='auth-form']//div[@class='social-list' and contains(@style,'display: block')]"
 #    Facebook
 
     def __init__(self, browser, logger):
@@ -65,7 +65,7 @@ class AuthForm(ObjectModel):
                 self.get_element_by_id(self.__FbAuth.login_button_id)
             )
         except Exception as e:
-            raise TestFailedException(e.message)
+            raise TestFailedException("FAILED TO LOGIN TO FACEBOOK " + e.message)
 
     def validate_fb_login_success(self):
         try:
@@ -83,7 +83,6 @@ class AuthForm(ObjectModel):
     def login_to_vk(self,user=None):
         if user is None:
             user = self.User1
-
         try:
             password_input = self.wait4xpath(settings.wait_for_element_time, self.__VkAuth.password_input_xpath)
             login_input = self.wait4xpath(settings.wait_for_element_time, self.__VkAuth.login_input_xpath)
@@ -145,9 +144,7 @@ class AuthForm(ObjectModel):
     def login_with_vk_full_scale(self, user=None):
         if user is None:
             user = self.User1
-
         window = BrowserWindow(self.browser, self.logger)
-
         window.open(settings.target_url)
 #       implement URL check
 #        try:

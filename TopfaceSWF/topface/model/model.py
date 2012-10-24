@@ -53,27 +53,15 @@ class Model:
     @abstractmethod
     def select_from_dropdown_by_index(self,dropdown,element_index):
         raise NotImplementedError
-        self.logger.log("Select element with index =  " + str(element_index))
-        select = Select(dropdown)
-        select.select_by_index(element_index)
 
     @abstractmethod
     def select_from_dropdown_by_value(self,dropdown,value):
         raise NotImplementedError
-        self.logger.log("Select element with value = " + str(value))
-        select = Select(dropdown)
-        select.select_by_value(str(value))
 
     @abstractmethod
     def select_from_dropdown_by_text(self,dropdown,value):
         raise NotImplementedError
-        self.logger.log("Select element with text = " + str(value))
-        select = Select(dropdown)
-        select.select_by_value(str(value))
 
     @abstractmethod
     def get_selected_value_from_dropdown(self,dropdown):
         raise NotImplementedError
-        self.logger.log("Getting selected value from dropdown " + self.get_element_xpath(dropdown))
-        select = Select(dropdown)
-        return select.first_selected_option.get_attribute("value")

@@ -35,7 +35,8 @@ class ReportServer:
     def parse_settings(self,args):
         try:
             if args is not None:
-                args = args.split(' ')
+                if isinstance(args, basestring):
+                    args = args.split(' ')
                 print "ARGS = " + str(args)
                 for option in args:
                     if option.find("-p") > -1:

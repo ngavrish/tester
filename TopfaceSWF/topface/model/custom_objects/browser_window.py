@@ -64,7 +64,6 @@ class BrowserWindow(ObjectModel):
             print "root window " + str(self._root_window)
             self.browser.switch_to_window(self._root_window)
             print "current window = " + str(self.browser.current_window_handle)
-            self.logger.log("Switched to window " + self.browser.title)
         except Exception as e:
             raise TestFailedException("Failed to switch back to root browser window: " + e.message)
 

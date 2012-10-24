@@ -35,13 +35,14 @@ __global_reports_name = "TopfaceSFW"
 test_packages = ["model_tests","research_tests"]
 
 #   if global browser is set, no browser mapping used
-global_browser = None
+global_browser = "firefox"
 
 #   test suite to run
 testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
 
 #   xml test suites to run
-xml_testsuite = ["demo_xml"]
+xml_testsuite = ["nothing"]
+#   demo_xml
 
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
 
@@ -73,8 +74,9 @@ like_amount = 2
 #   amount of marks for research
 mark_amount = 100
 
+
 #   reporting-server host/port
-domain_host = "tester84"
+domain_host = "selenium-pc"
 host = '0.0.0.0'
 port = "8888"
 
