@@ -1,9 +1,9 @@
 # coding=utf-8
-from time import sleep
+from topface.model.object_model import ObjectModel
 from topface.model.custom_objects.browser_window import BrowserWindow
 from engine.test_failed_exception import TestFailedException
 import settings
-from topface.model.object_model import ObjectModel
+
 
 __author__ = 'ngavrish'
 
@@ -15,6 +15,7 @@ class Navigation(ObjectModel):
     _top_menu_xpath = "//div[contains(@class,'top-menu')]//span[text()='"
     _feed_tab_notext_xpath = "//div[@class='sub-menu']//a[text()='"
     _feed_active_tab_notext_xpath = "//div[@class='sub-menu']//a[contains(@class,'active') and text()='"
+    _logo_xpath = "//a[@class='logotype']"
 
     def __init__(self, browser, logger):
         ObjectModel.__init__(self, browser, logger)
@@ -79,3 +80,8 @@ class Navigation(ObjectModel):
             self.wait4xpath(settings.wait_for_element_time,self._feed_active_tab_notext_xpath + tab_name + "']")
         except Exception:
             raise TestFailedException("Failed to validate user in tab tabname = " + tab_name)
+
+    def goto_main(self):
+        self.logger.log("Navigate to main page via logo click")
+        self.click(
+            self.get_element_by_xpath(self._logo_xpath))

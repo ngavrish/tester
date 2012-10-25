@@ -38,13 +38,13 @@ test_packages = ["model_tests","research_tests"]
 global_browser = "firefox"
 
 #   test suite to run
-testsuite = ["login_test", "marks_test", "messages_test", "profile_test"]#,
+testsuite = ["login_test", "marks_test", "messages_test", "profile_test", "main_filter_test"]#,
 
 #   xml test suites to run
-xml_testsuite = ["nothing"]
+xml_testsuite = ["demo_xml"]
 #   demo_xml
 
-# List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test"]
+# List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test","main_filter_test"]
 
 # demo_xml
 #   target testing url

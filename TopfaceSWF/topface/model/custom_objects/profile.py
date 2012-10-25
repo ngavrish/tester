@@ -3,6 +3,7 @@ from topface.model.custom_objects.auth import AuthForm
 from engine.test_failed_exception import TestFailedException
 import settings
 from topface.model.object_model import ObjectModel
+from topface.model.custom_objects.navigation import Navigation
 
 __author__ = 'ngavrish'
 
@@ -208,3 +209,14 @@ class Profile(ObjectModel):
 
     def validate_horo_view(self):
         print "No validation implemented"
+
+    def set_age(self,age):
+        navigation = Navigation(self.browser,self.logger)
+
+        navigation.goto_top_menu_item(u"Профиль")
+        navigation.goto_tab_menu_item(u"Настройки")
+        self.enter_text(
+            self.get_element_by_id(self._form_age_settings_id),
+            age)
+        self.click(
+            self.get_element_by_id(self._save_setting_button_id))

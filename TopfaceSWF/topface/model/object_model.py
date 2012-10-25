@@ -43,8 +43,11 @@ class ObjectModel(Model):
         hover = ActionChains(self.browser).move_to_element(element)
         hover.perform()
 
-    def drag_and_drop(self):
-        pass
+    def drag_and_drop(self,element,offsetx,offsety):
+        self.logger.log("Dragging element " + self.get_element_xpath(element) + " with offset x = " +
+                        str(offsetx) + " with offset y " + str(offsety))
+        dragandrop = ActionChains(self.browser).drag_and_drop_by_offset(element,offsetx,offsety)
+        dragandrop.perform()
 
     def key_down(self):
         pass

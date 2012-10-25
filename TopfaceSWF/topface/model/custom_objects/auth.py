@@ -171,6 +171,15 @@ class AuthForm(ObjectModel):
         password = "abc123123"
         profile_url = "http://topface.com/profile/41717695/"
 
+    class FilterUserNonVipVK:
+        login = "ppupkin-89@mail.ru"
+        password = "abc123123"
+        profile_url = "http://topface.com/profile/44114748/"
+        name = u"Петя"
+        age = "21"
+        human_place = u"Москва, Россия"
+
+
 #        Research users:
     class MSK_24_Male:
         login = "vpupkin-89@inbox.ru"
