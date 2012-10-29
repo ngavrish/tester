@@ -52,6 +52,52 @@ $(document).ready(function() {
         $("#test_params_description_div").toggle()
     });
 
+    $("#history_graph_border").click(function(){
+        if ($("#buildhistory_wrapper").css('display') == 'block') {
+            $("#buildhistory_wrapper").animate({
+                    width:'toggle'
+                },
+                {
+                    duration: 5000,
+                    specialEasing: {
+                        width: 'linear'
+                    }//,
+//                    complete: function() {
+//                        $("#buildhistory_wrapper").css('display','none');
+//                    }
+                });
+            $("#graphs_wrapper").animate({
+                width:'95%'
+            },
+            {
+                duration: 5000,
+                specialEasing: {
+                    width: 'linear'
+                }
+            });
+        } else {
+            $("#graphs_wrapper").animate({
+                    width:'70%'
+                },
+                {
+                    duration: 5000,
+                    specialEasing: {
+                        width: 'linear'
+                    }
+                });
+            $("#buildhistory_wrapper").animate({
+                    width:'toggle'
+                },
+                {
+                    duration: 5000,
+                    specialEasing: {
+                        width: 'linear'
+                    }
+                });
+        }
+
+    });
+
     function refresh_view() {
         var buildhostory_wrapper = $("#buildhistory_wrapper");
         $.ajax({

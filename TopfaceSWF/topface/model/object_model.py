@@ -1,3 +1,4 @@
+import traceback
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
@@ -66,7 +67,18 @@ class ObjectModel(Model):
     def select_from_dropdown_by_value(self,dropdown,value):
         self.logger.log("Select element with value = " + str(value))
         select = Select(dropdown)
-        select.select_by_value(str(value))
+        self.logger.log("Dropdown was found")
+        try:
+            select.select_by_value(str(value))
+        except Exception as e:
+            print
+            raise TestFailedException("Failed to select value = " + str(value) + " from selectbox " + traceback.format_exc())
+        self.logger.log("Value = " + str(value) + " was selected")
+
+    def select_from_invisible_dropdown_by_value(self,drop_down_xpath,value):
+        self.logger.log("Selecting from invisible dropdown with xpath = " + drop_down_xpath)
+        self.click(
+            self.get_element_by_xpath())
 
     def select_from_dropdown_by_text(self,dropdown,value):
         self.logger.log("Select element with text = " + str(value))

@@ -6,6 +6,7 @@ import settings
 
 __author__ = 'ngavrish'
 
+#//div[@class='leadersTopBalloon']//a[@class='close']
 class AlertPopups(ObjectModel):
 
     _too_short_comment_alert_xpath = ".//div[text()='Ваше сообщение слишком короткое, напишите более развернуто.']//a"

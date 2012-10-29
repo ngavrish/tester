@@ -70,6 +70,7 @@ class TestCase(TestSuite):
 #            Method is overridden in child object
             self.run(self.browser,self.logger)
             self.logger.log("\r\n<<<< SUCCESS >>>>\r\n")
+            self.browser.quit()
         except TestFailedException as e:
             status = False
             self.browser.get_screenshot_as_file(self.get_screen_path())

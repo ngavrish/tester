@@ -206,6 +206,7 @@ class MarksTestSuite(TestSuite):
                 marks.mark()
                 href2like = marks.get_photo2mark_href()
                 if href2like in marked_users:
+                    self.logger.log("Duplicate user = " + href2like + " found in list " + str(marked_users))
                     raise TestFailedException("Found duplicate user in main search")
                 marked_users.append(href2like)
             window.close()

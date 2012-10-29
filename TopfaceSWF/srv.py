@@ -74,7 +74,7 @@ class ReportServer:
         dao = DataAccessObject()
         builds = dao.get_buildhistory()
         start_response('200 Ok', [('content-type', 'application/json')])
-        return json.dumps(builds)
+        return [json.dumps(builds)]
 
     def server_is_running(self,host,port):
         connectionType = httplib.HTTPConnection

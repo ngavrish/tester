@@ -77,9 +77,6 @@ class BrowserWindow(ObjectModel):
         except Exception:
             raise TestFailedException("Failed to logout")
 
+#   deprecated
     def close(self):
-        try:
-            self.logger.log("END TEST")
-            self.browser.close()
-        except Exception as e:
-            raise TestFailedException("Failed to close browser " + e.message)
+        pass

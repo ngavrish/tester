@@ -79,6 +79,7 @@ class MessagesTestSuite(TestSuite):
 
             print "User 1 message validation finished successfully"
 
+            output_message = u"Привет!"
             self.do_method(auth.login_with_fb_full_scale,profiling_events.events[profiling_events.login_event],auth.User2)
             sleep(2)
             navigation.goto_side_menu_item(u"Сообщения")

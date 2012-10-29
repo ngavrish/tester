@@ -38,10 +38,10 @@ test_packages = ["model_tests","research_tests"]
 global_browser = "firefox"
 
 #   test suite to run
-testsuite = ["login_test", "marks_test", "messages_test", "profile_test", "main_filter_test"]#,
+testsuite = ["login_test", "marks_test", "messages_test", "profile_test","main_filter_test"]#,
 
 #   xml test suites to run
-xml_testsuite = ["demo_xml"]
+xml_testsuite = ["login_test", "marks_test", "messages_test", "profile_test","main_filter_test"]
 #   demo_xml
 
 # List of all possible test plans = "login_test", "marks_test", "messages_test", "profile_test","main_filter_test"]
@@ -66,7 +66,7 @@ parallel = False
 slow_mode = False
 
 #   Wait for element time in seconds. Max value = 10. > 10 -> fails
-wait_for_element_time = 10
+wait_for_element_time = 5
 
 #   amount of likes for research
 like_amount = 2
