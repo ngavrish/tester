@@ -7,6 +7,7 @@ __author__ = 'ngavrish'
 
 class VIPPopups(ObjectModel):
 
+    _premium_close_xpath = "//div[@role='dialog' and contains(@style,'display: block')]//span[text()='Премиум функция']/../a[@role='button']"
     _title_value = u"VIP функция"
     _title_id = "ui-dialog-title-dialog1"
     _illustration_fans_xpath = "//div[@id='dialog1']//i[contains(@class,'fans')]"
@@ -23,6 +24,11 @@ class VIPPopups(ObjectModel):
         ObjectModel.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
+
+    def close_premium(self):
+        self.logger.log("Closing premium popup")
+        self.click(
+            self.get_element_by_xpath(self._premium_close_xpath))
 
     def validate_forbidden_nonvip(self):
         try:

@@ -84,7 +84,7 @@ class Marks(ObjectModel):
         try:
             sleep(2)
             return WebDriverWait(self.browser,settings.wait_for_element_time).\
-                until(lambda driver: driver.find_element_by_xpath(self._photo2mark_xpath).get_attribute("href"))
+                until(lambda driver: driver.find_element_by_xpath(self._photo2mark_xpath).get_attribute("_big_photo"))
         except Exception:
             raise TestFailedException("Failed to get photo href to mark")
 
@@ -253,6 +253,7 @@ class Marks(ObjectModel):
         self.click(mark)
         photo_href2 = self.get_photo2mark_href()
         try:
+            self.logger.log("Assert photo href = " + photo_href1 + " vs " + photo_href2)
             assert photo_href1 != photo_href2
         except AssertionError:
             raise TestFailedException("User haven't been changed after marking")

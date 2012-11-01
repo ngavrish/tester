@@ -1,5 +1,6 @@
 import traceback
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from engine.test_failed_exception import TestFailedException
@@ -8,7 +9,6 @@ import settings
 from topface.model.model import Model
 
 __author__ = 'ngavrish'
-
 
 class ObjectModel(Model):
 
@@ -50,8 +50,14 @@ class ObjectModel(Model):
         dragandrop = ActionChains(self.browser).drag_and_drop_by_offset(element,offsetx,offsety)
         dragandrop.perform()
 
-    def key_down(self):
-        pass
+
+    def key_down(self,key):
+        self.logger.log("Key down " + str(key))
+        ActionChains(self.browser).key_down(key).perform()
+
+    def key_up(self,key):
+        self.logger.log("Releasing key = " + str(key))
+        ActionChains(self.browser).key_up(key).perform()
 
     def enter_text(self,element,text):
         self.logger.log("Typing text = " + str(text) + " to element with xpath = " +
@@ -75,10 +81,10 @@ class ObjectModel(Model):
             raise TestFailedException("Failed to select value = " + str(value) + " from selectbox " + traceback.format_exc())
         self.logger.log("Value = " + str(value) + " was selected")
 
-    def select_from_invisible_dropdown_by_value(self,drop_down_xpath,value):
-        self.logger.log("Selecting from invisible dropdown with xpath = " + drop_down_xpath)
-        self.click(
-            self.get_element_by_xpath())
+#    def select_from_invisible_dropdown_by_value(self,drop_down_xpath,value):
+#        self.logger.log("Selecting from invisible dropdown with xpath = " + drop_down_xpath)
+#        self.click(
+#            self.get_element_by_xpath())
 
     def select_from_dropdown_by_text(self,dropdown,value):
         self.logger.log("Select element with text = " + str(value))

@@ -16,11 +16,19 @@ class Navigation(ObjectModel):
     _feed_tab_notext_xpath = "//div[@class='sub-menu']//a[text()='"
     _feed_active_tab_notext_xpath = "//div[@class='sub-menu']//a[contains(@class,'active') and text()='"
     _logo_xpath = "//a[@class='logotype']"
+    _profile_name_link_id = "userName"
+    _profile_photo_link_xpath = "//div[@id='userPhotoLayout']/div[@class='img']/a/img"
 
     def __init__(self, browser, logger):
         ObjectModel.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
+
+    def get_profile_name_link(self):
+        return self.get_element_by_id(self._profile_name_link_id)
+
+    def get_profile_photo_link(self):
+        return self.get_element_by_xpath(self._profile_photo_link_xpath)
 
     def goto_side_menu_item(self,text):
         self.logger.log("Getting side menu link by text = " + text)
@@ -85,3 +93,13 @@ class Navigation(ObjectModel):
         self.logger.log("Navigate to main page via logo click")
         self.click(
             self.get_element_by_xpath(self._logo_xpath))
+
+    def goto_profile_from_search(self,way="name"):
+#        tow option available - name, photo
+        if way == "name":
+            self.click(
+                self.get_element_by_id(self._profile_name_link_id))
+        elif way == "photo":
+            self.click(
+                self.get_element_by_xpath(self._profile_photo_link_xpath))
+

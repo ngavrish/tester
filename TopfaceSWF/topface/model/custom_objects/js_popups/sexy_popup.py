@@ -7,7 +7,7 @@ __author__ = 'ngavrish'
 
 class SexyPopup(ObjectModel):
 
-    _close_sexy_xpath = "//div[@role='dialog']//a[contains(@class,'corner-all') and @role='button']"
+    _close_sexy_xpath = "//div[@role='dialog' and contains(@style,'display: block')]//a[contains(@class,'corner-all') and @role='button']"
 
     def __init__(self,browser,logger):
         ObjectModel.__init__(self, browser, logger)

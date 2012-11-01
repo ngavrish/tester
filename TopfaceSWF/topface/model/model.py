@@ -14,6 +14,15 @@ class Model:
         self.logger = logger
         self.browser = browser
 
+    def get_elements_by_xpath(self,xpath):
+        self.logger.log("Find elements by XPATH = " + xpath)
+        try:
+            return WebDriverWait(self.browser, settings.wait_for_element_time).\
+            until(lambda driver: driver.find_elements_by_xpath(xpath))
+        except Exception:
+            raise TestFailedException("Failed to get element by xpath = " + xpath)
+
+
     def get_element_by_xpath(self,xpath):
         self.logger.log("Find element by XPATH = " + xpath)
         try:

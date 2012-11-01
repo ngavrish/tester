@@ -3,6 +3,8 @@ from time import sleep
 import traceback
 from selenium.common.exceptions import NoSuchElementException
 from engine.test_failed_exception import TestFailedException
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
 from topface.model.custom_objects.profile import Profile
 from topface.model.object_model import ObjectModel
 import settings
@@ -17,12 +19,97 @@ class Filters(ObjectModel):
     _right_age_slider_xpath = ".//*[@id='slider']/a[2]"
     _select_goal_xpath = "//div[@id='widgetFilter']//span[contains(@class,'selectBox-label')]"
     _goal_status_xpath = "//div[@id='userPhotoLayout']//div[contains(@class,'"
+    _expand_params_id = "extendedFilterMore"
+    _collapse_params_id = "extendedFilterLess"
+    _extended_param_div_id = "WidgetExtendedFilter"
+    _extended_expanded_param_div_xpath = "//div[@id='WidgetExtendedFilter' and @style='display: block;']"
+    _extended_collapsed_param_div_xpath = "//div[@id='WidgetExtendedFilter' and @style='display: none;']"
+    _visible_default_params_xpath = "//div[(contains(@class,'param-even') or (contains(@style,'block') and contains(@class,'extended-filter-param'))) and not(contains(@style,'display: none;')) and not(contains(@class,'hidden'))]"
+    _visible_params_xpath = "//div[(contains(@class,'param-even') or (contains(@style,'block') and contains(@class,'extended-filter-param')))]"
+    _additional_xpath_for_delete_button = "//div[@class='delete-param-button']"
+    _add_more_params_link_id = "filterAddMoreParams"
+    _more_params_box_id = "addMoreSearchParams"
+    _expanded_addmoreparams_box_xpath = "//div[@id='addMoreSearchParams' and contains(@style,'display: block')]"
+    _collapsed_addmoreparams_box_xpath = "//div[@id='addMoreSearchParams' and contains(@style,'display: none')]"
+    _close_more_params_box_xpath = "//div[@id='addMoreSearchParams']/div[contains(@class,'close')]"
+    _more_params_div_by_param_xpath = "//div[@id='addMoreSearchParams']//div[@name='"#']"
+    _add_more_params_button_xpath = ".//*[@id='addMoreSearchParams']/div[@class='ok']"
+    _addmore_params_item_xpath = "//div[@id='addMoreSearchParams']//div[@class='extended-param-list-item' and @name='"
 
+    _goals =    ["love",
+                "sex",
+                "friend",
+                "estimates",
+                "talk"]
+    _default_visible_params = ["marriage",
+                               "character",
+                               "breast",
+                               "alcohol"]
+    _extended_params = ["job",
+                        "status",
+                        "education",
+                        "finances",
+                        "smoking",
+                        "communication",
+                        "hairColor",
+                        "eyeColor",
+                        "children",
+                        "residence",
+                        "hasCar"]
+    _param_order_map = {
+        "marriage": 4,
+        "character": 6,
+        "alcohol": 8,
+        "breast": 16,
+        "job": 1,
+        "status": 2,
+        "education": 3,
+        "finances": 5,
+        "smoking": 7,
+        "communication": 10,
+        "hairColor": 11,
+        "eyeColor": 12,
+        "children": 13,
+        "residence": 14,
+        "hasCar": 15,
+    }
 
     def __init__(self,browser,logger):
         ObjectModel.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
+
+    def get_addmoreelement_by_param_name(self,param):
+        return self.get_element_by_xpath(
+            self._addmore_params_item_xpath + param + "']")
+
+    def get_extended_param_ul_xpath_by_praram_name(self,param):
+        self.logger.log("For " + param + " div order number = " + str(self._param_order_map[param]))
+        try:
+            ul_order_number = self._param_order_map[param]
+            return "//ul[contains(@class,'extended-filter-answers-selectBox-dropdown-menu answers-0-selectBox-')][" +\
+                   str(ul_order_number) + "]"
+        except Exception as e:
+            raise TestFailedException("Failed to get_extended_param_ul_xpath_by_praram_name \n\r" + traceback.format_exc())
+
+    def get_visible_param_xpath_by_param_name(self,param):
+        return "//div[(contains(@class,'param-even') and contains(@class,'extended-filter-param-" + \
+               param + \
+               "')) or (contains(@style,'block') and contains(@class,'extended-filter-param-" +\
+               param + \
+               "'))]"
+
+    def get_extended_params_list_item_xpath_by_param_name(self,param,value):
+        xpath = self.get_extended_param_ul_xpath_by_praram_name(param) +\
+                "//li[contains(@class,'extended-filter-option')]/a[@rel=" + str(value) + "]"
+        self.logger.log("Extended param item list = " + xpath)
+        return xpath
+
+    def get_extended_params(self):
+        return self._extended_params
+
+    def get_goals(self):
+        return self._goals
 
     def get_goal_status_xpath(self,goal):
         return self._goal_status_xpath + goal + "')]"
@@ -96,7 +183,7 @@ class Filters(ObjectModel):
         self.wait4xpath(settings.wait_for_element_time,
                         self.get_goal_status_xpath(goal))
 
-    def validate(self,goal,online):
+    def validate_goal(self,goal,online):
         profile = Profile(self.browser,self.logger)
         if online:
             self.wait4xpath(settings.wait_for_element_time,profile._online_indicator)
@@ -107,3 +194,124 @@ class Filters(ObjectModel):
         except Exception as e:
             raise TestFailedException("Failed to validate user from filter search with goal = " + str(goal) + "\n\r" +
                                       traceback.format_exc())
+
+    def expand_parameter_list(self):
+        self.logger.log("Expanding params list")
+        self.hover(
+            self.get_element_by_id(self._expand_params_id))
+        self.click(
+            self.get_element_by_id(self._expand_params_id))
+        self.wait4xpath(settings.wait_for_element_time,self._extended_expanded_param_div_xpath)
+
+    def collapse_parameter_list(self):
+        self.logger.log("Collapsing params list")
+        self.hover(
+            self.get_element_by_id(self._collapse_params_id))
+        self.click(
+            self.get_element_by_id(self._collapse_params_id))
+        self.wait4xpath(settings.wait_for_element_time,self._extended_collapsed_param_div_xpath)
+
+    def validate_default_extended_params(self):
+        self.logger.log("Validating default extended params")
+        default_visible_elements = self.get_elements_by_xpath(self._visible_default_params_xpath)
+        if len(default_visible_elements) != len(self._default_visible_params):
+            self.logger.log("Found default visible elements amount = " + str(len(default_visible_elements)))
+            self.logger.log("Expected = " + str(len(self._default_visible_params)))
+            raise TestFailedException("Failed to validate amount of params that are visible by default")
+        for param in self._default_visible_params:
+            self.wait4xpath(settings.wait_for_element_time,self.get_visible_param_xpath_by_param_name(param))
+
+    def expand_more_params_box(self):
+        self.hover(
+            self.get_element_by_id(self._add_more_params_link_id))
+        self.click(
+            self.get_element_by_id(self._add_more_params_link_id))
+        try:
+            self.get_element_by_id(self._more_params_box_id).get_attribute("style")
+            self.wait4xpath(settings.wait_for_element_time,self._expanded_addmoreparams_box_xpath)
+        except Exception as e:
+            raise TestFailedException("Failed to validate add more params box")
+
+    def collapse_more_params_box(self):
+        self.logger.log("Collapsing more params box")
+        self.hover(
+            self.get_element_by_xpath(self._close_more_params_box_xpath))
+        self.click(
+            self.get_element_by_xpath(self._close_more_params_box_xpath))
+        try:
+            self.get_element_by_id(self._more_params_box_id).get_attribute("style")
+            self.wait4xpath(settings.wait_for_element_time,self._collapsed_addmoreparams_box_xpath)
+        except Exception as e:
+            raise TestFailedException("Failed to validate add more params box")
+
+    def add_param(self,param):
+        self.expand_more_params_box()
+        param2add = self.get_element_by_xpath(self._more_params_div_by_param_xpath + param + "']")
+        self.hover(param2add)
+        self.click(param2add)
+        self.click(
+            self.get_element_by_xpath(self._add_more_params_button_xpath))
+        self.wait4xpath(settings.wait_for_element_time,self.get_visible_param_xpath_by_param_name(param))
+        self.expand_more_params_box()
+        try:
+            self.wait4xpath(settings.wait_for_element_time,self._more_params_div_by_param_xpath + param + "']")
+            raise TestFailedException("Element that've been added to filter list still exists in add more params = " + param)
+        except Exception:
+#            element shouldn't be found
+            self.collapse_more_params_box()
+
+    def remove_param(self,param):
+        self.logger.log("Removing element with param = " + param)
+        try:
+            close_xpath = self.get_visible_param_xpath_by_param_name(param) + self._additional_xpath_for_delete_button
+            self.logger.log("Element xpath = " + close_xpath)
+            close_element = self.get_element_by_xpath(close_xpath)
+            self.hover(
+                self.get_element_by_xpath(
+                    self.get_visible_param_xpath_by_param_name(param)))
+            self.click(close_element)
+            self.expand_more_params_box()
+            self.wait4xpath(settings.wait_for_element_time,self._more_params_div_by_param_xpath + param + "']")
+            self.collapse_more_params_box()
+        except Exception as e:
+            raise TestFailedException("Failed to remove params \n\r" + traceback.format_exc())
+
+#    NOT WORKING
+#    def add_all_params(self):
+#        self.logger.log("Using CONTROL button selecint all elements")
+#        try:
+#            self.expand_more_params_box()
+#            ActionChains(self.browser).key_down(Keys.CONTROL)\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[0]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[1]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[2]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[3]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[4]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[5]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[6]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[7]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[8]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[9]))\
+#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[10]))\
+#                        .key_up(Keys.CONTROL).perform()
+#            self.key_up(Keys.CONTROL)
+#            self.click(
+#                self.get_element_by_xpath(self._add_more_params_button_xpath))
+#        except Exception as e:
+#            raise TestFailedException("Failed to add all params with controrl button \n\r" + traceback.format_exc())
+
+    def get_all_params(self):
+        self.logger.log("Getting all parameters")
+        return self._default_visible_params + self._extended_params
+
+    def set_filter_param_value(self,param,value=1):
+        self.logger.log("Set filter param = " + str(param) + " value = " + str(value))
+        self.click(
+            self.get_element_by_xpath(
+                self.get_visible_param_xpath_by_param_name(param)))
+        self.hover(
+            self.get_element_by_xpath(
+                self.get_extended_params_list_item_xpath_by_param_name(param,value)))
+        self.click(
+            self.get_element_by_xpath(
+                self.get_extended_params_list_item_xpath_by_param_name(param,value)))
