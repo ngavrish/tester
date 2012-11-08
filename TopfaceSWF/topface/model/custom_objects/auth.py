@@ -179,6 +179,14 @@ class AuthForm(ObjectModel):
         age = "21"
         human_place = u"Москва, Россия"
 
+    class FilterUserVipVK:
+        login = "ppupkin-89@inbox.ru"
+        password = "abc123123"
+        profile_url = "http://topface.com/profile/44381947/"
+        name = u"Petya"
+        age = "19"
+        human_place = u"Москва, Россия"
+
 
 #        Research users:
     class MSK_24_Male:

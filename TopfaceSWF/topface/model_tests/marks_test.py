@@ -144,7 +144,7 @@ class MarksTestSuite(TestSuite):
                 marks.get_mark_by_value(1)
             )
             self.do_method(marks.validate_profile_mark_sent)
-            window.logout()
+            window.close()
 
     class MarkFactTest_ValidateAndMarkBackUser1(TestCase):
         def __init__(self, test_name):
@@ -163,7 +163,7 @@ class MarksTestSuite(TestSuite):
             self.do_method(navigation.goto_side_menu_item,None,u"Оценки")
             self.do_method(marks.validate_new_mark_in_feed,None,AuthForm.User1.profile_url_fb,datetime.now().strftime("%d"))
             self.do_method(marks.rate_answer,None,AuthForm.User1.profile_url_fb)
-            window.logout()
+            window.close()
 
     class MarkFactTest_ValidateUser1(TestCase):
         def __init__(self, test_name):

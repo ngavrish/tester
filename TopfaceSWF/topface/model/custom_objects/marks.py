@@ -31,6 +31,7 @@ class Marks(ObjectModel):
     _feed_profile_links_xpath = "//div[@id='comments']//div[@class='comment-avatar-new']//a"
     _feed_click4more_xpath = "//div[@id='comments']//a[@class='show-more icon-expand']"
     _fb_popup_close_link_xpath = "//a[@class='fb_dialog_close_icon']"
+    _user_age_xpath = "//div[@id='userNameLayout']/span[@class='user-age']"
 
     def __init__(self,browser,logger):
         ObjectModel.__init__(self, browser, logger)
@@ -46,6 +47,9 @@ class Marks(ObjectModel):
         return "//div[@class='feed-name-new']//a[@href='"\
                + profile +\
                "']/../../../../../../div[1]//div[@class='additional-actions']//a[@class='rate-answer']"
+
+    def get_user_age(self):
+        return self.get_element_by_xpath(self._user_age_xpath).text
 
     def star_box(self):
         self.logger.log("Waiting for element with ID = " + self._star_box_id)

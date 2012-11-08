@@ -65,6 +65,10 @@ class Questionary(ObjectModel):
         self.browser = browser
         self.logger = logger
 
+    def __get_country_checkbox_xpath(self,country_name):
+        return "//div[contains(@class,'checkbox-set visited-countries')]//label[text()='"\
+           + country_name + "']//input"
+
     def expand(self):
         self.logger.log("Expand questionary for editing")
         try:
@@ -336,7 +340,7 @@ class Questionary(ObjectModel):
         except Exception:
             raise TestFailedException("Failed to validate correct questionary saving")
 
-
-    def __get_country_checkbox_xpath(self,country_name):
-        return "//div[contains(@class,'checkbox-set visited-countries')]//label[text()='"\
-               + country_name + "']//input"
+    def get_questionary_value_by_description(self,descr):
+        self.logger.log("Getting value from questionary by description = " + str(descr))
+        return self.get_element_by_xpath("//div[contains(@class,'questionary-answers')]//td[@class='questionary-title' "
+                                         "and contains(text(),'" + descr + "')]/../td[2]").text
