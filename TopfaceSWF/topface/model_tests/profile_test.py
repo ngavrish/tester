@@ -23,8 +23,8 @@ class ProfileTestSuite(TestSuite):
     def run(self):
         self.test_cases = [
             self.ProfileNavigationTest("Profile_Navigation_Test"),
-            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
-            self.QuestionaryEditingTest("Profile Anket Editing Test")
+#            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
+#            self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
             run_test_results = test_case.run_test(self.browser_name)
@@ -66,7 +66,8 @@ class ProfileTestSuite(TestSuite):
             navigation.goto_tab_menu_item(u"Гороскоп")
             profile.validate_horo_view()
 #            logout and login with another user to mark that user again to fix the profile marks reset
-            window.logout()
+            self.logger.log("100500")
+            window.close()
 
     class ProfileNavigationFixMarksResetTest(TestCase):
 
@@ -89,7 +90,6 @@ class ProfileTestSuite(TestSuite):
                 )
                 marks.validate_profile_mark_sent()
                 window.open(auth.User1.profile_url_fb)
-
             window.close()
 
 

@@ -14,6 +14,7 @@ __author__ = 'ngavrish'
 
 class Filters(ObjectModel):
 
+    max_filter_age = 80
     _sex_filter_xpath = "//div[@id='ratingAllFilter']//a[contains(@class,'gender-filter')]"
     _online_filter_checkbox_id = "onlineFilter"
     _age_filter_link_xpath = "//a[contains(@class,'age-filter')]"
@@ -141,7 +142,7 @@ class Filters(ObjectModel):
         except Exception:
             TestFailedException("Failed to drage age slider to the right maximum")
 
-    def drag_right_age_search_slider_forward(self,years):
+    def drag_right_age_search_slider_forward(self,years=1):
         try:
             self.drag_and_drop(
                 self.get_element_by_xpath(self._right_age_slider_xpath),
@@ -149,7 +150,7 @@ class Filters(ObjectModel):
         except Exception:
             TestFailedException("Failed to drage age slider to the right minimum")
 
-    def drag_right_age_search_slider_backward(self,years):
+    def drag_right_age_search_slider_backward(self,years=1):
         try:
             self.drag_and_drop(
                 self.get_element_by_xpath(self._right_age_slider_xpath),
@@ -164,6 +165,14 @@ class Filters(ObjectModel):
                 -400,0)
         except Exception:
             TestFailedException("Failed to drage age slider to the right minimum")
+
+    def drag_left_age_search_slider_to_max(self):
+        try:
+            self.drag_and_drop(
+                self.get_element_by_xpath(self._left_age_slider_xpath),
+                400,0)
+        except Exception:
+            TestFailedException("Failed to drage age slider to the right maximum")
 
     def drag_left_age_search_slider_forward(self,years=1):
         try:
@@ -201,7 +210,7 @@ class Filters(ObjectModel):
             self.logger.log("Age start = " + str(start_age))
             end_age = int(age_margin_value[3:5])
             self.logger.log("Age end = " + str(end_age))
-            return [end_age,end_age - start_age]
+            return [start_age,end_age,end_age - start_age]
         except Exception as e:
             raise TestFailedException(traceback.format_exc())
 
@@ -406,7 +415,13 @@ class Filters(ObjectModel):
     def validate_user_in_search_age(self,age_interval):
         marks = Marks(self.browser,self.logger)
         age = int(marks.get_user_age())
-        if age < age_interval[1] or age > age_interval[0] + age_interval[1]:
-            raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
-                                      "\r\n Expected interval: " + str(age_interval))
+        self.logger.log("\r\nComparing " + str(age) + " in " + str(age_interval))
+        if age_interval[0] >= self.max_filter_age:
+            if age < age_interval[0]:
+                raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
+                                          "\r\n Expected interval: " + str(age_interval) + " LESS THAN MINIMUM ")
+        else:
+            if age < age_interval[0] or age > age_interval[1]:
+                raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
+                                          "\r\n Expected interval: " + str(age_interval))
 

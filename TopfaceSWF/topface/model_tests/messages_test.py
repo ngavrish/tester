@@ -60,7 +60,7 @@ class MessagesTestSuite(TestSuite):
             navigation.goto_side_menu_item(u"Сообщения")
             navigation.goto_tab_menu_item(u"Отправленные")
             messenger.delete_last_message_from_output_feed_fb(output_message)
-            window.logout()
+            window.close()
 
     class MessagesFacebookValidateTest(TestCase):
         """
