@@ -24,8 +24,8 @@ class BrowserWindow(ObjectModel):
 
     def open(self,url):
         try:
-            self.browser.get(url)
             self.logger.log("Open " + TestSuite.browser_name + " at " + url)
+            self.browser.get(url)
             self._root_window = self.browser.current_window_handle
         except Exception as e:
             raise TestFailedException("Failed to open browser on URL = " + url + " : " + e.message)

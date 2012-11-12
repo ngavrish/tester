@@ -12,17 +12,24 @@ class Navigation(ObjectModel):
     _to_messenger_from_profile_id = "switch-message"
     _comments_wrapper_id = "comments"
     _side_menu_xpath = "//div[@id='sideMenu']//span[text()='"
+    _top_main_menu_xpath = "//div[contains(@class,'top-menu')]//span[text()='"
+    _top_active_main_menu_xpath = "//div[contains(@class,'top-menu')]//a[contains(@class,'active')]//span[text()='"
     _top_menu_xpath = "//div[contains(@class,'top-menu')]//span[text()='"
     _feed_tab_notext_xpath = "//div[@class='sub-menu']//a[text()='"
     _feed_active_tab_notext_xpath = "//div[@class='sub-menu']//a[contains(@class,'active') and text()='"
     _logo_xpath = "//a[@class='logotype']"
     _profile_name_link_id = "userName"
     _profile_photo_link_xpath = "//div[@id='userPhotoLayout']/div[@class='img']/a/img"
+    _search_div_id = "searchList"
 
     def __init__(self, browser, logger):
         ObjectModel.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
+
+    def validate_in_search(self):
+        self.logger.log("Validating search wrapper")
+        self.wait4id(settings.wait_for_element_time,self._search_div_id)
 
     def get_profile_name_link(self):
         return self.get_element_by_id(self._profile_name_link_id)
@@ -42,7 +49,18 @@ class Navigation(ObjectModel):
             self.wait4id(settings.wait_for_element_time,self._comments_wrapper_id)
         except Exception:
             raise TestFailedException("Failed to navigate to feeds")
+# Main horizontal menu
+    def goto_main_top_menu_item(self,text):
+        self.logger.log("Going to main horizontal menu item = " + text)
+        try:
+            self.click(
+                self.get_element_by_xpath(
+                    self._top_main_menu_xpath + text + "']"))
+        except Exception:
+            raise TestFailedException("Failed to get main menu item with text = " + text)
+        self.validate_in_main_tab(text)
 
+# Horizontal submenu
     def goto_top_menu_item(self,text):
         self.logger.log("Getting top menu link by text = " + text)
         try:
@@ -95,6 +113,13 @@ class Navigation(ObjectModel):
         self.logger.log("Validate located to tab with name = " + tab_name)
         try:
             self.wait4xpath(settings.wait_for_element_time,self._feed_active_tab_notext_xpath + tab_name + "']")
+        except Exception:
+            raise TestFailedException("Failed to validate user in tab tabname = " + tab_name)
+
+    def validate_in_main_tab(self,tab_name):
+        self.logger.log("Validate located to main tab with name = " + tab_name)
+        try:
+            self.wait4xpath(settings.wait_for_element_time,self._top_active_main_menu_xpath + tab_name + "']")
         except Exception:
             raise TestFailedException("Failed to validate user in tab tabname = " + tab_name)
 
