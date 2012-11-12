@@ -1,4 +1,5 @@
 # coding=utf-8
+from time import sleep
 import traceback
 from engine.test_suite import TestSuite
 from engine.test_case import TestCase
@@ -30,15 +31,15 @@ class MainFilterTestSuite(TestSuite):
 
     def run(self):
         self.test_cases = [
-            self.MainAgeBar("Age_bar_depending_on_users_age"),
-            self.MainAgeBarValidateSearch("Main_Age_Bar_Validate_Search"),
-            self.MainAgeBarYearByYearMinimumInterval2LeftValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
+            self.AgeBar("Age_bar_depending_on_users_age"),
+            self.AgeBarValidateSearch("Main_Age_Bar_Validate_Search"),
+            self.AgeBarYearByYearMinimumInterval2LeftValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
                                                                         "to_Left_Validate_Search"),
-            self.MainAgeBarYearByYearMinimumInterval2RightValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
-                                                                        "to_Left_Validate_Search"),
-            self.MainNonVipGoalSexAndOnlineFilters("Validate_for_non_vip_goal_sex_online"),
-            self.MainNonVipExtendedFilters("NonVipExtendedFilter"),
-            self.MainVipExtendedFilters("VipExtendedFilters")
+            self.AgeBarYearByYearMinimumInterval2RightValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
+                                                                        "to_Right_Validate_Search"),
+            self.NonVipGoalSexAndOnlineFilters("Validate_for_non_vip_goal_sex_online"),
+            self.NonVipExtendedFilters("NonVipExtendedFilter"),
+            self.VipExtendedFilters("VipExtendedFilters")
         ]
 
         for test_case in self.test_cases:
@@ -48,7 +49,7 @@ class MainFilterTestSuite(TestSuite):
 
 
     #noinspection PyMethodOverriding,PyMissingConstructor
-    class MainAgeBar(TestCase):
+    class AgeBar(TestCase):
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.ages_list = {17:4,18:4,20:4,21:5,24:5,25:5,26:6,29:6,30:6,31:8,99:8}
@@ -79,7 +80,7 @@ class MainFilterTestSuite(TestSuite):
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
-    class MainAgeBarValidateSearch(TestCase):
+    class AgeBarValidateSearch(TestCase):
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.ages_list = {17:4,18:4,20:4,21:5,24:5,25:5,26:6,29:6,30:6,31:8,99:8}
@@ -105,8 +106,8 @@ class MainFilterTestSuite(TestSuite):
                 filter.init_age_filter()
                 filter.drag_right_age_search_slider_to_max()
                 filter.drag_right_age_search_slider_to_min()
-                marks.mark(value=8)
-                marks.mark(value=2)
+                marks.mark()
+                marks.like()
                 filter.validate_user_in_search_age([age,self.ages_list[age]])
                 if self.ages_list[age] != filter.get_age_search_interval_value():
                     raise TestFailedException("Wrong mininal age search interval")
@@ -114,7 +115,8 @@ class MainFilterTestSuite(TestSuite):
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
-    class MainAgeBarYearByYearMinimumInterval2LeftValidateSearch(TestCase):
+    class AgeBarYearByYearMinimumInterval2LeftValidateSearch(TestCase):
+#    year by year using minimal interval from left to maximum
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.age_min_min = 16
@@ -140,20 +142,22 @@ class MainFilterTestSuite(TestSuite):
             filter.drag_right_age_search_slider_to_max()
             filter.drag_right_age_search_slider_to_min()
             for age in range(self.age_min_max-self.age_min_min):
-                age += age + self.age_min_min
                 filter.init_age_filter()
                 filter.drag_left_age_search_slider_forward()
                 filter.validate_user_in_search_age(filter.get_age_search_interval_list())
-                marks.mark(value=8)
-                marks.mark(value=2)
+                marks.mark()
+                marks.like()
             profile.set_age(auth.FilterUserNonVipVK.age)
             window.close()
 
-    class MainAgeBarYearByYearMinimumInterval2RightValidateSearch(TestCase):
+    #noinspection PyMethodOverriding,PyMissingConstructor
+    class AgeBarYearByYearMinimumInterval2RightValidateSearch(TestCase):
+#    year by year using minimal interval from
         def __init__(self, test_name):
             self.set_log_name(test_name)
-            self.age_min_min = 16
-            self.age_min_max = 72
+            self.age_min = 16
+            self.age_max_min = 20
+            self.age_max_max = 80
 
         def run(self, browser, logger):
             self.browser = browser
@@ -168,24 +172,24 @@ class MainFilterTestSuite(TestSuite):
             window.open(settings.target_url)
             #            implement URL check
             self.do_method(auth.login_with_vk_full_scale,profiling_events.login_event,auth.FilterUserNonVipVK)
-            profile.set_age(self.age_min_min)
+            profile.set_age(self.age_min)
             navigation.goto_main()
             marks.star_box()
             filter.init_age_filter()
-            filter.drag_right_age_search_slider_to_max()
-            filter.drag_right_age_search_slider_to_min()
-            for age in range(self.age_min_max-self.age_min_min):
-                age += age + self.age_min_min
+            filter.drag_left_age_search_slider_to_max()
+            sleep(5)
+            for age in reversed(range(self.age_max_max-self.age_max_min)):
                 filter.init_age_filter()
-                filter.drag_left_age_search_slider_forward()
+                filter.drag_right_age_search_slider_backward()
+                sleep(5)
                 filter.validate_user_in_search_age(filter.get_age_search_interval_list())
-                marks.mark(value=8)
-                marks.mark(value=2)
+                marks.mark()
+                marks.like()
             profile.set_age(auth.FilterUserNonVipVK.age)
             window.close()
 
     #noinspection PyMissingConstructor,PyMethodOverriding
-    class MainNonVipGoalSexAndOnlineFilters(TestCase):
+    class NonVipGoalSexAndOnlineFilters(TestCase):
         def __init__(self,test_name):
             self.set_log_name(test_name)
             self.sexes_amount = 2
@@ -226,7 +230,7 @@ class MainFilterTestSuite(TestSuite):
             window.close()
 
     #noinspection PyMissingConstructor,PyMethodOverriding
-    class MainNonVipGoalSexAndOnlineFilters(TestCase):
+    class NonVipGoalSexAndOnlineFilters(TestCase):
         def __init__(self,test_name):
             self.set_log_name(test_name)
             self.sexes_amount = 2
@@ -267,7 +271,7 @@ class MainFilterTestSuite(TestSuite):
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
-    class MainNonVipExtendedFilters(TestCase):
+    class NonVipExtendedFilters(TestCase):
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.sexes_amount = 2
@@ -340,7 +344,7 @@ class MainFilterTestSuite(TestSuite):
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
-    class MainVipExtendedFilters(TestCase):
+    class VipExtendedFilters(TestCase):
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.sexes_amount = 2

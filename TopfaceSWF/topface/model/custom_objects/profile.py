@@ -16,7 +16,7 @@ class Profile(ObjectModel):
 
     _online_indicator = "//div[@id='onlineStatus']"
     _top_default_status_xpath = "//div[@id='statusTopBalloon']//span[contains(text(),'Я ищу парня, 67-75, Москва')]"
-    _avatar_default_photo_xpath = "//div[@id='userPhotoLayout']//*[@src='http://profile.ak.fbcdn.net/static-ak/rsrc.php/v2/yL/r/HsTZSDw4avx.gif']"
+    _avatar_default_photo_xpath = "//div[@id='userPhotoLayout']//img[@src='http://i.cdn.tf/u41694213/r200x-/6b20vc.jpg']"
     _profile_view_name_container_xpath = "//div[@class='name-container']/h1[contains(text(),'"
     _profile_view_age_and_place_xpath = "//div[@class='name-container' and contains(text(),'"
     _photo_preview_bar_xpath = "//div[@id='photoalbumLayout']//div[@class='photos-container']"
@@ -130,9 +130,11 @@ class Profile(ObjectModel):
         try:
             self.wait4id(settings.wait_for_element_time,self._form_mail_board_settings_id)
             self.wait4id(settings.wait_for_element_time,self._form_mail_gifts_settings_id)
-            self.wait4id(settings.wait_for_element_time,self._form_mail_themegifts_settings_id)
+#            gifts notofications
+#            self.wait4id(settings.wait_for_element_time,self._form_mail_themegifts_settings_id)
             self.wait4id(settings.wait_for_element_time,self._form_mail_photocomments_settings_id)
-            self.wait4id(settings.wait_for_element_time,self._form_mail_rates_settings_id)
+#            some weird notification
+#            self.wait4id(settings.wait_for_element_time,self._form_mail_rates_settings_id)
             self.wait4id(settings.wait_for_element_time,self._form_mail_ratesmax_settings_id)
             self.wait4id(settings.wait_for_element_time,self._form_mail_visitors_settings_id)
             self.wait4id(settings.wait_for_element_time, self._form_mail_newmessages_settings_id)

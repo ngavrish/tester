@@ -54,33 +54,42 @@ class Navigation(ObjectModel):
         self.validate_in_tab(text)
 
     def goto_messenger_from_profile(self):
-        window = BrowserWindow(self.browser,self.logger)
-        self.logger.log("Going to messenger from profile")
-        self.click(
-            self.get_element_by_id(
-                self._to_messenger_from_profile_id))
-        window.switch_to_popup()
-        print self.browser.title
+        try:
+            window = BrowserWindow(self.browser,self.logger)
+            self.logger.log("Going to messenger from profile")
+            self.click(
+                self.get_element_by_id(
+                    self._to_messenger_from_profile_id))
+            window.switch_to_popup()
+            print self.browser.title
+        except Exception:
+            raise TestFailedException("Failed to validate navigation to messanger from profile")
 
     def goto_messenger_from_mutual_likes(self,user_profile):
-        window = BrowserWindow(self.browser,self.logger)
-        self.logger.log("Going to messenger from mutual likes")
-        self.click(
-            self.get_element_by_xpath(
-                "//div[@id='comments']//div[@class='comment-avatar-new']//a[@href='" + user_profile +
-                "']/../../div[@class='additional-actions']/a[@class='openHistory']"
-            ))
-        window.switch_to_popup()
-        print self.browser.title
+        try:
+            window = BrowserWindow(self.browser,self.logger)
+            self.logger.log("Going to messenger from mutual likes")
+            self.click(
+                self.get_element_by_xpath(
+                    "//div[@id='comments']//div[@class='comment-avatar-new']//a[@href='" + user_profile +
+                    "']/../../div[@class='additional-actions']/a[@class='openHistory']"
+                ))
+            window.switch_to_popup()
+            self.logger.log(self.browser.title)
+        except Exception:
+            raise TestFailedException("Failed to get to messenger from mutual likes")
 
     def goto_tab_menu_item(self,tab_name):
         self.logger.log("Navigating to " + tab_name + " feed box")
-        self.click(
-            self.wait4xpath(
-                settings.wait_for_element_time,
-                self._feed_tab_notext_xpath + tab_name + "']"
-            ))
-        self.validate_in_tab(tab_name)
+        try:
+            self.click(
+                self.wait4xpath(
+                    settings.wait_for_element_time,
+                    self._feed_tab_notext_xpath + tab_name + "']"
+                ))
+            self.validate_in_tab(tab_name)
+        except Exception:
+            raise TestFailedException("Failed to navigate to tab = " + tab_name)
 
     def validate_in_tab(self,tab_name):
         self.logger.log("Validate located to tab with name = " + tab_name)

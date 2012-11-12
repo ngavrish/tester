@@ -135,7 +135,6 @@ class MarksTestSuite(TestSuite):
             marks = Marks(self.browser, self.logger)
             window = BrowserWindow(self.browser, self.logger)
             auth = AuthForm(self.browser, self.logger)
-            navigation = Navigation(self.browser,self.logger)
 #       login as user1
             self.logger.log("\r\nLogin as User1\r\n")
             self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
