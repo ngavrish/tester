@@ -34,9 +34,9 @@ class MainFilterTestSuite(TestSuite):
             self.AgeBar("Age_bar_depending_on_users_age"),
             self.AgeBarValidateSearch("Main_Age_Bar_Validate_Search"),
             self.AgeBarYearByYearMinimumInterval2LeftValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
-                                                                        "to_Left_Validate_Search"),
+                                                                    "to_Left_Validate_Search"),
             self.AgeBarYearByYearMinimumInterval2RightValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
-                                                                        "to_Right_Validate_Search"),
+                                                                     "to_Right_Validate_Search"),
             self.NonVipGoalSexAndOnlineFilters("Validate_for_non_vip_goal_sex_online"),
             self.NonVipExtendedFilters("NonVipExtendedFilter"),
             self.VipExtendedFilters("VipExtendedFilters")
@@ -108,7 +108,7 @@ class MainFilterTestSuite(TestSuite):
                 filter.drag_right_age_search_slider_to_min()
                 marks.mark()
                 marks.like()
-                filter.validate_user_in_search_age([age,self.ages_list[age]])
+                filter.validate_user_in_search_age(filter.get_age_search_interval_list())
                 if self.ages_list[age] != filter.get_age_search_interval_value():
                     raise TestFailedException("Wrong mininal age search interval")
             profile.set_age(auth.FilterUserNonVipVK.age)
@@ -116,7 +116,7 @@ class MainFilterTestSuite(TestSuite):
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class AgeBarYearByYearMinimumInterval2LeftValidateSearch(TestCase):
-#    year by year using minimal interval from left to maximum
+    #    year by year using minimal interval from left to maximum
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.age_min_min = 16
@@ -152,7 +152,7 @@ class MainFilterTestSuite(TestSuite):
 
     #noinspection PyMethodOverriding,PyMissingConstructor
     class AgeBarYearByYearMinimumInterval2RightValidateSearch(TestCase):
-#    year by year using minimal interval from
+    #    year by year using minimal interval from
         def __init__(self, test_name):
             self.set_log_name(test_name)
             self.age_min = 16
@@ -193,7 +193,7 @@ class MainFilterTestSuite(TestSuite):
         def __init__(self,test_name):
             self.set_log_name(test_name)
             self.sexes_amount = 2
-#            amount of users to check current filter settings
+            #            amount of users to check current filter settings
             self.validate_user_amount = 10
 
         def run(self,browser,logger):
@@ -209,18 +209,18 @@ class MainFilterTestSuite(TestSuite):
             dreams_popup.close()
             leaders_baloon.close()
             leaders_baloon.close_want_fast_meet()
-#            while True:
-#                try:
-#                    leaders_baloon.close()
-#                except Exception:
-#                    print "EXCEPTION"
-#                    break
+            #            while True:
+            #                try:
+            #                    leaders_baloon.close()
+            #                except Exception:
+            #                    print "EXCEPTION"
+            #                    break
             filter.select_online()
             for sex in range(self.sexes_amount):
                 filter.change_sex()
                 for goal in filter.get_goals():
                     filter.select_goal(goal)
-#                    checking for validate_user_amount filter is working
+                    #                    checking for validate_user_amount filter is working
                     for i in range(self.validate_user_amount):
                         self.logger.log("Validating " + str(i) + "th user")
                         marks.like()
@@ -315,15 +315,15 @@ class MainFilterTestSuite(TestSuite):
             self.logger.log("One by one additional parameters were selected")
             self.logger.log("**********************************************")
             for param in filter.get_all_params():
-#                default value = 1 is OK
+            #                default value = 1 is OK
                 self.logger.log("Setting param with name = " + param)
                 none_found_in_search.close()
                 filter.set_filter_param_value(param)
-# #9262 - popup when deleting filter
-#            for param in extended_params:
-#                filter.add_param(param)
+            # #9262 - popup when deleting filter
+            #            for param in extended_params:
+            #                filter.add_param(param)
             none_found_in_search.mark_everyone()
-#9267 - second time getting none found popup
+            #9267 - second time getting none found popup
             none_found_in_search.mark_everyone()
             filter.expand_parameter_list()
             filter.expand_more_params_box()
@@ -397,9 +397,8 @@ class MainFilterTestSuite(TestSuite):
                     assert questionary.get_questionary_value_by_description(descr) == params_map[descr]
                 except Exception:
                     raise TestFailedException("Failed to validate profile value and filter value with \r\n"
-                                                "description = " + str(descr) + " param value = " + str(params_map[descr]) + "\r\n"
-                                                "profile value = " + str(questionary.get_questionary_value_by_description(descr)))
-
+                                              "description = " + str(descr) + " param value = " + str(params_map[descr]) + "\r\n"
+                                                                                                                           "profile value = " + str(questionary.get_questionary_value_by_description(descr)))
             self.browser.back()
 
         def select_all_additional_params(self):

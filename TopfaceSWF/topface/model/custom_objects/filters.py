@@ -9,6 +9,7 @@ from topface.model.custom_objects.marks import Marks
 from topface.model.custom_objects.profile import Profile
 from topface.model.object_model import ObjectModel
 import settings
+from topface.model.custom_objects.search_box import SearchBox
 
 __author__ = 'ngavrish'
 
@@ -97,10 +98,10 @@ class Filters(ObjectModel):
             raise TestFailedException("Failed to get_extended_param_ul_xpath_by_praram_name \n\r" + traceback.format_exc())
 
     def get_visible_param_xpath_by_param_name(self,param):
-        return "//div[(contains(@class,'param-even') and contains(@class,'extended-filter-param-" + \
-               param + \
+        return "//div[(contains(@class,'param-even') and contains(@class,'extended-filter-param-" +\
+               param +\
                "')) or (contains(@style,'block') and contains(@class,'extended-filter-param-" +\
-               param + \
+               param +\
                "'))]"
 
     def get_extended_params_list_item_xpath_by_param_name(self,param,value):
@@ -242,7 +243,7 @@ class Filters(ObjectModel):
         self.hover(goal_option)
         self.click(goal_option)
         self.wait4xpath(settings.wait_for_element_time,
-                        self.get_goal_status_xpath(goal))
+            self.get_goal_status_xpath(goal))
 
     def validate_goal(self,goal,online):
         profile = Profile(self.browser,self.logger)
@@ -318,7 +319,7 @@ class Filters(ObjectModel):
             self.wait4xpath(settings.wait_for_element_time,self._more_params_div_by_param_xpath + param + "']")
             raise TestFailedException("Element that've been added to filter list still exists in add more params = " + param)
         except Exception:
-#            element shouldn't be found
+        #            element shouldn't be found
             self.collapse_more_params_box()
 
     def remove_param(self,param):
@@ -337,29 +338,29 @@ class Filters(ObjectModel):
         except Exception as e:
             raise TestFailedException("Failed to remove params \n\r" + traceback.format_exc())
 
-#    NOT WORKING
-#    def add_all_params(self):
-#        self.logger.log("Using CONTROL button selecint all elements")
-#        try:
-#            self.expand_more_params_box()
-#            ActionChains(self.browser).key_down(Keys.CONTROL)\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[0]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[1]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[2]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[3]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[4]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[5]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[6]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[7]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[8]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[9]))\
-#                        .click(self.get_addmoreelement_by_param_name(self._extended_params[10]))\
-#                        .key_up(Keys.CONTROL).perform()
-#            self.key_up(Keys.CONTROL)
-#            self.click(
-#                self.get_element_by_xpath(self._add_more_params_button_xpath))
-#        except Exception as e:
-#            raise TestFailedException("Failed to add all params with controrl button \n\r" + traceback.format_exc())
+        #    NOT WORKING
+        #    def add_all_params(self):
+        #        self.logger.log("Using CONTROL button selecint all elements")
+        #        try:
+        #            self.expand_more_params_box()
+        #            ActionChains(self.browser).key_down(Keys.CONTROL)\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[0]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[1]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[2]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[3]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[4]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[5]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[6]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[7]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[8]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[9]))\
+        #                        .click(self.get_addmoreelement_by_param_name(self._extended_params[10]))\
+        #                        .key_up(Keys.CONTROL).perform()
+        #            self.key_up(Keys.CONTROL)
+        #            self.click(
+        #                self.get_element_by_xpath(self._add_more_params_button_xpath))
+        #        except Exception as e:
+        #            raise TestFailedException("Failed to add all params with controrl button \n\r" + traceback.format_exc())
 
     def get_all_params(self):
         self.logger.log("Getting all parameters")
@@ -407,7 +408,7 @@ class Filters(ObjectModel):
         try:
             return self.get_element_by_xpath(
                 self.get_visible_param_xpath_by_param_name(param) +
-                    self._additional_xpath_for_currently_selected_value)
+                self._additional_xpath_for_currently_selected_value)
         except Exception:
             raise TestFailedException("Failed to get currently selected value for param = " + param)
 
@@ -424,4 +425,24 @@ class Filters(ObjectModel):
             if age < age_interval[0] or age > age_interval[1]:
                 raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
                                           "\r\n Expected interval: " + str(age_interval))
+
+    def validate_search_users_in_search_age(self,age_interval):
+        search = SearchBox(self.browser,self.logger)
+        profile_ages = search.get_users_profile_age_dict()
+        for profile in profile_ages:
+            try:
+                self.logger.log("\r\nComparing " + str(profile_ages[profile]) + " in " + str(age_interval))
+                if age_interval[1] >= self.max_filter_age:
+                    self.logger.log("More than Max")
+                    if profile_ages[profile] < age_interval[0]:
+                        raise TestFailedException("Failed to validate user age \r\n Found age = " + str(profile_ages[profile]) +
+                                                  "\r\n Expected interval: " + str(age_interval) + " LESS THAN MINIMUM \r\n" +
+                                                    " User profile = " + profile)
+                else:
+                    if profile_ages[profile] < age_interval[0] or profile_ages[profile] > age_interval[1]:
+                        raise TestFailedException("Failed to validate user age \r\n Found age = " + str(profile_ages[profile]) +
+                                                  "\r\n Expected interval: " + str(age_interval) + "\r\n" +
+                                                  " User profile = " + profile)
+            except Exception:
+                raise TestFailedException("Failed to validate user age in interval: \n\r" + traceback.format_exc())
 

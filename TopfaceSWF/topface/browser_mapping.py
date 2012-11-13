@@ -7,5 +7,6 @@ browser_mapping = {
     "profile_test": "firefox",
     "mutual_likes_answers_test": "firefox",
     "main_filter_test": "firefox",
+    "search_filter_test": "firefox",
     "demo_xml": "ie"
 }
