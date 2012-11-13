@@ -428,15 +428,21 @@ class Filters(ObjectModel):
 
     def validate_search_users_in_search_age(self,age_interval):
         search = SearchBox(self.browser,self.logger)
-        ages = search.get_users_age_list()
-        for age in ages:
-            self.logger.log("\r\nComparing " + str(age) + " in " + str(age_interval))
-            if age_interval[0] >= self.max_filter_age:
-                if age < age_interval[0]:
-                    raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
-                                              "\r\n Expected interval: " + str(age_interval) + " LESS THAN MINIMUM ")
-            else:
-                if age < age_interval[0] or age > age_interval[1]:
-                    raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
-                                              "\r\n Expected interval: " + str(age_interval))
+        profile_ages = search.get_users_profile_age_dict()
+        for profile in profile_ages:
+            try:
+                self.logger.log("\r\nComparing " + str(profile_ages[profile]) + " in " + str(age_interval))
+                if age_interval[1] >= self.max_filter_age:
+                    self.logger.log("More than Max")
+                    if profile_ages[profile] < age_interval[0]:
+                        raise TestFailedException("Failed to validate user age \r\n Found age = " + str(profile_ages[profile]) +
+                                                  "\r\n Expected interval: " + str(age_interval) + " LESS THAN MINIMUM \r\n" +
+                                                    " User profile = " + profile)
+                else:
+                    if profile_ages[profile] < age_interval[0] or profile_ages[profile] > age_interval[1]:
+                        raise TestFailedException("Failed to validate user age \r\n Found age = " + str(profile_ages[profile]) +
+                                                  "\r\n Expected interval: " + str(age_interval) + "\r\n" +
+                                                  " User profile = " + profile)
+            except Exception:
+                raise TestFailedException("Failed to validate user age in interval: \n\r" + traceback.format_exc())
 

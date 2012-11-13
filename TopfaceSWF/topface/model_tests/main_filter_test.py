@@ -108,7 +108,7 @@ class MainFilterTestSuite(TestSuite):
                 filter.drag_right_age_search_slider_to_min()
                 marks.mark()
                 marks.like()
-                filter.validate_user_in_search_age([age,self.ages_list[age]])
+                filter.validate_user_in_search_age(filter.get_age_search_interval_list())
                 if self.ages_list[age] != filter.get_age_search_interval_value():
                     raise TestFailedException("Wrong mininal age search interval")
             profile.set_age(auth.FilterUserNonVipVK.age)
@@ -399,7 +399,6 @@ class MainFilterTestSuite(TestSuite):
                     raise TestFailedException("Failed to validate profile value and filter value with \r\n"
                                               "description = " + str(descr) + " param value = " + str(params_map[descr]) + "\r\n"
                                                                                                                            "profile value = " + str(questionary.get_questionary_value_by_description(descr)))
-
             self.browser.back()
 
         def select_all_additional_params(self):
