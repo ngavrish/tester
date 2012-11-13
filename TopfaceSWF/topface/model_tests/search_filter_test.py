@@ -5,12 +5,14 @@ from engine.test_suite import TestSuite
 from topface import profiling_events
 from engine.test_case import TestCase
 from topface.model.custom_objects.auth import AuthForm
+from topface.model.custom_objects.js_popups.dreams_popup import DreamsPopup
 import settings
 from topface.model.custom_objects.marks import Marks
 from topface.model.custom_objects.filters import Filters
 from topface.model.custom_objects.profile import Profile
 from topface.model.custom_objects.navigation import Navigation
 from topface.model.custom_objects.browser_window import BrowserWindow
+from topface.model.custom_objects.js_popups.leaders_baloon import LeadersBaloon
 
 __author__ = 'ngavrish'
 
@@ -24,13 +26,13 @@ class SearchFilterTestSuite(TestSuite):
 
     def run(self):
         self.test_cases = [
-           # self.AgeBar("DatingAgeBar"),
-           # self.AgeBarValidateSearch("AgeBarValidateSearch"),
-#           self.AgeBarYearByYearMinimumInterval2LeftValidateSearch("Search_Age_Bar_Year_By_Year_Minimum_Interval_"+
-#                                                                   "to_Left_Validate_Search"),
+           self.AgeBar("DatingAgeBar"),
+           self.AgeBarValidateSearch("AgeBarValidateSearch"),
+           self.AgeBarYearByYearMinimumInterval2LeftValidateSearch("Search_Age_Bar_Year_By_Year_Minimum_Interval_"+
+                                                                   "to_Left_Validate_Search"),
            self.AgeBarYearByYearMinimumInterval2RightValidateSearch("Search_Age_Bar_Year_By_Year_Minimum_Interval_"+
                                                                     "to_Right_Validate_Search"),
-            #            self.MainVipExtendedFilters("VipExtendedFilters")
+#                        self.MainVipExtendedFilters("VipExtendedFilters")
         ]
         for test_case in self.test_cases:
             run_test_results = test_case.run_test(self.browser_name)
@@ -168,4 +170,42 @@ class SearchFilterTestSuite(TestSuite):
                 sleep(5)
                 filter.validate_search_users_in_search_age(filter.get_age_search_interval_list())
             profile.set_age(auth.FilterUserNonVipVK.age)
+            window.close()
+
+    #noinspection PyMethodOverriding,PyMissingConstructor
+    class NonVipGoalSexAndOnlineFilters(TestCase):
+        def __init__(self,test_name):
+            self.set_log_name(test_name)
+            self.sexes_amount = 2
+            #            amount of users to check current filter settings
+            self.validate_user_amount = 10
+
+        def run(self,browser,logger):
+            auth = AuthForm(browser,logger)
+            filter = Filters(browser,logger)
+            marks = Marks(browser,logger)
+            navigation = Navigation(browser,logger)
+            window = BrowserWindow(browser, logger)
+
+            window.open(settings.target_url)
+            self.do_method(auth.login_with_vk_full_scale,profiling_events.login_event,auth.FilterUserNonVipVK)
+            navigation.goto_main_top_menu_item(u"Знакомства")
+            #            while True:
+            #                try:
+            #                    leaders_baloon.close()
+            #                except Exception:
+            #                    print "EXCEPTION"
+            #                    break
+            filter.select_online()
+            for sex in range(self.sexes_amount):
+                filter.change_sex()
+                for goal in filter.get_goals():
+                    filter.select_goal(goal)
+                    #                    checking for validate_user_amount filter is working
+                    for i in range(self.validate_user_amount):
+                        self.logger.log("Validating " + str(i) + "th user")
+                        marks.like()
+                        filter.validate_in_search_goal(goal=goal,online=True)
+                        marks.mark()
+            filter.change_sex()
             window.close()

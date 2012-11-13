@@ -446,3 +446,14 @@ class Filters(ObjectModel):
             except Exception:
                 raise TestFailedException("Failed to validate user age in interval: \n\r" + traceback.format_exc())
 
+    def validate_in_search_goal(self,goal=goal,online=True):
+        search_box = SearchBox(self.browser,self.logger)
+        if online:
+            self.wait4xpath(settings.wait_for_element_time,profile._online_indicator)
+        try:
+            self.logger.log("validating user goal status in search")
+            self.wait4xpath(settings.wait_for_element_time,
+                self.get_goal_status_xpath(goal))
+        except Exception as e:
+            raise TestFailedException("Failed to validate user from filter search with goal = " + str(goal) + "\n\r" +
+                                      traceback.format_exc())

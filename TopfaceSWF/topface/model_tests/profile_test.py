@@ -23,14 +23,15 @@ class ProfileTestSuite(TestSuite):
     def run(self):
         self.test_cases = [
             self.ProfileNavigationTest("Profile_Navigation_Test"),
-#            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
-#            self.QuestionaryEditingTest("Profile Anket Editing Test")
+            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
+            self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
             run_test_results = test_case.run_test(self.browser_name)
             self.result[run_test_results.keys()[0]] = run_test_results.values()[0]
         return {self.__class__.__name__: self.result}
 
+    #noinspection PyMethodOverriding,PyMissingConstructor
     class ProfileNavigationTest(TestCase):
 
         def __init__(self,test_name):
@@ -69,6 +70,7 @@ class ProfileTestSuite(TestSuite):
             self.logger.log("100500")
             window.close()
 
+    #noinspection PyMethodOverriding,PyMissingConstructor
     class ProfileNavigationFixMarksResetTest(TestCase):
 
         def __init__(self,test_name):
@@ -92,7 +94,7 @@ class ProfileTestSuite(TestSuite):
                 window.open(auth.User1.profile_url_fb)
             window.close()
 
-
+    #noinspection PyMethodOverriding,PyMissingConstructor
     class QuestionaryEditingTest(TestCase):
 
         def __init__(self, test_name):
@@ -129,7 +131,7 @@ class ProfileTestSuite(TestSuite):
 
             window.close()
 
-
+    #noinspection PyMethodOverriding,PyMissingConstructor
     class ProfileSettingsEditingTest(TestCase):
 
         def __init__(self,test_name):

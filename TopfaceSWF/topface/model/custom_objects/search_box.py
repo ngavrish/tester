@@ -36,6 +36,9 @@ class SearchBox(ObjectModel):
         except Exception:
             raise TestFailedException("Failed to get users age list")
 
+    def get_users(self):
+        return {_user_items_xpath:self.get_elements_by_xpath(self._user_items_xpath)}
+
     def get_users_profiles(self):
         pass
 
