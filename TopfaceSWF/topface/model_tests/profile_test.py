@@ -23,8 +23,8 @@ class ProfileTestSuite(TestSuite):
     def run(self):
         self.test_cases = [
             self.ProfileNavigationTest("Profile_Navigation_Test"),
-#            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
-#            self.QuestionaryEditingTest("Profile Anket Editing Test")
+            self.ProfileNavigationFixMarksResetTest("ProfileNavigationFixMarksResetTest"),
+            self.QuestionaryEditingTest("Profile Anket Editing Test")
         ]
         for test_case in self.test_cases:
             run_test_results = test_case.run_test(self.browser_name)
