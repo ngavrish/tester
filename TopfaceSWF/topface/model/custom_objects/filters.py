@@ -71,7 +71,8 @@ class Filters(ObjectModel):
         "alcohol": 8,
         "breast": 16,
         "job": 1,
-        "status": 2,
+#        #9685 status filter is broken
+#        "status": 2,
         "education": 3,
         "finances": 5,
         "smoking": 7,
@@ -87,6 +88,12 @@ class Filters(ObjectModel):
         ObjectModel.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
+
+    def get_param_order_map(self):
+        return self._param_order_map
+
+    def get_default_visible_params(self):
+        return self._default_visible_params
 
     def get_selected_goal_xpath(self,goal):
         return self._selected_goal_xpath + goal + "']"
@@ -359,6 +366,7 @@ class Filters(ObjectModel):
 
     def add_param(self,param):
         try:
+            self.logger.log("Adding parameter")
             self.expand_more_params_box()
             param2add = self.get_element_by_xpath(self._more_params_div_by_param_xpath + param + "']")
             self.hover(param2add)
@@ -426,12 +434,14 @@ class Filters(ObjectModel):
             self.click(
                 self.get_element_by_xpath(
                     self.get_visible_param_xpath_by_param_name(param)))
-            self.hover(
-                self.get_element_by_xpath(
-                    self.get_extended_params_list_item_xpath_by_param_name(param,value)))
-            self.click(
-                self.get_element_by_xpath(
-                    self.get_extended_params_list_item_xpath_by_param_name(param,value)))
+            list_item = self.get_element_by_xpath(self.get_extended_params_list_item_xpath_by_param_name(param,value))
+            text = list_item.text
+            self.hover(list_item)
+            self.click(list_item)
+            if self.get_selected_param(param).text != text:
+                self.logger.log("Search filter not selected " + self.get_selected_param(param).text +
+                                " vs " + text)
+                raise TestFailedException("Setting filter failure")
         except Exception as e:
             raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 

@@ -31,14 +31,14 @@ class MainFilterTestSuite(TestSuite):
 
     def run(self):
         self.test_cases = [
-            self.AgeBar("Age_bar_depending_on_users_age"),
-            self.AgeBarValidateSearch("Main_Age_Bar_Validate_Search"),
-            self.AgeBarYearByYearMinimumInterval2LeftValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
-                                                                    "to_Left_Validate_Search"),
-            self.AgeBarYearByYearMinimumInterval2RightValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
-                                                                     "to_Right_Validate_Search"),
-            self.NonVipGoalSexAndOnlineFilters("Validate_for_non_vip_goal_sex_online"),
-            self.NonVipExtendedFilters("NonVipExtendedFilter"),
+#            self.AgeBar("Age_bar_depending_on_users_age"),
+#            self.AgeBarValidateSearch("Main_Age_Bar_Validate_Search"),
+#            self.AgeBarYearByYearMinimumInterval2LeftValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
+#                                                                    "to_Left_Validate_Search"),
+#            self.AgeBarYearByYearMinimumInterval2RightValidateSearch("Main_Age_Bar_Year_By_Year_Minimum_Interval_"+
+#                                                                     "to_Right_Validate_Search"),
+#            self.NonVipGoalSexAndOnlineFilters("Validate_for_non_vip_goal_sex_online"),
+#            self.NonVipExtendedFilters("NonVipExtendedFilter"),
             self.VipExtendedFilters("VipExtendedFilters")
         ]
 
@@ -229,47 +229,6 @@ class MainFilterTestSuite(TestSuite):
             filter.change_sex()
             window.close()
 
-    #noinspection PyMissingConstructor,PyMethodOverriding
-    class NonVipGoalSexAndOnlineFilters(TestCase):
-        def __init__(self,test_name):
-            self.set_log_name(test_name)
-            self.sexes_amount = 2
-            #            amount of users to check current filter settings
-            self.validate_user_amount = 10
-
-        def run(self,browser,logger):
-            auth = AuthForm(browser,logger)
-            filter = Filters(browser,logger)
-            marks = Marks(browser,logger)
-            dreams_popup = DreamsPopup(browser,logger)
-            leaders_baloon = LeadersBaloon(browser,logger)
-            window = BrowserWindow(browser, logger)
-
-            window.open(settings.target_url)
-            self.do_method(auth.login_with_vk_full_scale,profiling_events.login_event,auth.FilterUserNonVipVK)
-            dreams_popup.close()
-            leaders_baloon.close()
-            leaders_baloon.close_want_fast_meet()
-            #            while True:
-            #                try:
-            #                    leaders_baloon.close()
-            #                except Exception:
-            #                    print "EXCEPTION"
-            #                    break
-            filter.select_online()
-            for sex in range(self.sexes_amount):
-                filter.change_sex()
-                for goal in filter.get_goals():
-                    filter.select_goal(goal)
-                    #                    checking for validate_user_amount filter is working
-                    for i in range(self.validate_user_amount):
-                        self.logger.log("Validating " + str(i) + "th user")
-                        marks.like()
-                        filter.validate_goal(goal=goal,online=True)
-                        marks.mark()
-            filter.change_sex()
-            window.close()
-
     #noinspection PyMethodOverriding,PyMissingConstructor
     class NonVipExtendedFilters(TestCase):
         def __init__(self, test_name):
@@ -337,9 +296,9 @@ class MainFilterTestSuite(TestSuite):
             marks.mark_and_validate_mark(
                 marks.get_mark_by_value(10))
 
-            navigation.goto_profile_from_search()
+            navigation.goto_profile_from_main()
             vip_popup.close_premium()
-            navigation.goto_profile_from_search(way="photo")
+            navigation.goto_profile_from_main(way="photo")
             vip_popup.close_premium()
             window.close()
 
@@ -367,13 +326,16 @@ class MainFilterTestSuite(TestSuite):
             leaders_baloon.close()
             leaders_baloon.close_want_fast_meet()
 
-            self.select_all_additional_params()
-            all_visible_params = filter.get_all_params()
-            for param in all_visible_params:
+            all_params = filter.get_param_order_map()
+            self.logger.log("\r\n\r\nAll params = " + str(all_params) + "\r\n\r\n")
+            for param in all_params:
+                self.logger.log("\r\n\r\nValidating param with name = " + param + "\r\n\r\n")
+                filter.expand_parameter_list()
+                if param not in filter.get_default_visible_params():
+                    filter.add_param(param)
                 filter.set_filter_param_value(param,2)
                 self.validate_user_in_search({filter.get_param_description(param):filter.get_selected_param(param).text})
                 filter.unset_filter_param_value(param)
-                self.select_all_additional_params()
             window.close()
 
         def validate_user_in_search(self,params_map):

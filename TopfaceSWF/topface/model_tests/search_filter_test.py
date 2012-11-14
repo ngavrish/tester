@@ -208,3 +208,27 @@ class SearchFilterTestSuite(TestSuite):
             filter.change_sex()
             window.close()
 
+    #noinspection PyMethodOverriding,PyMissingConstructor
+    class NonVipExtendedFilters(TestCase):
+        def __init__(self,test_name):
+            self.set_log_name(test_name)
+            self.sexes_amount = 2
+            self.minimal_age_interval = 50
+            #            amount of users to check current filter settings
+
+        def run(self,browser,logger):
+            auth = AuthForm(browser,logger)
+            filter = Filters(browser,logger)
+            navigation = Navigation(browser,logger)
+            window = BrowserWindow(browser, logger)
+
+            window.open(settings.target_url)
+            self.do_method(auth.login_with_vk_full_scale,profiling_events.login_event,auth.FilterUserNonVipVK)
+            navigation.goto_main_top_menu_item(u"Знакомства")
+            filter.init_age_filter()
+            if filter.get_age_search_interval_value() < self.minimal_age_interval:
+                filter.drag_left_age_search_slider_to_min()
+                sleep(5)
+                filter.drag_right_age_search_slider_to_max()
+            filter.close_age()
+

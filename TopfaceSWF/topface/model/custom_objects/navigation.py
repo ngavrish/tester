@@ -128,12 +128,12 @@ class Navigation(ObjectModel):
         self.click(
             self.get_element_by_xpath(self._logo_xpath))
 
-    def goto_profile_from_search(self,way="name"):
+    def goto_profile_from_main(self,way="name"):
 #        tow option available - name, photo
         if way == "name":
             self.click(
                 self.get_element_by_id(self._profile_name_link_id))
         elif way == "photo":
             self.click(
-                self.get_element_by_xpath(self._profile_photo_link_xpath))
+                self.get_profile_photo_link())
 
