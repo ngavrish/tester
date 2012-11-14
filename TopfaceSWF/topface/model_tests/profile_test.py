@@ -34,7 +34,7 @@ class ProfileTestSuite(TestSuite):
     #noinspection PyMethodOverriding,PyMissingConstructor
     class ProfileNavigationTest(TestCase):
 
-        def __init__(self,test_name):
+        def __init__(self, test_name):
             self.set_log_name(test_name)
 
         def run(self, browser, logger):
@@ -47,17 +47,16 @@ class ProfileTestSuite(TestSuite):
             self.do_method(auth.login_with_fb_full_scale,profiling_events.login_event,auth.User1)
             navigation.goto_top_menu_item(u"Профиль")
             profile.validate_profile_view()
-            print "Profile view is validated"
+            self.logger.log("Profile view is validated")
             navigation.goto_tab_menu_item(u"Настройки")
             profile.validate_settings_view()
-            print "Settings view is validated"
+            self.logger.log("Settings view is validated")
             navigation.goto_tab_menu_item(u"Уведомления")
             profile.validate_notifications_view()
-            print "Notifications view is validated"
-            navigation.goto_tab_menu_item(u"Контакты")
-            profile.validate_contacts_view()
+            self.logger.log("Notifications view is validated")
             navigation.goto_tab_menu_item(u"Фото")
             profile.validate_photo_view()
+            self.logger.log("Photo view is validated")
             navigation.goto_tab_menu_item(u"Поклонники")
             vip_popup.validate_forbidden_nonvip()
             self.browser.back()
@@ -67,7 +66,7 @@ class ProfileTestSuite(TestSuite):
             navigation.goto_tab_menu_item(u"Гороскоп")
             profile.validate_horo_view()
 #            logout and login with another user to mark that user again to fix the profile marks reset
-            self.logger.log("100500")
+            self.logger.log("End profile navigation")
             window.close()
 
     #noinspection PyMethodOverriding,PyMissingConstructor
