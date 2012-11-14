@@ -8,6 +8,8 @@ class SearchBox(ObjectModel):
     _user_items_xpath = "//div[@id='searchList']//div[@class='user-item']"
     _user_items_name_xpath = "//div[@class='userItemName']"
     _user_profile_link_xpath = "//a[@class='profileButton']"
+    _user_online_icon_xpath = "//div[contains(@class,'onlineOnPhoto') or contains(@class,'onlineTrayOnPhoto') or contains(@class,'onlineMobileOnPhoto')]"
+    _user_goal_beginning_xpath = "//div[contains(@class,'"
 
     def __init__(self, browser, logger):
         ObjectModel.__init__(self, browser, logger)
@@ -36,10 +38,20 @@ class SearchBox(ObjectModel):
         except Exception:
             raise TestFailedException("Failed to get users age list")
 
-    def get_users(self):
-        return {_user_items_xpath:self.get_elements_by_xpath(self._user_items_xpath)}
+    def get_users_amount(self):
+#        get users profile and users list in a single dictionary
+        return len(self.get_elements_by_xpath(self._user_items_xpath))
 
-    def get_users_profiles(self):
-        pass
+    def get_users_xpath(self):
+        return self._user_items_xpath
+
+    def get_user_online_xpath(self):
+        return self._user_online_icon_xpath
+
+    def get_user_goal_xpath(self,goal):
+        return self._user_goal_beginning_xpath + str(goal) + "')]"
+
+    def get_user_profile(self,user_xpath):
+        return self.get_element_by_xpath(user_xpath + self._user_profile_link_xpath).get_attribute("href")
 
 

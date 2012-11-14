@@ -16,12 +16,16 @@ __author__ = 'ngavrish'
 class Filters(ObjectModel):
 
     max_filter_age = 80
+    _search_treshold = 3
     _sex_filter_xpath = "//div[@id='ratingAllFilter']//a[contains(@class,'gender-filter')]"
     _online_filter_checkbox_id = "onlineFilter"
+    _age_filter_close_xpath = "//div[@id='ageChangeBlock']/div[contains(@class,'close')]"
+    _online_filter_checked_xpath = "//input[@id='onlineFilter']/../../div[contains(@class,'customcheckbox-checked')]"
     _age_filter_link_xpath = "//a[contains(@class,'age-filter')]"
     _right_age_slider_xpath = ".//*[@id='slider']/a[2]"
     _left_age_slider_xpath = ".//*[@id='slider']/a[1]"
     _select_goal_xpath = "//div[@id='widgetFilter']//span[contains(@class,'selectBox-label')]"
+    _selected_goal_xpath = "//li[contains(@class,'selectBox-selected')]/a[@rel='"#sex']"
     _goal_status_xpath = "//div[@id='userPhotoLayout']//div[contains(@class,'"
     _expand_params_id = "extendedFilterMore"
     _collapse_params_id = "extendedFilterLess"
@@ -83,6 +87,9 @@ class Filters(ObjectModel):
         ObjectModel.__init__(self, browser, logger)
         self.browser = browser
         self.logger = logger
+
+    def get_selected_goal_xpath(self,goal):
+        return self._selected_goal_xpath + goal + "']"
 
     def get_addmoreelement_by_param_name(self,param):
         return self.get_element_by_xpath(
@@ -167,6 +174,14 @@ class Filters(ObjectModel):
         except Exception:
             TestFailedException("Failed to drage age slider to the right minimum")
 
+    def drag_left_age_search_slider_to_min(self):
+        try:
+            self.drag_and_drop(
+                self.get_element_by_xpath(self._left_age_slider_xpath),
+                -400,0)
+        except Exception:
+            TestFailedException("Failed to drage age slider to the right maximum")
+
     def drag_left_age_search_slider_to_max(self):
         try:
             self.drag_and_drop(
@@ -217,39 +232,59 @@ class Filters(ObjectModel):
 
     def select_online(self):
         self.logger.log("Switch online filter")
-        profile = Profile(self.browser,self.logger)
-        self.click(
-            self.get_element_by_id(self._online_filter_checkbox_id))
-        self.wait4xpath(settings.wait_for_element_time,profile._online_indicator)
+        try:
+            self.click(
+                self.get_element_by_id(self._online_filter_checkbox_id))
+            self.wait4xpath(settings.wait_for_element_time,self._online_filter_checked_xpath)
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
+
+    def close_age(self):
+        self.logger.log("Closing online filter")
+        try:
+            self.click(
+                self.get_element_by_xpath(self._age_filter_close_xpath))
+        except Exception as e:
+            raise TestFailedException("Failed to close age filter")
 
     def change_sex(self):
         self.logger.log("Change sex and return current filter value")
-        sex_element = self.get_element_by_xpath(self._sex_filter_xpath)
-        sex_before_change = sex_element.text
-        self.hover(sex_element)
-        self.click(sex_element)
-        sex_after_change = sex_element.text
-        sleep(2)
-        self.logger.log("Comparing elements: " + sex_after_change + " vs " + sex_before_change)
-        if sex_after_change == sex_before_change:
-            raise TestFailedException("Failed to change sex")
-        return sex_after_change
+        try:
+            sex_element = self.get_element_by_xpath(self._sex_filter_xpath)
+            sex_before_change = sex_element.text
+            self.hover(sex_element)
+            self.click(sex_element)
+            sex_after_change = sex_element.text
+            sleep(2)
+            self.logger.log("Comparing elements: " + sex_after_change + " vs " + sex_before_change)
+            if sex_after_change == sex_before_change:
+                raise TestFailedException("Failed to change sex")
+            return sex_after_change
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
+
 
     def select_goal(self,goal):
         self.logger.log("Select goal")
-        self.click(
-            self.get_element_by_xpath(self._select_goal_xpath))
-        goal_option = self.get_element_by_xpath("//a[@rel='" + goal + "']")
-        self.hover(goal_option)
-        self.click(goal_option)
-        self.wait4xpath(settings.wait_for_element_time,
-            self.get_goal_status_xpath(goal))
+        try:
+            self.click(
+                self.get_element_by_xpath(self._select_goal_xpath))
+            goal_option = self.get_element_by_xpath("//a[@rel='" + goal + "']")
+            self.hover(goal_option)
+            self.click(goal_option)
+            self.wait4xpath(settings.wait_for_element_time,self.get_selected_goal_xpath(goal))
+#            change goal selected validation
+#            self.wait4xpath(settings.wait_for_element_time,
+#                self.get_goal_status_xpath(goal))
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
+
 
     def validate_goal(self,goal,online):
         profile = Profile(self.browser,self.logger)
-        if online:
-            self.wait4xpath(settings.wait_for_element_time,profile._online_indicator)
         try:
+            if online:
+                self.wait4xpath(settings.wait_for_element_time,profile._online_indicator)
             self.logger.log("validating user goal status in search")
             self.wait4xpath(settings.wait_for_element_time,
                 self.get_goal_status_xpath(goal))
@@ -259,68 +294,87 @@ class Filters(ObjectModel):
 
     def expand_parameter_list(self):
         self.logger.log("Expanding params list")
-        self.hover(
-            self.get_element_by_id(self._expand_params_id))
-        self.click(
-            self.get_element_by_id(self._expand_params_id))
-        self.wait4xpath(settings.wait_for_element_time,self._extended_expanded_param_div_xpath)
+        try:
+            self.hover(
+                self.get_element_by_id(self._expand_params_id))
+            self.click(
+                self.get_element_by_id(self._expand_params_id))
+            self.wait4xpath(settings.wait_for_element_time,self._extended_expanded_param_div_xpath)
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def collapse_parameter_list(self):
         self.logger.log("Collapsing params list")
-        self.hover(
-            self.get_element_by_id(self._collapse_params_id))
-        self.click(
-            self.get_element_by_id(self._collapse_params_id))
-        self.wait4xpath(settings.wait_for_element_time,self._extended_collapsed_param_div_xpath)
+        try:
+            self.hover(
+                self.get_element_by_id(self._collapse_params_id))
+            self.click(
+                self.get_element_by_id(self._collapse_params_id))
+            self.wait4xpath(settings.wait_for_element_time,self._extended_collapsed_param_div_xpath)
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def validate_default_extended_params(self):
         self.logger.log("Validating default extended params")
-        default_visible_elements = self.get_elements_by_xpath(self._visible_default_params_xpath)
-        if len(default_visible_elements) != len(self._default_visible_params):
-            self.logger.log("Found default visible elements amount = " + str(len(default_visible_elements)))
-            self.logger.log("Expected = " + str(len(self._default_visible_params)))
-            raise TestFailedException("Failed to validate amount of params that are visible by default")
-        for param in self._default_visible_params:
-            self.wait4xpath(settings.wait_for_element_time,self.get_visible_param_xpath_by_param_name(param))
+        try:
+            default_visible_elements = self.get_elements_by_xpath(self._visible_default_params_xpath)
+            if len(default_visible_elements) != len(self._default_visible_params):
+                self.logger.log("Found default visible elements amount = " + str(len(default_visible_elements)))
+                self.logger.log("Expected = " + str(len(self._default_visible_params)))
+                raise TestFailedException("Failed to validate amount of params that are visible by default")
+            for param in self._default_visible_params:
+                self.wait4xpath(settings.wait_for_element_time,self.get_visible_param_xpath_by_param_name(param))
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def expand_more_params_box(self):
-        self.hover(
-            self.get_element_by_id(self._add_more_params_link_id))
-        self.click(
-            self.get_element_by_id(self._add_more_params_link_id))
         try:
-            self.get_element_by_id(self._more_params_box_id).get_attribute("style")
-            self.wait4xpath(settings.wait_for_element_time,self._expanded_addmoreparams_box_xpath)
+            self.hover(
+                self.get_element_by_id(self._add_more_params_link_id))
+            self.click(
+                self.get_element_by_id(self._add_more_params_link_id))
+            try:
+                self.get_element_by_id(self._more_params_box_id).get_attribute("style")
+                self.wait4xpath(settings.wait_for_element_time,self._expanded_addmoreparams_box_xpath)
+            except Exception as e:
+                raise TestFailedException("Failed to validate add more params box")
         except Exception as e:
-            raise TestFailedException("Failed to validate add more params box")
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
+
 
     def collapse_more_params_box(self):
         self.logger.log("Collapsing more params box")
-        self.hover(
-            self.get_element_by_xpath(self._close_more_params_box_xpath))
-        self.click(
-            self.get_element_by_xpath(self._close_more_params_box_xpath))
         try:
-            self.get_element_by_id(self._more_params_box_id).get_attribute("style")
-            self.wait4xpath(settings.wait_for_element_time,self._collapsed_addmoreparams_box_xpath)
+            self.hover(
+                self.get_element_by_xpath(self._close_more_params_box_xpath))
+            self.click(
+                self.get_element_by_xpath(self._close_more_params_box_xpath))
+            try:
+                self.get_element_by_id(self._more_params_box_id).get_attribute("style")
+                self.wait4xpath(settings.wait_for_element_time,self._collapsed_addmoreparams_box_xpath)
+            except Exception as e:
+                raise TestFailedException("Failed to validate add more params box")
         except Exception as e:
-            raise TestFailedException("Failed to validate add more params box")
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def add_param(self,param):
-        self.expand_more_params_box()
-        param2add = self.get_element_by_xpath(self._more_params_div_by_param_xpath + param + "']")
-        self.hover(param2add)
-        self.click(param2add)
-        self.click(
-            self.get_element_by_xpath(self._add_more_params_button_xpath))
-        self.wait4xpath(settings.wait_for_element_time,self.get_visible_param_xpath_by_param_name(param))
-        self.expand_more_params_box()
         try:
-            self.wait4xpath(settings.wait_for_element_time,self._more_params_div_by_param_xpath + param + "']")
-            raise TestFailedException("Element that've been added to filter list still exists in add more params = " + param)
-        except Exception:
-        #            element shouldn't be found
-            self.collapse_more_params_box()
+            self.expand_more_params_box()
+            param2add = self.get_element_by_xpath(self._more_params_div_by_param_xpath + param + "']")
+            self.hover(param2add)
+            self.click(param2add)
+            self.click(
+                self.get_element_by_xpath(self._add_more_params_button_xpath))
+            self.wait4xpath(settings.wait_for_element_time,self.get_visible_param_xpath_by_param_name(param))
+            self.expand_more_params_box()
+            try:
+                self.wait4xpath(settings.wait_for_element_time,self._more_params_div_by_param_xpath + param + "']")
+                raise TestFailedException("Element that've been added to filter list still exists in add more params = " + param)
+            except Exception:
+            #            element shouldn't be found
+                self.collapse_more_params_box()
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def remove_param(self,param):
         self.logger.log("Removing element with param = " + param)
@@ -368,27 +422,33 @@ class Filters(ObjectModel):
 
     def set_filter_param_value(self,param,value=1):
         self.logger.log("Set filter param = " + str(param) + " value = " + str(value))
-        self.click(
-            self.get_element_by_xpath(
-                self.get_visible_param_xpath_by_param_name(param)))
-        self.hover(
-            self.get_element_by_xpath(
-                self.get_extended_params_list_item_xpath_by_param_name(param,value)))
-        self.click(
-            self.get_element_by_xpath(
-                self.get_extended_params_list_item_xpath_by_param_name(param,value)))
+        try:
+            self.click(
+                self.get_element_by_xpath(
+                    self.get_visible_param_xpath_by_param_name(param)))
+            self.hover(
+                self.get_element_by_xpath(
+                    self.get_extended_params_list_item_xpath_by_param_name(param,value)))
+            self.click(
+                self.get_element_by_xpath(
+                    self.get_extended_params_list_item_xpath_by_param_name(param,value)))
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def unset_filter_param_value(self,param):
         self.logger.log("Set filter param = " + str(param) + " value = 0")
-        self.click(
-            self.get_element_by_xpath(
-                self.get_visible_param_xpath_by_param_name(param)))
-        self.hover(
-            self.get_element_by_xpath(
-                self.get_extended_params_list_item_xpath_by_param_name(param,0)))
-        self.click(
-            self.get_element_by_xpath(
-                self.get_extended_params_list_item_xpath_by_param_name(param,0)))
+        try:
+            self.click(
+                self.get_element_by_xpath(
+                    self.get_visible_param_xpath_by_param_name(param)))
+            self.hover(
+                self.get_element_by_xpath(
+                    self.get_extended_params_list_item_xpath_by_param_name(param,0)))
+            self.click(
+                self.get_element_by_xpath(
+                    self.get_extended_params_list_item_xpath_by_param_name(param,0)))
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def get_param_description(self,param):
         self.logger.log("Getting 0 value param = " + str(param) + " description ")
@@ -414,17 +474,20 @@ class Filters(ObjectModel):
 
 
     def validate_user_in_search_age(self,age_interval):
-        marks = Marks(self.browser,self.logger)
-        age = int(marks.get_user_age())
-        self.logger.log("\r\nComparing " + str(age) + " in " + str(age_interval))
-        if age_interval[0] >= self.max_filter_age:
-            if age < age_interval[0]:
-                raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
-                                          "\r\n Expected interval: " + str(age_interval) + " LESS THAN MINIMUM ")
-        else:
-            if age < age_interval[0] or age > age_interval[1]:
-                raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
-                                          "\r\n Expected interval: " + str(age_interval))
+        try:
+            marks = Marks(self.browser,self.logger)
+            age = int(marks.get_user_age())
+            self.logger.log("\r\nComparing " + str(age) + " in " + str(age_interval))
+            if age_interval[0] >= self.max_filter_age:
+                if age < age_interval[0]:
+                    raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
+                                              "\r\n Expected interval: " + str(age_interval) + " LESS THAN MINIMUM ")
+            else:
+                if age < age_interval[0] or age > age_interval[1]:
+                    raise TestFailedException("Failed to validate user age \r\n Found age = " + str(age) +
+                                              "\r\n Expected interval: " + str(age_interval))
+        except Exception as e:
+            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
 
     def validate_search_users_in_search_age(self,age_interval):
         search = SearchBox(self.browser,self.logger)
@@ -446,14 +509,25 @@ class Filters(ObjectModel):
             except Exception:
                 raise TestFailedException("Failed to validate user age in interval: \n\r" + traceback.format_exc())
 
-    def validate_in_search_goal(self,goal=goal,online=True):
+    def validate_in_search_goal(self,goal,online=True):
         search_box = SearchBox(self.browser,self.logger)
-        if online:
-            self.wait4xpath(settings.wait_for_element_time,profile._online_indicator)
         try:
-            self.logger.log("validating user goal status in search")
-            self.wait4xpath(settings.wait_for_element_time,
-                self.get_goal_status_xpath(goal))
+            online_count = 0
+            for i in range(search_box.get_users_amount()):
+                curr_user_xpath = search_box.get_users_xpath() + "[" + str(i+1) + "]"
+                user = self.get_element_by_xpath(curr_user_xpath)
+                self.hover(user)
+                self.logger.log("Validating " + str(search_box.get_user_profile(curr_user_xpath)) + "\r\n")
+                if online:
+                    try:
+                        self.wait4xpath(settings.wait_for_element_time,curr_user_xpath + search_box.get_user_online_xpath())
+                    except Exception:
+                        self.logger.log("FAILED 2FIND ONLINE")
+                        online_count += 1
+                        if online_count == self._search_treshold:
+                            raise TestFailedException("Didn't find ONLINE status from 3 users")
+                self.logger.log("validating user goal status in search")
+                self.wait4xpath(settings.wait_for_element_time,curr_user_xpath + search_box.get_user_goal_xpath(goal))
         except Exception as e:
             raise TestFailedException("Failed to validate user from filter search with goal = " + str(goal) + "\n\r" +
-                                      traceback.format_exc())
+                                          traceback.format_exc())
