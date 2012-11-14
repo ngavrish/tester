@@ -12,7 +12,7 @@ class Messenger(ObjectModel):
     _message_box_xpath = "//div[@id='sendMessageForm']//textarea"
     _send_message_button_xpath = ".//*[@id='sendMessageForm']//button"
     _last_message_text = "//div[@class='messages-wrapper']//ul/li[last()]//div[contains(@class,'message')]"
-    _1st_message_in_feed_notext_xpath_fb = "//div[@id='comments']//div[contains(@class,'commentContainer')][1]//div[@class='text']//span[text()='"
+    _1st_message_in_feed_notext_xpath_fb = "//div[@id='comments']//div[contains(@class,'commentContainer')][1]//div[@class='text' and text()='"
 
     def __init__(self,browser,logger):
         ObjectModel.__init__(self, browser, logger)
@@ -59,5 +59,5 @@ class Messenger(ObjectModel):
         alert_popups.confirm_delete_message_popup()
 
     def get_message_link_delete_from_feed_xpath_fb(self, text):
-        return self._1st_message_in_feed_notext_xpath_fb + text + "']/../../../a[contains(@class,'removeComment')]"
+        return self._1st_message_in_feed_notext_xpath_fb + text + "']/../../a[contains(@class,'removeComment')]"
 
