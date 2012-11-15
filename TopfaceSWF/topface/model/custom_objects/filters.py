@@ -54,8 +54,9 @@ class Filters(ObjectModel):
                                "character",
                                "breast",
                                "alcohol"]
-    _extended_params = ["job",
-                        "status",
+    _social_status_descr = "Социальный статус"
+    _extended_params = ["job",#Социальный статус
+                        "status", #Социальный статус
                         "education",
                         "finances",
                         "smoking",
@@ -89,11 +90,20 @@ class Filters(ObjectModel):
         self.browser = browser
         self.logger = logger
 
+    def get_social_status_descr(self):
+        return self._social_status_descr
+
     def get_param_order_map(self):
         return self._param_order_map
 
     def get_default_visible_params(self):
         return self._default_visible_params
+
+    def get_extended_params(self):
+        return self._extended_params
+
+    def get_goals(self):
+        return self._goals
 
     def get_selected_goal_xpath(self,goal):
         return self._selected_goal_xpath + goal + "']"
@@ -123,12 +133,6 @@ class Filters(ObjectModel):
                 "//li[contains(@class,'extended-filter-option')]/a[@rel=" + str(value) + "]"
         self.logger.log("Extended param item list = " + xpath)
         return xpath
-
-    def get_extended_params(self):
-        return self._extended_params
-
-    def get_goals(self):
-        return self._goals
 
     def get_goal_status_xpath(self,goal):
         return self._goal_status_xpath + goal + "')]"
@@ -451,25 +455,27 @@ class Filters(ObjectModel):
             self.click(
                 self.get_element_by_xpath(
                     self.get_visible_param_xpath_by_param_name(param)))
-            self.hover(
-                self.get_element_by_xpath(
-                    self.get_extended_params_list_item_xpath_by_param_name(param,0)))
-            self.click(
-                self.get_element_by_xpath(
-                    self.get_extended_params_list_item_xpath_by_param_name(param,0)))
+            descriptor_element = self.get_element_by_xpath(
+                self.get_extended_params_list_item_xpath_by_param_name(param,0))
+            self.hover(descriptor_element)
+            self.click(descriptor_element)
         except Exception as e:
-            raise TestFailedException("Failed to select online filter \r\n" + traceback.format_exc())
+            raise TestFailedException("Failed to unset extended filter \r\n" + traceback.format_exc())
 
     def get_param_description(self,param):
         self.logger.log("Getting 0 value param = " + str(param) + " description ")
+#        condition for job and status => turn to single description "Социальный статус"
+        if param == self.get_extended_params()[0] or param == self.get_extended_params()[1]:
+            self.logger.log("Return Social status param")
+            return self.get_social_status_descr()
         try:
             self.click(
                 self.get_element_by_xpath(
                     self.get_visible_param_xpath_by_param_name(param)))
-            descriptor_element = self.get_element_by_xpath(
-                self.get_extended_params_list_item_xpath_by_param_name(param,0))
-            self.logger.log("Descriptor text = " + descriptor_element.text)
-            return descriptor_element.text
+            description = self.get_element_by_xpath(
+                self.get_extended_params_list_item_xpath_by_param_name(param,0)).text
+            self.logger.log("Description = " + description)
+            return description
         except Exception:
             raise TestFailedException("Failed to get param " + param + " description " + traceback.format_exc())
 

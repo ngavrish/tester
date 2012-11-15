@@ -335,7 +335,7 @@ class MainFilterTestSuite(TestSuite):
                     filter.add_param(param)
                 filter.set_filter_param_value(param,2)
                 self.validate_user_in_search({filter.get_param_description(param):filter.get_selected_param(param).text})
-                filter.unset_filter_param_value(param)
+#                filter.unset_filter_param_value(param)
             window.close()
 
         def validate_user_in_search(self,params_map):
@@ -356,11 +356,11 @@ class MainFilterTestSuite(TestSuite):
                                     "\r\n" +
                                     "Profile value = " + str(profile_url) +
                                     "\r\n")
-                    assert questionary.get_questionary_value_by_description(descr) == params_map[descr]
+                    self.logger.log("description = " + str(descr) + " param value = " + str(params_map[descr]) + "\r\n" +
+                                    "profile value = " + str(questionary.get_questionary_value_by_description(descr)))
+                    assert params_map[descr] in questionary.get_questionary_value_by_description(descr)
                 except Exception:
-                    raise TestFailedException("Failed to validate profile value and filter value with \r\n"
-                                              "description = " + str(descr) + " param value = " + str(params_map[descr]) + "\r\n"
-                                                                                                                           "profile value = " + str(questionary.get_questionary_value_by_description(descr)))
+                    raise TestFailedException("Failed to validate profile value and filter value with")
             self.browser.back()
 
         def select_all_additional_params(self):

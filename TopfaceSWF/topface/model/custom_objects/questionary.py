@@ -342,5 +342,9 @@ class Questionary(ObjectModel):
 
     def get_questionary_value_by_description(self,descr):
         self.logger.log("Getting value from questionary by description = " + str(descr))
-        return self.get_element_by_xpath("//div[contains(@class,'questionary-answers')]//td[@class='questionary-title' "
+        try:
+            return self.get_element_by_xpath("//div[contains(@class,'questionary-answers')]//td[@class='questionary-title' "
                                          "and contains(text(),'" + descr + "')]/../td[2]").text
+        except Exception:
+            self.logger.log("\r\n Element <b>" + descr + "</b> doesn't exist in users questionary \r\n")
+            raise TestFailedException("Questionary element doesn't exist in users's questionary")
